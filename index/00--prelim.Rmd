@@ -2,15 +2,10 @@
 
 ## Acknowledgements {-}
 
-I want to thank Professor Parzen and David Kane for their mentorship and guidance. This thesis would not be possible without their help. 
+I want to thank Prof. Parzen and David Kane for all of their help. 
 
 ## Preface {-}
 
-This is an example of a thesis setup to use the reed thesis document class
-(for LaTeX) and the R bookdown package, in general.
-
-## Dedication {-}
-
-You can have a dedication here if you wish. 
+This thesis explores a way of predicting index constituents using logistic regression
 
 `r if(!knitr:::is_latex_output()) '## Abstract {-}'`

@@ -24,12 +24,9 @@ abstract: |
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the |.
 acknowledgements: |
-  I want to thank a few people for their help.
-dedication: |
-  You can have a dedication here if you wish. 
+  I want to thank Prof. Parzen and David Kane for all of their help. 
 preface: |
-  This is an example of a thesis setup to use the reed thesis document class
-  (for LaTeX) and the R bookdown package, in general.
+  This thesis explores a way of predicting index constituents using logistic regression.
 bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
 csl: csl/apa.csl
