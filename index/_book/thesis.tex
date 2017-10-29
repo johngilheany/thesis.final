@@ -270,21 +270,21 @@ collected after each rebalancing.
 
 \section{Background}\label{background}
 
-The iShares USA Minimum Volatility (USMV) Exchange Traded Fund (ETF) is
-designed to track the investment results of the MSCI Minimum Volatility
-USA index, which is composed of stocks with a lower volatility than the
-general market. This can provide investors with exposure to a portfolio
-with less risk than many alternatives, and historically has declined
-less in value than the broader market during economic downturns. The ETF
-is comprised of 189 holdings, and is rebalanced two times per year, with
-the intention of mirroring the changes made by the index. The purpose of
-this dissertation is to create a logistic regression model that can
-accurately predict which stocks will be added or removed from this ETF
-before rebalancing occurs, and understand what factors are involved. The
-model will take into account volatility attributes of each stock, as
-well as others potentially significant predictor variables from prior
-studies. An accurate model will allow for arbitrage investment
-opportunities.
+The iShares Edge MSCI USA Minimum Volatility (USMV) Exchange Traded Fund
+(ETF) is designed to track the investment results of the MSCI Minimum
+Volatility USA index, which is composed of stocks with a lower
+volatility than the general market. This can provide investors with
+exposure to a portfolio with less risk than many alternatives, and
+historically has declined less in value than the broader market during
+economic downturns. The ETF is comprised of 189 holdings, and is
+rebalanced two times per year, with the intention of mirroring the
+changes made by the index. The purpose of this dissertation is to create
+a logistic regression model that can accurately predict which stocks
+will be added or removed from this ETF before rebalancing occurs, and
+understand what factors are involved. The model will take into account
+volatility attributes of each stock, as well as others potentially
+significant predictor variables from prior studies. An accurate model
+will allow for arbitrage investment opportunities.
 
 \subsection{Exchange Traded Funds
 (ETFs)}\label{exchange-traded-funds-etfs}
@@ -308,20 +308,21 @@ is called tracking error. The tracking error is often very small, and
 can be around a tenth of a percent. This error can come from indices
 being market capitalization weighted, meaning that price fluctuations of
 each stock lead to the weighting being changed by a ratio of its market
-cap against the market cap of all stocks in the index (Fontinelle
-(2009)). With these stocks weightings in the index constantly changing
-and people buying in and out of ETFs constantly, it is hard to track
+cap against the market cap of all stocks in the index (Fontinelle,
+2009). With these stocks weightings in the index constantly changing and
+people buying in and out of ETFs constantly, it is hard to track
 performance entirely accurately. However, ETFs very closely follow
 indices, as their tracking errors are generally quite small. Thus,
-although ETF data is not the same as index data, they are very similar.
+although ETF data is not the same as index data, they are extremely
+comparable.
 
 \subsection{iShares MSCI Min Vol USA
 ETF}\label{ishares-msci-min-vol-usa-etf}
 
-The iShares MSCI Min Vol USA ETF (USMV) is a Blackrock-managed ETF that
-tracks the investment results of the MSCI Minimum Volatility USA index.
-The MSCI Minimum Volatility USA index constituents come from the MSCI
-USA Index, which are roughly comprised of the top 600 US stocks by
+The iShares Edge MSCI Min Vol USA ETF (USMV) is a Blackrock-managed ETF
+that tracks the investment results of the MSCI Minimum Volatility USA
+index. The MSCI Minimum Volatility USA index constituents come from the
+MSCI USA Index, which are roughly comprised of the top 600 US stocks by
 market cap. This minimum volatility index is intended to have a lower
 beta, lower volatility, lower cap bias, and contain more stocks with
 less risk than its parent index, which contains US mid-cap and large-cap
@@ -331,7 +332,7 @@ with an average of 20 new additions and 14 deletions every 6 months when
 rebalancing occurs. Over the last five, years, the number of additions
 has ranged from 12 to 25, while the deletions have been between 10 and
 19. Changes to the index are usually announced nine trading days before
-they are set to take place.
+they are set to take place (BlackRock, 2017).
 
 Using the Barra Open Optimizer, USMV creates a minimum variance
 portfolio of low risk stocks, as a subset from its parent index of USA
@@ -807,6 +808,11 @@ approach with quicktime}. Boston, MA: Wesley Addison Longman.
 \hypertarget{ref-angel2002a}{}
 Angel, E. (2001b). \emph{Test second book by angel}. Boston, MA: Wesley
 Addison Longman.
+
+\hypertarget{ref-blackrock2017}{}
+BlackRock. (2017, September). IShares edge msci min vol usa etf
+\textbar{} usmv. Retrieved from
+\url{https://www.ishares.com/us/products/239695/ishares-msci-usa-minimum-volatility-etf}
 
 \hypertarget{ref-fontinelle2009}{}
 Fontinelle, E. (2009, October). ETF tracking errors: Protect your
