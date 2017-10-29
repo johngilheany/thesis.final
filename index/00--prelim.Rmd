@@ -2,7 +2,7 @@
 
 ## Acknowledgements {-}
 
-I want to thank a few people.
+I want to thank Professor Parzen and David Kane for their mentorship and guidance. This thesis would not be possible without their help. 
 
 ## Preface {-}
 
