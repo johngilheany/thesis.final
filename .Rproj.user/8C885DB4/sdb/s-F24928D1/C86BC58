@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "69B366C7",
+        "cacheKey" : "1D0BA24F",
         "caption" : "MSCI",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=MSCI&cache_key=69B366C7",
-        "displayedObservations" : 38598,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=MSCI&cache_key=1D0BA24F",
+        "displayedObservations" : "38598",
         "environment" : "",
         "object" : "MSCI",
-        "preview" : 0,
-        "totalObservations" : 38598,
-        "variables" : 6
+        "preview" : "0",
+        "totalObservations" : "38598",
+        "variables" : "6"
     },
     "relative_order" : 7,
     "source_on_save" : false,
