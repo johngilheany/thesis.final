@@ -1267,8 +1267,7 @@ the weighting of the volume of stocks entering or leaving the factor
 index. All in all, these findings suggest an index arbitrage opportunity
 exists if index additions or deletions can be accurately predicted.
 
-\chapter{Data Collection and Summary
-Statistics}\label{data-collection-and-summary-statistics}
+\chapter{Data Gathering Process}\label{data-gathering-process}
 
 \section{Data Aggregation}\label{data-aggregation}
 
@@ -1461,10 +1460,27 @@ the end, ``1015736'' and ``Orchard Supply Hardware Stores'' were removed
 from the data set. These together accounted for less than 0.2\% of the
 data for a given month-end date.
 
-\section{EUSA and USMV Data Overview}\label{eusa-and-usmv-data-overview}
+\section{Data Overview}\label{data-overview}
 
 To get a sense of how the cleaned EUSA data looks, an overview is shown
 below:
+\begin{verbatim}
+Warning: package 'dplyr' was built under R version 3.4.2
+\end{verbatim}
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
 \begin{verbatim}
   ticker                     name asset.class weight  price shares
 1      A AGILENT TECHNOLOGIES INC      Equity 0.1090  37.07     79
@@ -1567,18 +1583,21 @@ reasonably distributed, and the dates correctly range from 10-31-2011 to
  Utilities             : 616   Max.   :2016-12-30  
  (Other)               :1677                       
 \end{verbatim}
-\section{EUSA and USMV Data Check}\label{eusa-and-usmv-data-check}
+\section{Data Check}\label{data-check}
 
 Thus, after cleaning all the data, a check was performed to test how
 accurate the data set actually was. This was done by comparing the
 weighted-returns from the index constructed from the data to the actual
-ETF returns on a monthly basis. \#\#\# Weights The first thing to
-claculate and check were the weights of EUSA and USMV for all stocks on
-a monthly basis. If the data were perfect, these should add up to 1.
-However, as some tickers and cash were removed, and given tracking error
-between the ETF and index, this was not expected. However, something
-very close to 1 was expected. The monthly change in weights for EUSA is
-shown below.
+ETF returns on a monthly basis.
+
+\subsection{Weights}\label{weights}
+
+The first thing to claculate and check were the weights of EUSA and USMV
+for all stocks on a monthly basis. If the data were perfect, these
+should add up to 1. However, as some tickers and cash were removed, and
+given tracking error between the ETF and index, this was not expected.
+However, something very close to 1 was expected. The monthly change in
+weights for EUSA is shown below.
 \begin{verbatim}
 Warning in data(usa): data set 'usa' not found
 \end{verbatim}
