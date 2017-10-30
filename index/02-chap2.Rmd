@@ -118,7 +118,7 @@ To get a sense of the cleaned EUSA data, an overview is shown below:
 load("~/thesis_final/data/usa.Rda")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 library(dplyr)
 head(arrange(usa, date))
 ```
@@ -177,32 +177,34 @@ ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights o
 ```
 As shown in the scatterplot above, the weights for USMV are very close to 100%, with no value exceeding 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%.
 
-### Comparing actual ETF returns to constructed ETF returns for EUSA and USMV
-Before taking the data completely at face value, some additional checks were performed. This was accomplished by comparing the weighted returns of the constructed index we had for our data (looking at each constituent’s monthly return, multiplied by its weight), and comparing it to the actual ETF return. Thus, this provided a way to check how the weighted returns compared to the ETF returns for both EUSA and USMV. Though perfect correlation was not expected, a figure of at least 98% correlation between the weighted returns calculated and the ETF returns, on a monthly basis, was hoped for. The results for EUSA are shown below.
+### Comparing Actual ETF returns to Constructed Index returns
+Given the weights were very close to 100% for both ETFs on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. 
+
+For the Constructed US Equal Weight Index and EUSA:
 
 ```{r, echo = FALSE}
 load("~/thesis_final/data/returns1.Rda")
 library(ggplot2)
-# EUSA returns vs. EUSA constructed weighted returns
-ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) +  geom_smooth(method=lm) + ggtitle("EUSA returns vs. EUSA constructed weighted returns")
-
-# Correlation between EUSA returns and EUSA constructed weighted returns
-cor(returns1$eusa_return, returns1$weighted_return)
+# Constructed US Equal Weight Index returns vs. EUSA ETF returns
+ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + ggtitle("Constructed US Equal Weight Index returns vs. EUSA ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
+# Correlation between Constructed US Equal Weight Index returns vs. EUSA ETF returns
+# cor(returns1$eusa_return, returns1$weighted_return)
 ```
-As shown, the returns have a correlation greater than 0.98.
 
-Shown below is the data for USMV:
-```{r}
+The correlation between the Constructed US Equal Weight Index returns and EUSA ETF returns, is 98.06%.
+
+For the Constructed Minimum Volatility Index and USMV:
+```{r, echo=FALSE}
 # USA data
 load("~/thesis_final/data/returns2.Rda")
 library(ggplot2)
-ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) +
-	geom_point(shape=1) +  geom_smooth(method=lm) + ggtitle("USMV returns vs. USMV constructed weighted returns")
+ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) + geom_point(shape=1) + ggtitle("Constructed US Minimum Volatility Index returns vs. USMV ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
 
-# Correlation between USMV returns and USMV constructed weighted returns
-cor(returns2$eminvol_return, returns2$weighted_return)
+# Correlation between Weighted Index Monthly Return
+# cor(returns2$eminvol_return, returns2$weighted_return)
 ```
-The correlation is 0.99. 
+
+The correlation between the Constructed Minimum Volatility Index returns and USMV ETF returns, is 99.07%. 
 
 
 
