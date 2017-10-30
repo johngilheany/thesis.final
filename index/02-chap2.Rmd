@@ -3,7 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Data Collection and Summary Statistics
+# Data Collection and Cleaning
 ```{r, echo=FALSE}
 # List of packages required for this analysis
 pkg <- c("dplyr", "ggplot2", "knitr", "bookdown", "devtools")
@@ -112,18 +112,18 @@ Since this surpassed the threshold set, it was look at in more detail. After som
 
 Tickers and stock names that could not be determined were removed. In the end, “1015736” and "Orchard Supply Hardware Stores" were removed from the data set. These together accounted for less than 0.2% of the data for a given month-end date.
 
-## EUSA and USMV Data Overview 
+# Data Overview 
 To get a sense of how the cleaned EUSA data looks, an overview is shown below:
 ```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa.Rda")
+library(dplyr)
 ```
 
 ```{r, echo = FALSE}
-library(dplyr)
 head(arrange(usa, date))
 ```
 
-Shown below are summary statistics for EUSA. 
+Shown below are summary statistics for EUSA. Each name is representd 63 times, which is indicates no name is over represented in the dataset. Moreover, every row is an equity, which makes sense considering cash and cash assets were removed from at the beginning of the cleaning process. The weights of each stock in the EUSA ETF are also all between 0 and 4.6773%. There are no negative values and no stocks that appear to be incorrectly overweight. Moreover, each sector appears to be reasonably distributed, and the dates correctly range from 10-31-2011 to 12-30-2016. 
 ```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa.Rda")
 ```
@@ -143,7 +143,7 @@ library(dplyr)
 head(arrange(minvol, date))
 ```
 
-Select summary statistics for USMV are shown below:
+Shown below are summary statistics for USMV Each name is representd 63 times, which is indicates no name is over represented in the dataset. Moreover, every row is an equity, which makes sense considering cash and cash assets were removed from at the beginning of the cleaning process. The weights of each stock in the USMV ETF are also all between 0.0002 and 2.8287%. There are no negative values and no stocks that appear to be incorrectly overweight. Moreover, each sector appears to be reasonably distributed, and the dates correctly range from 10-31-2011 to 12-30-2016. 
 ```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/minvol.Rda")
 ```
@@ -153,9 +153,9 @@ minvol_summ <- select(minvol, name, asset.class, weight, sector, date)
 summary(minvol_summ)
 ```
 
-## EUSA and USMV Data Check
+# Data Check
 Thus, after cleaning all the data, a check was performed to test how accurate the data set actually was. This was done by comparing the weighted-returns from the index constructed from the data to the actual ETF returns on a monthly basis.
-### Weights
+## Weights
 The first thing to claculate and check were the weights of EUSA and USMV for all stocks on a monthly basis. If the data were perfect, these should add up to 1. However, as some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. 
 However, something very close to 1 was expected. The monthly change in weights for EUSA is shown below.
 
@@ -179,7 +179,7 @@ ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Sum of USMV Weigh
 
 As shown in the scatterplor above, the weights for USMV are very close to 100%, and no value exceeds 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%. Overall, these suggest the data is trustable.
 
-### Comparing actual ETF returns to constructed ETF returns for EUSA and USMV
+## Comparing actual ETF returns to constructed ETF returns for EUSA and USMV
 Before taking the data completely at face value, some additional checks were performed. This was accomplished by comparing the weighted returns of the constructed index we had for our data (looking at each constituent’s monthly return, multiplied by its weight), and comparing it to the actual ETF return. Thus, this provided a way to check how the weighted returns compared to the ETF returns for both EUSA and USMV. Though perfect correlation was not expected, a figure of at least 98% correlation between the weighted returns calculated and the ETF returns, on a monthly basis, was hoped for. The results for EUSA are shown below.
 
 ```{r, echo = FALSE}
@@ -207,7 +207,7 @@ cor(returns2$eminvol_return, returns2$weighted_return)
 ```
 The correlation is 0.99. 
 
-### Change in 5 largest holdings by average weight for EUSA and USMV
+## Change in 5 largest holdings by average weight for EUSA and USMV
 The next thing we want to see is how the top 5 largest holdings, by average weight, in each index have changed in weighting over time. For EUSA, the 5 largest holdings were AAPL, XOM, MSFT, GE, and JNJ. Their change in weights are shown below. 
 
 ```{r, echo = FALSE}
