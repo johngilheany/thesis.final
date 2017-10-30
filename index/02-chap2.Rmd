@@ -75,13 +75,13 @@ As shown in the scatterplor above, the weights for USMV are very close to 100%, 
 Before taking the data completely at face value, some additional checks were performed. This was accomplished by comparing the weighted returns of the constructed index we had for our data (looking at each constituent’s monthly return, multiplied by its weight), and comparing it to the actual ETF return. Thus, this provided a way to check how the weighted returns compared to the ETF returns for both EUSA and USMV. Though perfect correlation was not expected, a figure of at least 98% correlation between the weighted returns calculated and the ETF returns, on a monthly basis, was hoped for. The results for EUSA are shown below.
 
 ```{r, echo = FALSE}
-load("~/thesis_final/data/returns1.Rda")
+load("~/thesis_final/data/usa_returns.Rda")
 library(ggplot2)
 # EUSA returns vs. EUSA constructed weighted returns
-ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) +  geom_smooth(method=lm) + ggtitle("EUSA returns vs. EUSA constructed weighted returns")
+ggplot(usa_returns, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) +  geom_smooth(method=lm) + ggtitle("EUSA returns vs. EUSA constructed weighted returns")
 
 # Correlation between EUSA returns and EUSA constructed weighted returns
-cor(returns1$eusa_return, returns1$weighted_return)
+cor(usa_returns$eusa_return, usa_returns$weighted_return)
 ```
 As shown, the returns have a correlation greater than 0.98.
 
@@ -90,12 +90,12 @@ Shown below is the data for USMV.
 ```{r}
 # USA data
 library(ggplot2)
-load("~/thesis_final/data/returns2.Rda")
-ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) +
+load("~/thesis_final/data/minvol_returns.Rda")
+ggplot(minvol_returns, aes(x=weighted_return, y=eminvol_return)) +
 	geom_point(shape=1) +  geom_smooth(method=lm) + ggtitle("USMV returns vs. USMV constructed weighted returns")
 
 # Correlation between USMV returns and USMV constructed weighted returns
-cor(returns2$eminvol_return, returns2$weighted_return)
+cor(minvol_returns$eminvol_return, minvol_returns$weighted_return)
 ```
 The correlation is 0.99. 
 
