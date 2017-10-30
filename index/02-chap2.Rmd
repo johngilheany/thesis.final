@@ -178,7 +178,7 @@ ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights o
 As shown in the scatterplot above, the weights for USMV are very close to 100%, with no value exceeding 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%.
 
 ### Comparing Actual ETF returns to Constructed Index returns
-Given the weights were very close to 100% for both ETFs on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. 
+Given the weights were very close to 100% for both ETFs on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. The higher the correlation, the more accruate the data is. 
 
 For the Constructed US Equal Weight Index and EUSA:
 
@@ -191,9 +191,10 @@ ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + 
 # cor(returns1$eusa_return, returns1$weighted_return)
 ```
 
-The correlation between the Constructed US Equal Weight Index returns and EUSA ETF returns, is 98.06%.
+The correlation between the Constructed US Equal Weight Index returns and EUSA ETF returns is 98.06%.
 
 For the Constructed Minimum Volatility Index and USMV:
+
 ```{r, echo=FALSE}
 # USA data
 load("~/thesis_final/data/returns2.Rda")
@@ -204,49 +205,4 @@ ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) + geom_point(shape=1)
 # cor(returns2$eminvol_return, returns2$weighted_return)
 ```
 
-The correlation between the Constructed Minimum Volatility Index returns and USMV ETF returns, is 99.07%. 
-
-
-
-
-### Change in 5 largest holdings by average weight for EUSA and USMV
-The next thing we want to see is how the top 5 largest holdings, by average weight, in each index have changed in weighting over time. For EUSA, the 5 largest holdings were AAPL, XOM, MSFT, GE, and JNJ. Their change in weights are shown below. 
-
-```{r, echo = FALSE}
-data(usa)
-usa_weight3 <- aggregate(weight ~ ticker, data=usa, FUN=sum)
-minvol_weight3 <- aggregate(weight ~ ticker, data=minvol, FUN=sum)
-
-usa_sub1 <- filter(usa, ticker == "AAPL" | ticker == "XOM" | ticker == "MSFT" | ticker == "GE" | ticker == "JNJ")
-usa_sub1 <- select(usa_sub1, date, ticker, weight)
-
-library(ggplot2)
-
-ggplot() + 
-	geom_line(data = filter(usa_sub1, ticker == "AAPL"), aes(x = date, y = weight, color = "AAPL")) +
-	geom_line(data = filter(usa_sub1, ticker == "XOM"), aes(x = date, y = weight, color = "XOM"))  +
-	geom_line(data = filter(usa_sub1, ticker == "MSFT"), aes(x = date, y = weight, color = "MSFT"))  +
-	geom_line(data = filter(usa_sub1, ticker == "GE"), aes(x = date, y = weight, color = "GE"))  +
-	geom_line(data = filter(usa_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
-	xlab('date') + ylab('weight') + ggtitle('Change in Weights of Top 5 EUSA Holdings')
-```
-
-Shown above, for EUSA, are some very interesting findings. The weights of the 5 companies are all very high, then suddenly all spike. Verifying this in the data, showed that for all 5 companies, holdings dropped significantly between 2015-07-31 and 2015-08-31. The reason for this is not entirely clear, but the general ETF started performing poorly around this time too. In July of 2015 the price per share was 45.20, then it dropped to 42.60 the following month, and dropped again to 40.50 in August 2015. Perhaps these large companies were doing poorly, and MSCI decided to try underweighting them. 
-
-For USMV, the 5 largest holdings were VZ, T, ADP, JNJ, and MCD. Their change in weights are shown below. As we can see below, with the exception of Verizon, the holdings generally remain between 1 and 1.6 percent of the overall portfolio.
-
-```{r, echo = FALSE}
-minvol_sub1 <- filter(minvol, ticker == "VZ" | ticker == "T" | ticker == "ADP" | ticker == "JNJ" | ticker == "MCD")
-minvol_sub1 <- select(minvol_sub1, date, ticker, weight)
-
-library(ggplot2)
-
-ggplot() + 
-	geom_line(data = filter(minvol_sub1, ticker == "VZ"), aes(x = date, y = weight, color = "VZ")) +
-	geom_line(data = filter(minvol_sub1, ticker == "T"), aes(x = date, y = weight, color = "T"))  +
-	geom_line(data = filter(minvol_sub1, ticker == "ADP"), aes(x = date, y = weight, color = "ADP"))  +
-	geom_line(data = filter(minvol_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
-	geom_line(data = filter(minvol_sub1, ticker == "MCD"), aes(x = date, y = weight, color = "MCD"))  +
-	xlab('date') + ylab('weight') + ggtitle('Change in Weights of Top 5 USMV Holdings')
-
-```
+The correlation between the Constructed Minimum Volatility Index returns and USMV ETF returns is 99.07%. 
