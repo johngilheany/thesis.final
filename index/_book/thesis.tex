@@ -1302,33 +1302,23 @@ only on the stocks.
 \subsection{Non-US Exchanges}\label{non-us-exchanges}
 
 Looking at the unique exchanges of the data, it was observed that there
-were many foreign exchanges like the Swiss Exchange and the Mexican
-Stock Exchange.
+were several foreign exchanges like the Swiss Exchange and the Mexican
+Stock Exchange. For example, in the EUSA data set, there were several
+foreign stock exchanges:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{load}\NormalTok{(}\StringTok{"~/thesis_final/data/usa.Rda"}\NormalTok{)}
-\KeywordTok{unique}\NormalTok{(usa$exchange)}
+\CommentTok{# Print out unique exchanges in USA data set}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{unique}\NormalTok{(usa$exchange))}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
- [1] New York Stock Exchange Inc.                      
- [2] NASDAQ                                            
- [3] Bolsa Mexicana De Valores (Mexican Stock Exchange)
- [4] Nyse Euronext - Euronext Paris                    
- [5] Boerse Berlin                                     
- [6] Tokyo Stock Exchange                              
- [7] Non-Nms Quotation Service (Nnqs)                  
- [8] Swiss Exchange                                    
- [9] <NA>                                              
-[10] Deutsche Boerse Ag                                
-[11] Boerse Muenchen                                   
-[12] Nyse Euronext - Euronext Amsterdam                
-[13] London Stock Exchange                             
-[14] Boerse Duesseldorf                                
-[15] Nyse Mkt Llc                                      
-[16] Boerse Stuttgart                                  
-[17] Spot Regulated Market - Bvb                       
-[18] Bolsa De Valores De Lima                          
+[1] New York Stock Exchange Inc.                      
+[2] NASDAQ                                            
+[3] Bolsa Mexicana De Valores (Mexican Stock Exchange)
+[4] Nyse Euronext - Euronext Paris                    
+[5] Boerse Berlin                                     
+[6] Tokyo Stock Exchange                              
 17 Levels: Boerse Berlin Boerse Duesseldorf ... Tokyo Stock Exchange
 \end{verbatim}
 This did not make sense, given the ETF constituents are supposed to be
@@ -1342,189 +1332,241 @@ listed.
 \subsubsection{Mislabeled Exchanges}\label{mislabeled-exchanges}
 
 The first type of error involved companies that are actually listed on
-either the NYSE and NASDAQ, but were listed on an foreign exchange
-instead in the data and still had their US ticker used. One example was
-BAC, Bank of America, which is listed on the NYSE, but was listed on the
-Swiss Stock Exchange in the data set. The price for BAC in the data set
-corresponded to the price of BAC in the NYSE, although it was listed on
-the Swiss Exchange. Moreover, BAC did not corresponded to Bank of
-America on the Swiss Exchange. Thus, after several checks, it could be
-concluded that BAC in the dtaa set was incorrectly listed on the Swiss
-Exchange, and should have been listed on the NYSE instead. Since the
-ticker would still be able to be read into WRDS, these cases were left
-as is, and no changes were made.
+either the NYSE and NASDAQ, but were listed on a foreign exchange in the
+data and still had their US ticker used. One example was BAC (Bank of
+America) which is listed on the NYSE, but was listed on the Swiss Stock
+Exchange in the dataset:
+\begin{verbatim}
+  ticker                 name weight price       exchange       date
+1    BAC BANK OF AMERICA CORP 0.5812  6.83 Swiss Exchange 2011-10-31
+2    BAC BANK OF AMERICA CORP 0.4643  5.44 Swiss Exchange 2011-11-30
+3    BAC BANK OF AMERICA CORP 0.4732  5.56 Swiss Exchange 2011-12-30
+4    BAC BANK OF AMERICA CORP 0.5823  7.13 Swiss Exchange 2012-01-31
+5    BAC BANK OF AMERICA CORP 0.6235  7.97 Swiss Exchange 2012-02-29
+6    BAC BANK OF AMERICA CORP 0.7375  9.57 Swiss Exchange 2012-03-30
+\end{verbatim}
+The price for BAC in the data set corresponded to the price of BAC in
+the NYSE, even though it was listed on the Swiss Exchange; BAC also did
+not corresponded to Bank of America on the Swiss Exchange. Thus, after
+several checks, it could be concluded that BAC in the data set was
+incorrectly listed on the Swiss Exchange, and should have been listed on
+the NYSE instead. Since the ticker was still correct and would be read
+in properly in the later stages of this paper, these cases were left as
+is and no changes were made.
 
 \subsubsection{Mislabeled Tickers}\label{mislabeled-tickers}
 
-The second type of error was from companies listed on foreign exchanges
-that are listed on a US exchange as well, but their non-US ticker used.
-One example of this was Aflac, Inc. which was listed by its ticker
-``8686'' on the Tokyo stock exchange. This was immediately a red flag
-due to the numbers in the ticker. This numeric ticker corresponded to
-Aflac, Inc. on the Tokyo exchange, but when checking the recorded price
-of the stock for corresponding dates, it matched up with the Aflac, Inc.
-stock on the NYSE, with ticker ``AFL''. Thus, when this happened, each
-company was treated on a case-by-case basis. In this case, since the
-stock price corresponded to AFL, the ticker name was changed from
-``8686'' to ``AFL''. This would ensure the data could be properly read
-in from WRDS.
-
-Overall, even with these numerous errors, it was a good sign because it
-implied that the data was generally correct (no internationally listed
-companies), but just recorded incorrectly. Thus, after making these
-changes, it was safe to assume the data was for the most part accurate.
+The second type of error stemmed from companies listed on foreign
+exchanges that are also listed on a US exchange in reality, but had
+their non-US ticker used in the data set. One example of this was Aflac,
+Inc. which was listed by its ticker ``8686'' on the Tokyo stock
+exchange:
+\begin{verbatim}
+  ticker       name weight price             exchange       date
+1   8686 AFLAC INC. 0.1779 45.09 Tokyo Stock Exchange 2011-10-31
+2   8686 AFLAC INC. 0.1719 43.44 Tokyo Stock Exchange 2011-11-30
+3   8686 AFLAC INC. 0.1699 43.26 Tokyo Stock Exchange 2011-12-30
+4   8686 AFLAC INC. 0.1810 48.23 Tokyo Stock Exchange 2012-01-31
+5   8686 AFLAC INC. 0.1698 47.25 Tokyo Stock Exchange 2012-02-29
+6   8686 AFLAC INC. 0.1646 45.99 Tokyo Stock Exchange 2012-03-30
+\end{verbatim}
+This immediately raised a red flag due to the numbers in the ticker.
+This numeric ticker corresponded to Aflac, Inc. on the Tokyo exchange,
+but when checking the recorded price of the stock for corresponding
+dates, it matched up with the Aflac, Inc. stock on the NYSE, with ticker
+``AFL''. Thus, when this happened, each company was treated on a
+case-by-case basis. In this case, since the stock price corresponded to
+AFL, the ticker name was changed from ``8686'' to ``AFL''. This would
+ensure the data could be properly read in later on.
 
 \subsection{Unrecognized Tickers}\label{unrecognized-tickers}
 
-Another general type of error in the data occured when the ticker was
-not read into WRDS, causing all the prices for that ticker and company
-to be ``NA''. This was evaluated, once again, on a case-by-case basis,
-by observing which tickers WRDS did not recognize, and looking at the
-company name to understand why. Sometimes, the issue was very obvious.
-One example of a clear discrepancy was when the ticker had an asterisk
-at the end of it. After careful digging, the asterisk did not seem to
-mean anything, and it is unclear why some tickers contained it. One
-example was ``AAPL*''. This caused issues for reading the data in from
-WRDS, because that ticker was not read in as ``AAPL'' due to the
-asterisk. This was fixed by simply removing the asterik from the ticker
-name.
+The final general type of error in the data occured when the ticker
+incorrectly recorded in the data set. This was evaluated, once again, on
+a case-by-case basis, by observing which tickers were not recognize, and
+looking at the company name to understand why. Sometimes, the issue was
+very obvious. One example of a clear discrepancy was when the ticker had
+an asterisk at the end of it. After careful digging, the asterisk did
+not seem to mean anything, and it is unclear why some tickers contained
+it. One ticker was ``AAPL*'':
+\begin{verbatim}
+  ticker      name weight  price       date
+1  AAPL* APPLE INC 3.1640 404.78 2011-10-31
+2  AAPL* APPLE INC 2.9821 382.20 2011-11-30
+3  AAPL* APPLE INC 3.1623 405.00 2011-12-30
+4  AAPL* APPLE INC 3.4130 456.48 2012-01-31
+5  AAPL* APPLE INC 3.8840 542.44 2012-02-29
+6  AAPL* APPLE INC 4.2291 599.47 2012-03-30
+\end{verbatim}
+This would cause future issues when reading the data in, because that
+ticker was not read in as ``AAPL'' due to the asterisk. This was fixed
+by simply removing the asterik from the ticker name.
 
 Another example of the ticker not being read in properly was when it
 contained numbers. Alflac was an example that was mentioned previously,
 but another one that applied here was ``AG4'' which was the ticker for
 Allergan. Since NYSE and NASDAQ tickers do not contain numbers, this was
-a clear red flag. After some research, it appeared AG4 is the ticker for
-Allergan on the Deutsche Boerse AG Stock Exchange. However, the prices
-corresponded to Allergan's on the NYSE. Thus, the ticker was changed to
-the ticker used for Allergan on the NYSE - AGN. Overall, though each
+a clear issue:
+\begin{verbatim}
+  ticker     name weight      exchange price       date
+1    AG4 ALLERGAN 0.2160 Boerse Berlin 84.12 2011-10-31
+2    AG4 ALLERGAN 0.2157 Boerse Berlin 83.72 2011-11-30
+3    AG4 ALLERGAN 0.2275 Boerse Berlin 87.74 2011-12-30
+4    AG4 ALLERGAN 0.2178 Boerse Berlin 87.91 2012-01-31
+5    AG4 ALLERGAN 0.2126 Boerse Berlin 89.59 2012-02-29
+6    AG4 ALLERGAN 0.2204 Boerse Berlin 95.43 2012-03-30
+\end{verbatim}
+After some research, it found that AG4 is the ticker for Allergan on the
+Deutsche Boerse AG Stock Exchange, but the prices corresponded to that
+of Allergan's on the NYSE. Thus, the AG4 ticker was changed to the
+ticker used for Allergan on the NYSE - AGN. Overall, though each
 category is unique, there has been a lot of overlap, and often times
 correcting one type of error would fix other errors too. For example
-here, many tickers that include numbers will not be read in, and this is
-usually because the ticker corresponds with the same company but on a
-foreign exchange.
+here, many tickers that include numbers would lead to obvious errors,
+and this was often times because the ticker corresponded with the right
+company, just on a foreign exchange.
 
 \subsection{Price Discrepancies}\label{price-discrepancies}
 
 The general methodology to ensure a change in ticker was appropriate was
-to check the price of the stock at a specific date, in the EUSA data
-set, and then comparing it to the new ticker being assigned. If the
-price matched, the change was made. If the price did not match up, and
-was very different, research was performed to see if a stock-split might
-be the cause of this. If there was no evidence of a stock-split, then
-the stock further analyzed to see what the issue was. In addition to
-looking and when prices did not match up with tickers and companies for
-certain dates, monthly returns were calculated for each stock during the
-times they were in the index, and any abnormal returns (magnitude
-greater than 30\% in one month) were look at manually. One example of
-this was Netflix's stock 7:1 stock split in 2015. The monthly data
-showed drastic fall in price from 656.94 on 2015-05-29 to a 114.31 on
-2015-07-31, in just one month. This amounts to recorded loss of 82.5\%.
+to check the price of the stock at a specific date, in the USA data set,
+and then compare it to the new ticker being assigned. If the price
+matched, the change was made. If the price did not match up, and was
+very different, research was performed to see if a stock-split might be
+the cause of this. If there was no evidence of a stock-split, then the
+stock further analyzed to see what the issue was. In addition to looking
+at when prices did not match up with tickers and companies for certain
+dates, monthly returns were calculated for each stock during the times
+they were in the index, and any abnormal returns (magnitude greater than
+30\% in one month) were look at manually. One example of this was
+Netflix's stock 7:1 stock split in 2015. The monthly data showed drastic
+fall in price from 656.94 on 2015-05-29 to a 114.31 on 2015-07-31, in
+just one month. This amounts to recorded loss of 82.5\%:
+\begin{verbatim}
+  ticker        name weight exchange  price       date
+1   NFLX NETFLIX INC 0.1840   NASDAQ 624.06 2015-05-29
+2   NFLX NETFLIX INC 0.1945   NASDAQ 656.94 2015-06-30
+3   NFLX NETFLIX INC 0.2329   NASDAQ 114.31 2015-07-31
+4   NFLX NETFLIX INC 0.1693   NASDAQ 115.03 2015-08-31
+5   NFLX NETFLIX INC 0.1588   NASDAQ 103.26 2015-09-30
+\end{verbatim}
 Since this surpassed the threshold set, it was look at in more detail.
 After some research, it was shown there was in fact a 7:1 stock split,
 so the price of the stock on 2015-07-31 was adjusted to 800.17, and the
 appropriate calculations were done. Thus, in this case, the ticker was
 left alone, but just the price was adjusted.
 
-Tickers that could not be determined were removed. In the end, the
-ticker named ``1015736'' and Orchard Supply Hardware Stores were removed
+Tickers and stock names that could not be determined were removed. In
+the end, ``1015736'' and ``Orchard Supply Hardware Stores'' were removed
 from the data set. These together accounted for less than 0.2\% of the
-data from one month-end date.
+data for a given month-end date.
 
 \section{EUSA and USMV Data Overview}\label{eusa-and-usmv-data-overview}
 
-To get a sense of the EUSA data, summary statistics are shown below:
+To get a sense of how the cleaned EUSA data looks, an overview is shown
+below:
 \begin{verbatim}
-     ticker                           name             asset.class   
- CB     :  101   3M CO                  :   63   Cash        :    0  
- AGN    :   67   ABBOTT LABORATORIES    :   63   Equity      :38598  
- NLSN   :   64   ACCENTURE PLC          :   63   Money Market:    0  
- A      :   63   ACTIVISION BLIZZARD INC:   63                       
- AAP    :   63   ADOBE SYSTEM INC       :   63                       
- AAPL   :   63   ADVANCE AUTO PARTS INC :   63                       
- (Other):38177   (Other)                :38220                       
-     weight           price            shares        market.value      
- Min.   :0.0000   Min.   :  0.56   Min.   :     0   Min.   :2.000e+03  
- 1st Qu.:0.0536   1st Qu.: 35.07   1st Qu.:   798   1st Qu.:5.289e+07  
- Median :0.1208   Median : 55.09   Median :  1546   Median :8.282e+07  
- Mean   :0.1629   Mean   : 71.91   Mean   :  3365   Mean   :1.610e+08  
- 3rd Qu.:0.1636   3rd Qu.: 83.52   3rd Qu.:  3181   3rd Qu.:1.410e+08  
- Max.   :4.6773   Max.   :953.00   Max.   :133289   Max.   :6.804e+09  
-                  NA's   :46                                           
- notional.value                         sector         sedol      
- Min.   :     40.5   Financials            :6825   2000019:   63  
- 1st Qu.:  54595.6   Consumer Discretionary:6595   2002305:   63  
- Median :  74215.6   Information Technology:5487   2005973:   63  
- Mean   :  89651.9   Industrials           :4687   2008154:   63  
- 3rd Qu.: 116297.5   Health Care           :4067   2011602:   63  
- Max.   :2106050.4   Energy                :3208   2018175:   63  
- NA's   :22878       (Other)               :7729   (Other):38220  
-           isin      
- AN8068571086:   63  
- BMG0450A1053:   63  
- BMG0692U1099:   63  
- BMG169621056:   63  
- BMG3223R1088:   63  
- BMG491BT1088:   63  
- (Other)     :38220  
-                                               exchange    
- New York Stock Exchange Inc.                      :27499  
- NASDAQ                                            : 9238  
- Boerse Berlin                                     :  427  
- Deutsche Boerse Ag                                :  394  
- Bolsa Mexicana De Valores (Mexican Stock Exchange):  266  
- (Other)                                           :  658  
- NA's                                              :  116  
-      date           
- Min.   :2011-10-31  
- 1st Qu.:2013-02-28  
- Median :2014-06-30  
- Mean   :2014-06-12  
- 3rd Qu.:2015-09-30  
- Max.   :2016-12-30  
-                     
+Warning: package 'dplyr' was built under R version 3.4.2
 \end{verbatim}
-To get a sense of the USMV data, summary statistics are shown below:
 \begin{verbatim}
-     ticker                                name            asset.class  
- CB     :  81   ABBOTT LABORATORIES          :  63   Cash        :   0  
- ABT    :  63   ALTRIA GROUP INC             :  63   Equity      :9229  
- ACGL   :  63   ARCH CAPITAL GROUP LTD       :  63   Money Market:   0  
- ADP    :  63   AT&T INC                     :  63                      
- AMT    :  63   AUTOMATIC DATA PROCESSING INC:  63                      
- AZO    :  63   AUTOZONE INC                 :  63                      
- (Other):8833   (Other)                      :8851                      
-     weight           price            shares          market.value      
- Min.   :0.0002   Min.   :  0.56   Min.   :       6   Min.   :     1138  
- 1st Qu.:0.2790   1st Qu.: 48.52   1st Qu.:   60888   1st Qu.:  5109636  
- Median :0.6016   Median : 71.52   Median :  233116   Median : 18493183  
- Mean   :0.6810   Mean   : 93.10   Mean   :  462436   Mean   : 30802130  
- 3rd Qu.:1.0191   3rd Qu.:100.79   3rd Qu.:  567713   3rd Qu.: 39743039  
- Max.   :2.8287   Max.   :953.00   Max.   :15574666   Max.   :240885300  
-                  NA's   :6                                              
- notional.value                         sector         sedol     
- Min.   :    22212   Health Care           :1631   2002305:  63  
- 1st Qu.: 19047994   Financials            :1548   2005973:  63  
- Median : 39501565   Information Technology:1482   2065308:  63  
- Mean   : 52545119   Consumer Staples      :1222   2065955:  63  
- 3rd Qu.: 70790821   Consumer Discretionary:1053   2073390:  63  
- Max.   :240885300   Utilities             : 616   2077905:  63  
- NA's   :5026        (Other)               :1677   (Other):8851  
-           isin                              exchange   
- BMG0450A1053:  63   New York Stock Exchange Inc.:7010  
- BMG3223R1088:  63   NASDAQ                      :1890  
- BMG7496G1033:  63   Deutsche Boerse Ag          :  58  
- US00206R1023:  63   Spot Regulated Market - Bvb :  58  
- US0028241000:  63   Boerse Berlin               :  32  
- US02209S1033:  63   (Other)                     : 164  
- (Other)     :8851   NA's                        :  17  
-      date           
- Min.   :2011-10-31  
- 1st Qu.:2013-04-30  
- Median :2014-09-30  
- Mean   :2014-08-13  
- 3rd Qu.:2015-11-30  
- Max.   :2016-12-30  
-                     
+
+Attaching package: 'dplyr'
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
+\begin{verbatim}
+  ticker                     name asset.class weight  price shares
+1      A AGILENT TECHNOLOGIES INC      Equity 0.1090  37.07     79
+2     AA                ALCOA INC      Equity 0.0981  10.76    245
+3    AAP   ADVANCE AUTO PARTS INC      Equity 0.0388  65.07     16
+4   AAPL                APPLE INC      Equity 3.1640 404.78    210
+5    ABC   AMERISOURCEBERGEN CORP      Equity 0.0942  40.80     62
+6    ABT      ABBOTT LABORATORIES      Equity 0.7018  53.87    350
+  market.value notional.value                 sector   sedol         isin
+1      2929000             NA            Health Care 2520153 US00846U1016
+2      2636000             NA              Materials 2021805 US0138171014
+3      1041000             NA Consumer Discretionary 2822019 US00751Y1064
+4     85004000             NA Information Technology B011001 US0378331005
+5      2530000             NA            Health Care 2795393 US03073E1055
+6     18855000             NA            Health Care 2002305 US0028241000
+                                            exchange       date
+1                       New York Stock Exchange Inc. 2011-10-31
+2                       New York Stock Exchange Inc. 2011-10-31
+3                       New York Stock Exchange Inc. 2011-10-31
+4 Bolsa Mexicana De Valores (Mexican Stock Exchange) 2011-10-31
+5                       New York Stock Exchange Inc. 2011-10-31
+6                       New York Stock Exchange Inc. 2011-10-31
+\end{verbatim}
+Shown below are summary statistics for EUSA.
+\begin{verbatim}
+                      name             asset.class        weight      
+ 3M CO                  :   63   Cash        :    0   Min.   :0.0000  
+ ABBOTT LABORATORIES    :   63   Equity      :38598   1st Qu.:0.0536  
+ ACCENTURE PLC          :   63   Money Market:    0   Median :0.1208  
+ ACTIVISION BLIZZARD INC:   63                        Mean   :0.1629  
+ ADOBE SYSTEM INC       :   63                        3rd Qu.:0.1636  
+ ADVANCE AUTO PARTS INC :   63                        Max.   :4.6773  
+ (Other)                :38220                                        
+                    sector          date           
+ Financials            :6825   Min.   :2011-10-31  
+ Consumer Discretionary:6595   1st Qu.:2013-02-28  
+ Information Technology:5487   Median :2014-06-30  
+ Industrials           :4687   Mean   :2014-06-12  
+ Health Care           :4067   3rd Qu.:2015-09-30  
+ Energy                :3208   Max.   :2016-12-30  
+ (Other)               :7729                       
+\end{verbatim}
+To get a sense of how the cleaned USMV data looks, an overview is shown
+below:
+\begin{verbatim}
+  ticker                   name asset.class weight  price shares
+1    AAP ADVANCE AUTO PARTS INC      Equity 0.7986  65.07    316
+2   AAPL              APPLE INC      Equity 0.0943 404.78      6
+3    ABC AMERISOURCEBERGEN CORP      Equity 0.7479  40.80    472
+4    ABT    ABBOTT LABORATORIES      Equity 1.5544  53.87    743
+5   ACGL ARCH CAPITAL GROUP LTD      Equity 0.7767  35.97    556
+6    ACN          ACCENTURE PLC      Equity 1.6452  60.26    703
+  market.value notional.value                 sector   sedol         isin
+1        20562             NA Consumer Discretionary 2822019 US00751Y1064
+2         2429             NA Information Technology B011001 US0378331005
+3        19258             NA            Health Care 2795393 US03073E1055
+4        40025             NA            Health Care 2002305 US0028241000
+5        19999             NA             Financials 2740542 BMG0450A1053
+6        42363             NA Information Technology B4BNMY3 IE00B4BNMY34
+                                            exchange       date
+1                       New York Stock Exchange Inc. 2011-10-31
+2 Bolsa Mexicana De Valores (Mexican Stock Exchange) 2011-10-31
+3                       New York Stock Exchange Inc. 2011-10-31
+4                       New York Stock Exchange Inc. 2011-10-31
+5                                             NASDAQ 2011-10-31
+6                       New York Stock Exchange Inc. 2011-10-31
+\end{verbatim}
+Select summary statistics for USMV are shown below:
+\begin{verbatim}
+                            name            asset.class       weight      
+ ABBOTT LABORATORIES          :  63   Cash        :   0   Min.   :0.0002  
+ ALTRIA GROUP INC             :  63   Equity      :9229   1st Qu.:0.2790  
+ ARCH CAPITAL GROUP LTD       :  63   Money Market:   0   Median :0.6016  
+ AT&T INC                     :  63                       Mean   :0.6810  
+ AUTOMATIC DATA PROCESSING INC:  63                       3rd Qu.:1.0191  
+ AUTOZONE INC                 :  63                       Max.   :2.8287  
+ (Other)                      :8851                                       
+                    sector          date           
+ Health Care           :1631   Min.   :2011-10-31  
+ Financials            :1548   1st Qu.:2013-04-30  
+ Information Technology:1482   Median :2014-09-30  
+ Consumer Staples      :1222   Mean   :2014-08-13  
+ Consumer Discretionary:1053   3rd Qu.:2015-11-30  
+ Utilities             : 616   Max.   :2016-12-30  
+ (Other)               :1677                       
 \end{verbatim}
 \section{EUSA and USMV Data Check}\label{eusa-and-usmv-data-check}
 
@@ -1550,7 +1592,7 @@ Warning in data(usa): data set 'usa' not found
  3rd Qu.:2015-09-15   3rd Qu.: 99.84  
  Max.   :2016-12-30   Max.   :100.21  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 As shown in the scatterplot above for EUSA, the weights are very close
 to 100\%, generally within 0.2\%. The minimum weight is 99.54\%, while
@@ -1568,7 +1610,7 @@ Warning in data(minvol): data set 'minvol' not found
  3rd Qu.:2015-09-15   3rd Qu.:99.81  
  Max.   :2016-12-30   Max.   :99.99  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 As shown in the scatterplor above, the weights for USMV are very close
 to 100\%, and no value exceeds 100\%. The minimum weight is 99.58\%,
@@ -1589,7 +1631,7 @@ Though perfect correlation was not expected, a figure of at least 98\%
 correlation between the weighted returns calculated and the ETF returns,
 on a monthly basis, was hoped for. The results for EUSA are shown below.
 
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-23-1.pdf}
 \begin{verbatim}
                        [,1]
 Delt.1.arithmetic 0.9805503
@@ -1600,13 +1642,13 @@ Shown below is the data for USMV.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# USA data}
-\KeywordTok{library}\NormalTok{(ggplot2)}
 \KeywordTok{load}\NormalTok{(}\StringTok{"~/thesis_final/data/returns2.Rda"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
 \KeywordTok{ggplot}\NormalTok{(returns2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{weighted_return, }\DataTypeTok{y=}\NormalTok{eminvol_return)) +}
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{shape=}\DecValTok{1}\NormalTok{) +}\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{lm) +}\StringTok{ }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"USMV returns vs. USMV constructed weighted returns"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-24-1.pdf}
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Correlation between USMV returns and USMV constructed weighted returns}
@@ -1629,24 +1671,7 @@ change in weights are shown below.
 \begin{verbatim}
 Warning in data(usa): data set 'usa' not found
 \end{verbatim}
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 3.4.2
-\end{verbatim}
-\begin{verbatim}
-
-Attaching package: 'dplyr'
-\end{verbatim}
-\begin{verbatim}
-The following objects are masked from 'package:stats':
-
-    filter, lag
-\end{verbatim}
-\begin{verbatim}
-The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union
-\end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 Shown above, for EUSA, are some very interesting findings. The weights
 of the 5 companies are all very high, then suddenly all spike. Verifying
@@ -1663,7 +1688,7 @@ change in weights are shown below. As we can see below, with the
 exception of Verizon, the holdings generally remain between 1 and 1.6
 percent of the overall portfolio.
 
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 \chapter{Tables, Graphics, References, and Labels}\label{ref-labels}
 
