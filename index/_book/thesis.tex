@@ -1462,8 +1462,7 @@ data for a given month-end date.
 
 \section{Data Overview}\label{data-overview}
 
-To get a sense of how the cleaned EUSA data looks, an overview is shown
-below:
+To get a sense of the cleaned EUSA data, an overview is shown below:
 \begin{verbatim}
 Warning: package 'dplyr' was built under R version 3.4.2
 \end{verbatim}
@@ -1531,8 +1530,7 @@ distributed, and the dates correctly range from 10-31-2011 to
  Energy                :3208   Max.   :2016-12-30  
  (Other)               :7729                       
 \end{verbatim}
-To get a sense of how the cleaned USMV data looks, an overview is shown
-below:
+To get a sense of the cleaned USMV, an overview is shown below:
 \begin{verbatim}
   ticker                   name asset.class weight  price shares
 1    AAP ADVANCE AUTO PARTS INC      Equity 0.7986  65.07    316
@@ -1585,22 +1583,20 @@ reasonably distributed, and the dates correctly range from 10-31-2011 to
 \end{verbatim}
 \section{Data Check}\label{data-check}
 
-Thus, after cleaning all the data, a check was performed to test how
-accurate the data set actually was. This was done by comparing the
-weighted-returns from the index constructed from the data to the actual
-ETF returns on a monthly basis.
+In addition to the basic checks above, further tests were performed to
+check how accurate and complete the data was. This was accomplished by
+comparing the weighted-returns from the indices constructed from ETF
+data to the actual ETF returns on a monthly basis.
 
 \subsection{Weights}\label{weights}
 
-The first thing to claculate and check were the weights of EUSA and USMV
-for all stocks on a monthly basis. If the data were perfect, these
-should add up to 1. However, as some tickers and cash were removed, and
-given tracking error between the ETF and index, this was not expected.
-However, something very close to 1 was expected. The monthly change in
-weights for EUSA is shown below.
-\begin{verbatim}
-Warning in data(usa): data set 'usa' not found
-\end{verbatim}
+Weights of the constructed US Equal Weight and Minimum Volatility
+indices were calculated by adding up constituents weights on a monthly
+basis. If the data were perfect, these should add up to 1 for each
+month. However, given some tickers and cash were removed, and given
+tracking error between the ETF and index, this was not expected. The
+monthly change in weights for the constructed US Equal Weight Index is
+shown below:
 \begin{verbatim}
       date                weight      
  Min.   :2011-10-31   Min.   : 99.54  
@@ -1610,15 +1606,13 @@ Warning in data(usa): data set 'usa' not found
  3rd Qu.:2015-09-15   3rd Qu.: 99.84  
  Max.   :2016-12-30   Max.   :100.21  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-21-1.pdf} Shown
+in the scatterplot above, the weights are very close to 100\%, with just
+two months exceeding 100\%. The minimum weight is 99.54\%, while the
+largest weight is 100.21\%. The mean weight is 99.79\%.
 
-As shown in the scatterplot above for EUSA, the weights are very close
-to 100\%, generally within 0.2\%. The minimum weight is 99.54\%, while
-the largest weight is 100.21\%. The mean weight is 99.79\%. The monthly
-change in weights for USMV is shown below.
-\begin{verbatim}
-Warning in data(minvol): data set 'minvol' not found
-\end{verbatim}
+The monthly change in weights for the constructed Minimum Volatility
+Index is shown below:
 \begin{verbatim}
       date                weight     
  Min.   :2011-10-31   Min.   :99.58  
@@ -1628,12 +1622,10 @@ Warning in data(minvol): data set 'minvol' not found
  3rd Qu.:2015-09-15   3rd Qu.:99.81  
  Max.   :2016-12-30   Max.   :99.99  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf}
-
-As shown in the scatterplor above, the weights for USMV are very close
-to 100\%, and no value exceeds 100\%. The minimum weight is 99.58\%,
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf} As
+shown in the scatterplot above, the weights for USMV are very close to
+100\%, with no value exceeding 100\%. The minimum weight is 99.58\%,
 while the largest weight is 99.99\%. The mean weight is 99.76\%.
-Overall, these suggest the data is trustable.
 
 \subsection{Comparing actual ETF returns to constructed ETF returns for
 EUSA and
@@ -1656,7 +1648,7 @@ Delt.1.arithmetic 0.9805503
 \end{verbatim}
 As shown, the returns have a correlation greater than 0.98.
 
-Shown below is the data for USMV.
+Shown below is the data for USMV:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# USA data}

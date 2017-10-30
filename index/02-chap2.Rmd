@@ -113,7 +113,7 @@ Since this surpassed the threshold set, it was look at in more detail. After som
 Tickers and stock names that could not be determined were removed. In the end, “1015736” and "Orchard Supply Hardware Stores" were removed from the data set. These together accounted for less than 0.2% of the data for a given month-end date.
 
 ## Data Overview 
-To get a sense of how the cleaned EUSA data looks, an overview is shown below:
+To get a sense of the cleaned EUSA data, an overview is shown below:
 ```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa.Rda")
 ```
@@ -133,7 +133,7 @@ usa_summ <- select(usa, name, asset.class, weight, sector, date)
 summary(usa_summ)
 ```
 
-To get a sense of how the cleaned USMV data looks, an overview is shown below:
+To get a sense of the cleaned USMV, an overview is shown below:
 ```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/minvol.Rda")
 ```
@@ -154,31 +154,28 @@ summary(minvol_summ)
 ```
 
 ## Data Check
-Thus, after cleaning all the data, a check was performed to test how accurate the data set actually was. This was done by comparing the weighted-returns from the index constructed from the data to the actual ETF returns on a monthly basis.
+In addition to the basic checks above, further tests were performed to check how accurate and complete the data was. This was accomplished by comparing the weighted-returns from the indices constructed from ETF data to the actual ETF returns on a monthly basis.
 
 ### Weights
-The first thing to claculate and check were the weights of EUSA and USMV for all stocks on a monthly basis. If the data were perfect, these should add up to 1. However, as some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. 
-However, something very close to 1 was expected. The monthly change in weights for EUSA is shown below.
-
+Weights of the constructed US Equal Weight and Minimum Volatility indices were calculated by adding up constituents weights on a monthly basis. If the data were perfect, these should add up to 1 for each month. However, given some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. The monthly change in weights for the constructed US Equal Weight Index is shown below:
 ```{r, echo = FALSE}
-data(usa)
+load("~/thesis_final/data/usa.Rda")
 library(ggplot2)
 usa_weight1 <- aggregate(weight ~ date, data=usa, FUN=sum)
 summary(usa_weight1)
-ggplot(usa_weight1) + geom_point(aes(date, weight)) + ggtitle("Sum of EUSA Weights")
+ggplot(usa_weight1) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed US Equal Weight Index") + labs(x="Date", y="Weight (%)")
 ```
+Shown in the scatterplot above, the weights are very close to 100%, with just two months exceeding 100%. The minimum weight is 99.54%, while the largest weight is 100.21%. The mean weight is 99.79%. 
 
-As shown in the scatterplot above for EUSA, the weights are very close to 100%, generally within 0.2%. The minimum weight is 99.54%, while the largest weight is 100.21%. The mean weight is 99.79%. The monthly change in weights for USMV is shown below.
-
+The monthly change in weights for the constructed Minimum Volatility Index is shown below:
 ```{r, echo = FALSE}
-data(minvol)
+load("~/thesis_final/data/minvol.Rda")
 library(ggplot2)
 usa_weight2 <- aggregate(weight ~ date, data=minvol, FUN=sum)
 summary(usa_weight2)
-ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Sum of USMV Weights")
+ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed Minimum Volatility Index") + labs(x="Date", y="Weight (%)")
 ```
-
-As shown in the scatterplor above, the weights for USMV are very close to 100%, and no value exceeds 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%. Overall, these suggest the data is trustable.
+As shown in the scatterplot above, the weights for USMV are very close to 100%, with no value exceeding 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%.
 
 ### Comparing actual ETF returns to constructed ETF returns for EUSA and USMV
 Before taking the data completely at face value, some additional checks were performed. This was accomplished by comparing the weighted returns of the constructed index we had for our data (looking at each constituent’s monthly return, multiplied by its weight), and comparing it to the actual ETF return. Thus, this provided a way to check how the weighted returns compared to the ETF returns for both EUSA and USMV. Though perfect correlation was not expected, a figure of at least 98% correlation between the weighted returns calculated and the ETF returns, on a monthly basis, was hoped for. The results for EUSA are shown below.
@@ -194,8 +191,7 @@ cor(returns1$eusa_return, returns1$weighted_return)
 ```
 As shown, the returns have a correlation greater than 0.98.
 
-Shown below is the data for USMV.
-
+Shown below is the data for USMV:
 ```{r}
 # USA data
 load("~/thesis_final/data/returns2.Rda")
@@ -207,6 +203,9 @@ ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) +
 cor(returns2$eminvol_return, returns2$weighted_return)
 ```
 The correlation is 0.99. 
+
+
+
 
 ### Change in 5 largest holdings by average weight for EUSA and USMV
 The next thing we want to see is how the top 5 largest holdings, by average weight, in each index have changed in weighting over time. For EUSA, the 5 largest holdings were AAPL, XOM, MSFT, GE, and JNJ. Their change in weights are shown below. 
