@@ -33,13 +33,13 @@ This did not make sense, given the ETF constituents are supposed to be US-focuse
 
 #### Mislabeled Exchanges
 The first type of error involved companies that are actually listed on either the NYSE and NASDAQ, but were listed on a foreign exchange in the data and still had their US ticker used. One example was BAC (Bank of America) which is listed on the NYSE, but was listed on the Swiss Stock Exchange in the dataset: 
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa_data.Rda")
 BAC <- filter(usa, ticker == "BAC")
 BAC <- select(BAC, ticker, name, weight, price, exchange, date)
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # Preview BAC data subset
 head(BAC)
 ```
@@ -47,7 +47,7 @@ The price for BAC in the data set corresponded to the price of BAC in the NYSE, 
 
 #### Mislabeled Tickers
 The second type of error stemmed from companies listed on foreign exchanges that are also listed on a US exchange in reality, but had their non-US ticker used in the data set. One example of this was Aflac, Inc. which was listed by its ticker "8686" on the Tokyo stock exchange:
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa_data.Rda")
 AFL <- filter(usa_data, Ticker == "8686")
 AFL <- select(AFL, Ticker, Name, Weight...., Price, Exchange, Date)
@@ -55,7 +55,7 @@ AFL <- data.frame(AFL)
 colnames(AFL) <- c("ticker", "name", "weight", "price", "exchange", "date")
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # Preview AFL data subset
 head(AFL)
 ```
@@ -64,7 +64,7 @@ This immediately raised a red flag due to the numbers in the ticker. This numeri
 
 ### Unrecognized Tickers
 The final general type of error in the data occured when the ticker incorrectly recorded in the data set. This was evaluated, once again, on a case-by-case basis, by observing which tickers were not recognize, and looking at the company name to understand why. Sometimes, the issue was very obvious. One example of a clear discrepancy was when the ticker had an asterisk at the end of it. After careful digging, the asterisk did not seem to mean anything, and it is unclear why some tickers contained it. One ticker was “AAPL*”:
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa_data.Rda")
 AAPL <- filter(usa_data, Ticker == "AAPL*")
 AAPL <- select(AAPL, Ticker, Name, Weight...., Price, Date)
@@ -72,14 +72,14 @@ AAPL <- data.frame(AAPL)
 colnames(AAPL) <- c("ticker", "name", "weight", "price", "date")
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # Preview AAPL data subset
 head(AAPL)
 ```
 This would cause future issues when reading the data in, because that ticker was not read in as "AAPL" due to the asterisk. This was fixed by simply removing the asterik from the ticker name. 
 
 Another example of the ticker not being read in properly was when it contained numbers. Alflac was an example that was mentioned previously, but another one that applied here was "AG4" which was the ticker for Allergan. Since NYSE and NASDAQ tickers do not contain numbers, this was a clear issue:
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa_data.Rda")
 AGN <- filter(usa_data, Ticker == "AG4")
 AGN <- select(AGN, Ticker, Name, Weight...., Exchange, Price, Date)
@@ -87,7 +87,7 @@ AGN <- data.frame(AGN)
 colnames(AGN) <- c("ticker", "name", "weight", "exchange", "price", "date")
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # Preview AGN data subset
 head(AGN)
 ```
@@ -95,7 +95,7 @@ After some research, it found that AG4 is the ticker for Allergan on the Deutsch
 
 ### Price Discrepancies
 The general methodology to ensure a change in ticker was appropriate was to check the price of the stock at a specific date, in the USA data set, and then compare it to the new ticker being assigned. If the price matched, the change was made. If the price did not match up, and was very different, research was performed to see if a stock-split might be the cause of this. If there was no evidence of a stock-split, then the stock further analyzed to see what the issue was. In addition to looking at when prices did not match up with tickers and companies for certain dates, monthly returns were calculated for each stock during the times they were in the index, and any abnormal returns (magnitude greater than 30% in one month) were look at manually. One example of this was Netflix's stock 7:1 stock split in 2015. The monthly data showed drastic fall in price from 656.94 on 2015-05-29 to a 114.31 on 2015-07-31, in just one month. This amounts to recorded loss of 82.5%:
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa_data.Rda")
 NFLX <- filter(usa_data, Ticker == "NFLX")
 NFLX <- subset(NFLX, X1 >= 25241 & X1 < 25246) 
@@ -104,7 +104,7 @@ NFLX <- data.frame(NFLX)
 colnames(NFLX) <- c("ticker", "name", "weight", "exchange", "price", "date")
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # Preview NFLX data subset
 head(NFLX)
 ```
@@ -114,41 +114,41 @@ Tickers and stock names that could not be determined were removed. In the end, �
 
 ## Data Overview 
 To get a sense of the cleaned EUSA data, an overview is shown below:
-```{r, echo=FALSE, cache=TRUE, message=FALSE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE, message=FALSE}
 load("~/thesis_final/data/usa.Rda")
 ```
 
-```{r, echo = FALSE, message=FALSE, include=FALSE}
+```{r, echo = FALSE, message=FALSE}
 library(dplyr)
 head(arrange(usa, date))
 ```
 
 Shown below are summary statistics for EUSA. Each name is representd 63 times, which is indicates no name is over represented in the dataset. Moreover, every row is an equity, which makes sense considering cash and cash assets were removed from at the beginning of the cleaning process. The weights of each stock in the EUSA ETF are also all between 0 and 4.6773%. There are no negative values and no stocks that appear to be incorrectly overweight. Moreover, each sector appears to be reasonably distributed, and the dates correctly range from 10-31-2011 to 12-30-2016. 
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/usa.Rda")
 ```
 
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 usa_summ <- select(usa, name, asset.class, weight, sector, date)
 summary(usa_summ)
 ```
 
 To get a sense of the cleaned USMV, an overview is shown below:
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/minvol.Rda")
 ```
 
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 library(dplyr)
 head(arrange(minvol, date))
 ```
 
 Shown below are summary statistics for USMV Each name is representd 63 times, which is indicates no name is over represented in the dataset. Moreover, every row is an equity, which makes sense considering cash and cash assets were removed from at the beginning of the cleaning process. The weights of each stock in the USMV ETF are also all between 0.0002 and 2.8287%. There are no negative values and no stocks that appear to be incorrectly overweight. Moreover, each sector appears to be reasonably distributed, and the dates correctly range from 10-31-2011 to 12-30-2016. 
-```{r, echo=FALSE, cache=TRUE, include=FALSE}
+```{r, echo=FALSE, cache=TRUE}
 load("~/thesis_final/data/minvol.Rda")
 ```
 
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 minvol_summ <- select(minvol, name, asset.class, weight, sector, date)
 summary(minvol_summ)
 ```
@@ -160,7 +160,7 @@ In addition to the basic checks above, further tests were performed to check how
 Total weights of the constructed US Equal Weight and Minimum Volatility indices were calculated by adding up each constituent's weight on a monthly basis. If the data were perfect, these should add up to 1 for each month. However, given some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. The monthly change in weights for the constructed US Equal Weight Index is shown below:
 
 \clearpage 
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 load("~/thesis_final/data/usa.Rda")
 library(ggplot2)
 usa_weight1 <- aggregate(weight ~ date, data=usa, FUN=sum)
@@ -174,7 +174,7 @@ plot(weight_plot1)
 
 \clearpage 
 The monthly change in weights for the constructed Minimum Volatility Index is shown below:
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 load("~/thesis_final/data/minvol.Rda")
 library(ggplot2)
 usa_weight2 <- aggregate(weight ~ date, data=minvol, FUN=sum)
@@ -189,7 +189,7 @@ plot(weight_plot2)
 ### Comparing ETF returns to Constructed Index returns
 Given the weights were very close to 100% for both constru on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. The higher the correlation, the more accruate the data is.
 
-```{r, echo = FALSE, include=FALSE}
+```{r, echo = FALSE}
 load("~/thesis_final/data/returns1.Rda")
 library(ggplot2)
 # Constructed US Equal Weight Index returns vs. EUSA ETF returns
@@ -202,7 +202,7 @@ scatter1 <- ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point
 plot(scatter1)
 ```
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE}
 # USA data
 load("~/thesis_final/data/returns2.Rda")
 library(ggplot2)
