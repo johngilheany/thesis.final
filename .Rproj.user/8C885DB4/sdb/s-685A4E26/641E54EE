@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1509417027070.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "641E54EE",
+    "lastKnownWriteTime" : 2314971549884481542,
+    "last_content_update" : 1509417027070,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "640146D7",
+        "caption" : "MSCI",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=MSCI&cache_key=640146D7",
+        "displayedObservations" : 38598,
+        "environment" : "",
+        "object" : "MSCI",
+        "preview" : 0,
+        "totalObservations" : 38598,
+        "variables" : 6
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
