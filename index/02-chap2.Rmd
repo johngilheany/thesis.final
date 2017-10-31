@@ -114,7 +114,7 @@ Tickers and stock names that could not be determined were removed. In the end, â
 
 ## Data Overview 
 To get a sense of the cleaned EUSA data, an overview is shown below:
-```{r, echo=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE, message=FALSE}
 load("~/thesis_final/data/usa.Rda")
 ```
 
@@ -157,52 +157,61 @@ summary(minvol_summ)
 In addition to the basic checks above, further tests were performed to check how accurate and complete the data was. This was accomplished by comparing the weighted-returns from the indices constructed from ETF data to the actual ETF returns on a monthly basis.
 
 ### Weights
-Weights of the constructed US Equal Weight and Minimum Volatility indices were calculated by adding up constituents weights on a monthly basis. If the data were perfect, these should add up to 1 for each month. However, given some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. The monthly change in weights for the constructed US Equal Weight Index is shown below:
+Total weights of the constructed US Equal Weight and Minimum Volatility indices were calculated by adding up each constituent's weight on a monthly basis. If the data were perfect, these should add up to 1 for each month. However, given some tickers and cash were removed, and given tracking error between the ETF and index, this was not expected. The monthly change in weights for the constructed US Equal Weight Index is shown below:
+
+\clearpage 
 ```{r, echo = FALSE}
 load("~/thesis_final/data/usa.Rda")
 library(ggplot2)
 usa_weight1 <- aggregate(weight ~ date, data=usa, FUN=sum)
 summary(usa_weight1)
-ggplot(usa_weight1) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed US Equal Weight Index") + labs(x="Date", y="Weight (%)")
+weight_plot1<- ggplot(usa_weight1) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed US Equal Weight Index") + labs(x="Date", y="Weight (%)")
 ```
-Shown in the scatterplot above, the weights are very close to 100%, with just two months exceeding 100%. The minimum weight is 99.54%, while the largest weight is 100.21%. The mean weight is 99.79%. 
 
+``` {r fig.cap = paste("The weights for the constructed US Equal Weight Index are very close to 100%, with just two months exceeding 100%.The minimum weight is 99.54%, while the largest weight is 100.21%. The mean weight is 99.79%."), echo=FALSE}
+plot(weight_plot1)
+```
+
+\clearpage 
 The monthly change in weights for the constructed Minimum Volatility Index is shown below:
 ```{r, echo = FALSE}
 load("~/thesis_final/data/minvol.Rda")
 library(ggplot2)
 usa_weight2 <- aggregate(weight ~ date, data=minvol, FUN=sum)
 summary(usa_weight2)
-ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed Minimum Volatility Index") + labs(x="Date", y="Weight (%)")
+weight_plot2 <- ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed Minimum Volatility Index") + labs(x="Date", y="Weight (%)")
 ```
-As shown in the scatterplot above, the weights for USMV are very close to 100%, with no value exceeding 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%.
 
-### Comparing Actual ETF returns to Constructed Index returns
-Given the weights were very close to 100% for both ETFs on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. The higher the correlation, the more accruate the data is. 
+``` {r fig.cap = paste("The weights for the constructed Minimum Volatility Index are very close to 100%, with no value exceeding 100%. The minimum weight is 99.58%, while the largest weight is 99.99%. The mean weight is 99.76%."), echo=FALSE}
+plot(weight_plot2)
+```
 
-For the Constructed US Equal Weight Index and EUSA:
+### Comparing ETF returns to Constructed Index returns
+Given the weights were very close to 100% for both constru on a monthly basis, an additional check was performed by comparing the weighted returns of the constructed indices to the actual ETFs that mirror them. The ETFs are traded in the stock market, so price daily information on each was widely available. Thus, this provided a way to check how the constructed weighted returns compared to the ETF returns for both the constructed US Equal Weight Index and Minimum Volatility Index. Correlations were calculated between the performance of the constructed US Equal Weight Index and EUSA, as well as between the performance of the constructed Minimum Volatility Index and USMV. The higher the correlation, the more accruate the data is.
 
 ```{r, echo = FALSE}
 load("~/thesis_final/data/returns1.Rda")
 library(ggplot2)
 # Constructed US Equal Weight Index returns vs. EUSA ETF returns
-ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + ggtitle("Constructed US Equal Weight Index returns vs. EUSA ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
+scatter1 <- ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + ggtitle("Constructed US Equal Weight Index returns vs. EUSA ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
 # Correlation between Constructed US Equal Weight Index returns vs. EUSA ETF returns
 # cor(returns1$eusa_return, returns1$weighted_return)
 ```
 
-The correlation between the Constructed US Equal Weight Index returns and EUSA ETF returns is 98.06%.
-
-For the Constructed Minimum Volatility Index and USMV:
+``` {r fig.cap = paste("The correlation between the Constructed US Equal Weight Index monthly returns and EUSA ETF monthly returns is 98.06%."), echo=FALSE}
+plot(scatter1)
+```
 
 ```{r, echo=FALSE}
 # USA data
 load("~/thesis_final/data/returns2.Rda")
 library(ggplot2)
-ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) + geom_point(shape=1) + ggtitle("Constructed US Minimum Volatility Index returns vs. USMV ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
+scatter2 <- ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) + geom_point(shape=1) + ggtitle("Constructed US Minimum Volatility Index returns vs. USMV ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
 
 # Correlation between Weighted Index Monthly Return
 # cor(returns2$eminvol_return, returns2$weighted_return)
 ```
 
-The correlation between the Constructed Minimum Volatility Index returns and USMV ETF returns is 99.07%. 
+``` {r fig.cap = paste("The correlation between the Constructed Minimum Volatility Index monthly returns and USMV ETF monthly returns is 99.07%."), echo=FALSE}
+plot(scatter2)
+```

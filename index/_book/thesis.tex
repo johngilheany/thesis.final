@@ -1464,9 +1464,6 @@ data for a given month-end date.
 
 To get a sense of the cleaned EUSA data, an overview is shown below:
 \begin{verbatim}
-Warning: package 'dplyr' was built under R version 3.4.2
-\end{verbatim}
-\begin{verbatim}
   ticker                     name asset.class weight  price shares
 1      A AGILENT TECHNOLOGIES INC      Equity 0.1090  37.07     79
 2     AA                ALCOA INC      Equity 0.0981  10.76    245
@@ -1576,10 +1573,10 @@ data to the actual ETF returns on a monthly basis.
 
 \subsection{Weights}\label{weights}
 
-Weights of the constructed US Equal Weight and Minimum Volatility
-indices were calculated by adding up constituents weights on a monthly
-basis. If the data were perfect, these should add up to 1 for each
-month. However, given some tickers and cash were removed, and given
+Total weights of the constructed US Equal Weight and Minimum Volatility
+indices were calculated by adding up each constituent's weight on a
+monthly basis. If the data were perfect, these should add up to 1 for
+each month. However, given some tickers and cash were removed, and given
 tracking error between the ETF and index, this was not expected. The
 monthly change in weights for the constructed US Equal Weight Index is
 shown below:
@@ -1592,13 +1589,16 @@ shown below:
  3rd Qu.:2015-09-15   3rd Qu.: 99.84  
  Max.   :2016-12-30   Max.   :100.21  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-21-1.pdf} Shown
-in the scatterplot above, the weights are very close to 100\%, with just
-two months exceeding 100\%. The minimum weight is 99.54\%, while the
-largest weight is 100.21\%. The mean weight is 99.79\%.
-
-The monthly change in weights for the constructed Minimum Volatility
-Index is shown below:
+\begin{figure}[htbp]
+\centering
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf}
+\caption{\label{fig:unnamed-chunk-22}The weights for the constructed US
+Equal Weight Index are very close to 100\%, with just two months
+exceeding 100\%.The minimum weight is 99.54\%, while the largest weight
+is 100.21\%. The mean weight is 99.79\%.}
+\end{figure}
+\clearpage  The monthly change in weights for the constructed Minimum
+Volatility Index is shown below:
 \begin{verbatim}
       date                weight     
  Min.   :2011-10-31   Min.   :99.58  
@@ -1608,15 +1608,18 @@ Index is shown below:
  3rd Qu.:2015-09-15   3rd Qu.:99.81  
  Max.   :2016-12-30   Max.   :99.99  
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf} As
-shown in the scatterplot above, the weights for USMV are very close to
-100\%, with no value exceeding 100\%. The minimum weight is 99.58\%,
-while the largest weight is 99.99\%. The mean weight is 99.76\%.
+\begin{figure}[htbp]
+\centering
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-24-1.pdf}
+\caption{\label{fig:unnamed-chunk-24}The weights for the constructed Minimum
+Volatility Index are very close to 100\%, with no value exceeding 100\%.
+The minimum weight is 99.58\%, while the largest weight is 99.99\%. The
+mean weight is 99.76\%.}
+\end{figure}
+\subsection{Comparing ETF returns to Constructed Index
+returns}\label{comparing-etf-returns-to-constructed-index-returns}
 
-\subsection{Comparing Actual ETF returns to Constructed Index
-returns}\label{comparing-actual-etf-returns-to-constructed-index-returns}
-
-Given the weights were very close to 100\% for both ETFs on a monthly
+Given the weights were very close to 100\% for both constru on a monthly
 basis, an additional check was performed by comparing the weighted
 returns of the constructed indices to the actual ETFs that mirror them.
 The ETFs are traded in the stock market, so price daily information on
@@ -1627,21 +1630,18 @@ Correlations were calculated between the performance of the constructed
 US Equal Weight Index and EUSA, as well as between the performance of
 the constructed Minimum Volatility Index and USMV. The higher the
 correlation, the more accruate the data is.
-
-For the Constructed US Equal Weight Index and EUSA:
-
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-23-1.pdf}
-
-The correlation between the Constructed US Equal Weight Index returns
-and EUSA ETF returns is 98.06\%.
-
-For the Constructed Minimum Volatility Index and USMV:
-
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-24-1.pdf}
-
-The correlation between the Constructed Minimum Volatility Index returns
-and USMV ETF returns is 99.07\%.
-
+\begin{figure}[htbp]
+\centering
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-26-1.pdf}
+\caption{\label{fig:unnamed-chunk-26}The correlation between the Constructed
+US Equal Weight Index returns and EUSA ETF returns is 98.06\%.}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-28-1.pdf}
+\caption{\label{fig:unnamed-chunk-28}The correlation between the Constructed
+Minimum Volatility Index returns and USMV ETF returns is 99.07\%.}
+\end{figure}
 \chapter{Tables, Graphics, References, and Labels}\label{ref-labels}
 
 \section{Change in 5 largest holdings by average weight for EUSA and
@@ -1654,7 +1654,7 @@ change in weights are shown below.
 \begin{verbatim}
 Warning in data(usa): data set 'usa' not found
 \end{verbatim}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 Shown above, for EUSA, are some very interesting findings. The weights
 of the 5 companies are all very high, then suddenly all spike. Verifying
@@ -1671,7 +1671,7 @@ change in weights are shown below. As we can see below, with the
 exception of Verizon, the holdings generally remain between 1 and 1.6
 percent of the overall portfolio.
 
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-26-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 \section{Tables}\label{tables}
 
