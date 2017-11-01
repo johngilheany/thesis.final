@@ -160,7 +160,7 @@ Logistic Regression}
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \Acknowledgements{
-I want to thank David Kane an Prof.~Michael Parzen for all of their
+I want to thank David Kane and Prof.~Michael Parzen for all of their
 mentorship and guidance.
 }
 
@@ -173,28 +173,28 @@ mentorship and guidance.
 }
 
 \Abstract{
-The low-risk anomaly has created opportunities for arbitrage in the
-financial markets. As Baker et al. discuss in ``Benchmarks as Limits to
-Arbitrage: Understanding the Low-Volatility Anomaly,'' low-volatility
-and low-beta portfolios outperform and high-volatility and high-beta
-portfolios by a factor of several times due to benchmarking and
-lottery-preferences. The iShares MSCI USA Minimum Volatility (USMV) is
-an ETF tracking a minimum volatility index that was used to find data
-and will be used for trading arbitrage. Frazzini et al. discuss
-arbitrage opportunities by quantitative focused funds like AQR in
-``Betting Against Beta'', and this thesis explores a more advanced type
-of index front-running as a potential arbitrage opportunity. Data was
-collected from USMV from its inception in October 2011, and from EUSA,
-the parent ETF of USMV, from the same period until December 2016.
-52-week trailing beta, 52-week trailing volatility, lagged price/book,
-and current index membership were calculated, and a regression model was
-run to quantify the relationship between current index membership and
-these four variables. In the model, a probabilities of index membership
-were calculated and an optimal cutoff was calculated to which the model
-would be 95\% accurate of its findings of a stock to be in or out of
-USMV, given the historical data. Backtesting with prior data showed with
-a model accuracy of 95\%, arbitrage opportunities of X\% could be
-collected after each rebalancing.
+The low-risk anomaly has created opportunities for long-term focused
+investors who are not benchmarked against an index. Several studies have
+shown that low-risk portfolios strongly outperform high-risk portfolios
+over long periods of time due to this anomaly. Several hedge funds
+employ trading strategies to bet against factors like beta to take
+advantage of this occurrence. This thesis explores an investment
+strategy similar to index front-running through the creation of a
+logisitc regression model to forecast which stocks will be added or
+removed from the MSCI Minimum Volatility Index. When a stock is added to
+the index, there is an average price move of +0.63\% the following day,
+and when a stock is removed from the index, there is an average price
+move of -0.57\% the following day. Data was collected from USMV, the ETF
+tracking this index, and its parent ETF between October 2011 and
+December 2016. Data from Wharton Research Data Services was used to
+calculate trailing beta, trailing volatility, price to book ratio, and
+previous index membership. A regression model was created using these
+inputs, which calculated probabilities of index membership for stocks
+given the historical data. An accurate model that could accurately
+predict inflow or outflow of stocks could prove to be a profitable
+trading strategy. The top candidates to enter the index and top
+candidates to leave the index were determined and compared to actual
+rebalancing that happened in May 2017.
 }
 
 % End of CII addition
@@ -225,7 +225,7 @@ collected after each rebalancing.
 \frontmatter % this stuff will be roman-numbered
 \pagestyle{empty} % this removes page numbers from the frontmatter
   \begin{acknowledgements}
-    I want to thank David Kane an Prof.~Michael Parzen for all of their
+    I want to thank David Kane and Prof.~Michael Parzen for all of their
     mentorship and guidance.
   \end{acknowledgements}
 
@@ -237,28 +237,28 @@ collected after each rebalancing.
 
   \listoffigures
   \begin{abstract}
-    The low-risk anomaly has created opportunities for arbitrage in the
-    financial markets. As Baker et al. discuss in ``Benchmarks as Limits to
-    Arbitrage: Understanding the Low-Volatility Anomaly,'' low-volatility
-    and low-beta portfolios outperform and high-volatility and high-beta
-    portfolios by a factor of several times due to benchmarking and
-    lottery-preferences. The iShares MSCI USA Minimum Volatility (USMV) is
-    an ETF tracking a minimum volatility index that was used to find data
-    and will be used for trading arbitrage. Frazzini et al. discuss
-    arbitrage opportunities by quantitative focused funds like AQR in
-    ``Betting Against Beta'', and this thesis explores a more advanced type
-    of index front-running as a potential arbitrage opportunity. Data was
-    collected from USMV from its inception in October 2011, and from EUSA,
-    the parent ETF of USMV, from the same period until December 2016.
-    52-week trailing beta, 52-week trailing volatility, lagged price/book,
-    and current index membership were calculated, and a regression model was
-    run to quantify the relationship between current index membership and
-    these four variables. In the model, a probabilities of index membership
-    were calculated and an optimal cutoff was calculated to which the model
-    would be 95\% accurate of its findings of a stock to be in or out of
-    USMV, given the historical data. Backtesting with prior data showed with
-    a model accuracy of 95\%, arbitrage opportunities of X\% could be
-    collected after each rebalancing.
+    The low-risk anomaly has created opportunities for long-term focused
+    investors who are not benchmarked against an index. Several studies have
+    shown that low-risk portfolios strongly outperform high-risk portfolios
+    over long periods of time due to this anomaly. Several hedge funds
+    employ trading strategies to bet against factors like beta to take
+    advantage of this occurrence. This thesis explores an investment
+    strategy similar to index front-running through the creation of a
+    logisitc regression model to forecast which stocks will be added or
+    removed from the MSCI Minimum Volatility Index. When a stock is added to
+    the index, there is an average price move of +0.63\% the following day,
+    and when a stock is removed from the index, there is an average price
+    move of -0.57\% the following day. Data was collected from USMV, the ETF
+    tracking this index, and its parent ETF between October 2011 and
+    December 2016. Data from Wharton Research Data Services was used to
+    calculate trailing beta, trailing volatility, price to book ratio, and
+    previous index membership. A regression model was created using these
+    inputs, which calculated probabilities of index membership for stocks
+    given the historical data. An accurate model that could accurately
+    predict inflow or outflow of stocks could prove to be a profitable
+    trading strategy. The top candidates to enter the index and top
+    candidates to leave the index were determined and compared to actual
+    rebalancing that happened in May 2017.
   \end{abstract}
 
 \mainmatter % here the regular arabic numbering starts

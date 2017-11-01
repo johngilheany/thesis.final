@@ -1,5 +1,5 @@
 # Conclusion 
-All in all, the models were comprable in terms of statistical resiliency and predictive power. Each model may have a different usage, based of each model's strengths and weaknesses, and what goals the investor has in mind for the model. For example, an investor looking to capture an arbitrage opportunity in November, might be best suited in looking at the November specific model. Someone looking for abritrage opportunities throughout the year during both rebalances might look at the combined May and November model. 
+The regression model appeared to be statistically resilient with strong predictive power. Each model may have a different usage, based of each model's strengths and weaknesses, and what goals the investor has in mind for the model. For example, an investor looking to capture an arbitrage opportunity in November, might be best suited in looking at the November specific model. Someone looking for abritrage opportunities throughout the year during both rebalances might look at the combined May and November model. 
 
 As seen, each model gave out pretty similar coefficient values for the various response variables. Beta ranged between -0.31 and -0.64, index_before ranged from 5.08 to 7.01, price to book ranged from 0.00 to -0.01, and volatility ranged between -0.04 and 0.06. 
 
