@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\nauthor: 'John A. Gilheany'\ndate: 'November 6, 2017'\ninstitution: 'Harvard College'\ndivision: 'Statistics'\nadvisor: 'Professor Michael Parzen'\naltadvisor: 'David Kane'\ndepartment: 'Statistics'\ndegree: 'Bachelor of Arts in Statistics (Honors)'\ntitle: 'Forecasting Constituents of the MSCI Minimum Volatility Index Through Logistic Regression'\nknit: \"bookdown::render_book\"\nsite: bookdown::bookdown_site\noutput: \n thesisdown::thesis_pdf: default\n#  thesisdown::thesis_gitbook: default\n#  thesisdown::thesis_word: default\n#  thesisdown::thesis_epub: default\n# If you are creating a PDF you'll need to write your preliminary content here or\n# use code similar to line 20 for the files.  If you are producing in a different\n# format than PDF, you can delete or ignore lines 20-31 in this YAML header.\nabstract: |\n  `r if(knitr:::is_latex_output()) paste(readLines(\"00-abstract.Rmd\"), collapse = '\\n  ')`\n# If you'd rather include the preliminary content in files instead of inline\n# like below, use a command like that for the abstract above.  Note that a tab is \n# needed on the line after the |.\nacknowledgements: |\n  I want to thank Prof. Parzen and David Kane for all of their help. \npreface: |\n  This thesis explores a way of predicting index constituents using logistic regression.\nbibliography: bib/thesis.bib\n# Download your specific bibliography database file and refer to it in the line above.\ncsl: csl/apa.csl\n# Download your specific csl file and refer to it in the line above.\nlot: true\nlof: true\n#space_between_paragraphs: true\n# Delete the # at the beginning of the previous line if you'd like\n# to have a blank new line between each paragraph\n#header-includes:\n#- \\usepackage{tikz}\n---\n",
+    "created" : 1509305098315.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2484981863",
+    "id" : "555CF84C",
+    "lastKnownWriteTime" : 1509503746,
+    "last_content_update" : 1509503746817,
+    "path" : "~/thesis_final/index/index.Rmd",
+    "project_path" : "index/index.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
