@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: these_final\nType: Package\nTitle: MSCI USA and Min Vol Data Analysis\nVersion: 0.1.0\nAuthor: John Gilheany\nMaintainer: John Gilheany <gilheany@college.harvard.edu>\nDescription: Contains MSCI USA (EUSA) and MSCI Min Vol (USMV) Data from \n    2011-10-31 to 2017-01-05. It includes the weights of each stock in \n    the index, its sector, price, and ticker. The package also includes\n    analysis of sector weights in EUSA and USMV. Daily stock data from \n    WRDS is also included, including calculations of rolling volatility\n    and beta. \nLicense: None\nLazyData: TRUE\nImports:\n    dplyr,\n    quantmod,\n    PerformanceAnalytics,\n    TTR,\n    zoo\n",
+    "created" : 1509504269835.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4200232787",
+    "id" : "ACC755FF",
+    "lastKnownWriteTime" : 1509504288,
+    "last_content_update" : 1509504288416,
+    "path" : "~/thesis_final/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
