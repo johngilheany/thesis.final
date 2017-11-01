@@ -1969,8 +1969,12 @@ off is 0.85.
 \KeywordTok{library}\NormalTok{(InformationValue)}
 \NormalTok{predicted1 <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit1, testData1)) }
 \NormalTok{optCutOff1 <-}\StringTok{ }\KeywordTok{optimalCutoff}\NormalTok{(testData1$index_now, predicted1)[}\DecValTok{1}\NormalTok{] }
+\NormalTok{optCutOff1}
 \end{Highlighting}
 \end{Shaded}
+\begin{verbatim}
+[1] 0.8487479
+\end{verbatim}
 \hfill\break
 \emph{VIF}**\_ \hfill\break
 Like in case of linear regression, we should check for multicollinearity

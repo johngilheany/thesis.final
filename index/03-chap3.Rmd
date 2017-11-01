@@ -245,6 +245,7 @@ minvol_pbr_plot <- ggplot(minvol_pbr, aes(date, price_to_book, group = ticker)) 
 plot(minvol_pbr_plot)
 ```
 
+
 # Model 
 Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index or not (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at all of the historical data and stock various characteristics, this  modeled the log odds of a stock being in the minimum volatility index as a combination of the linear predictors mentioned. Several models were ran, including one by certain months, and one by the entire pool of data, and the best one was chosen to test in further detail.
 
@@ -329,6 +330,7 @@ The default cutoff prediction probability score is 0.5 or the ratio of 1’s and
 library(InformationValue)
 predicted1 <- plogis(predict(logit1, testData1)) 
 optCutOff1 <- optimalCutoff(testData1$index_now, predicted1)[1] 
+optCutOff1
 ```
 \hfill\break
 _VIF_**_
