@@ -20,7 +20,52 @@ flights <- read.csv("data/flights.csv")
 ```
 
 # Data Analysis
-## Changes in Largest Holdings by Average Weight in Minimum Volatility Index
+## Changes in Largest Holdings by Average Weight by Index
+The top 5 largest holdings in the US Equal Weight Index by average weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson & Johnson.
+
+```{r, echo = FALSE}
+load("~/thesis_final/data/usa.Rda")
+
+usa_topweight <- aggregate(weight ~ ticker, data=usa, FUN=sum)
+usa_topweight <- arrange(usa_topweight, desc(weight))
+usa_topweight$weight <- usa_topweight$weight/63
+usa_topweight$rank <- seq.int(nrow(usa_topweight))
+```
+
+```{r fig.cap = paste("Top 5 Holdings in US Equal Weight Index over Time by Average Weight"), echo=FALSE}
+
+usa_topweight <- select(usa_topweight, rank, ticker, weight)
+usa_topweight <- usa_topweight[1:5,]
+
+kable(usa_topweight, 
+      col.names = c("Rank", "Ticker", "Average Weight"),
+      caption = "Top 5 Holdings in the US Equal Weight Index over Time by Average Weight",
+      longtable = TRUE,
+      booktabs = TRUE)
+```
+
+```{r, echo = FALSE}
+load("~/thesis_final/data/usa.Rda")
+load("~/thesis_final/data/minvol.Rda")
+
+usa_sub1 <- filter(usa, ticker == "AAPL" | ticker == "XOM" | ticker == "MSFT" | ticker == "GE" | ticker == "JNJ")
+usa_sub1 <- select(usa_sub1, date, ticker, weight)
+
+library(ggplot2)
+
+holdings1<- ggplot() + 
+	geom_line(data = filter(usa_sub1, ticker == "AAPL"), aes(x = date, y = weight, color = "AAPL")) +
+	geom_line(data = filter(usa_sub1, ticker == "XOM"), aes(x = date, y = weight, color = "XOM"))  +
+	geom_line(data = filter(usa_sub1, ticker == "MSFT"), aes(x = date, y = weight, color = "MSFT"))  +
+	geom_line(data = filter(usa_sub1, ticker == "GE"), aes(x = date, y = weight, color = "GE"))  +
+	geom_line(data = filter(usa_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
+	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the US Equal Weight Index')
+```
+
+``` {r fig.cap = paste("The 5 largest holdings of the US Equal Weight Index are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After calling iShares and MSCI to verify this in the data, it was discovered this due to change in the weighting mechanism."), echo=FALSE}
+plot(holdings1)
+```
+
 The top 5 largest holdings in the Minimum Volatility Index by average weight are Verizon, AT&T, Automatic Data Processing, Johnson & Johnson, and McDonald's. 
 
 ```{r, echo = FALSE}
@@ -57,7 +102,7 @@ holdings2<- ggplot() +
 	geom_line(data = filter(minvol_sub1, ticker == "ADP"), aes(x = date, y = weight, color = "ADP"))  +
 	geom_line(data = filter(minvol_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
 	geom_line(data = filter(minvol_sub1, ticker == "MCD"), aes(x = date, y = weight, color = "MCD"))  +
-	xlab('date') + ylab('weight') + ggtitle('Change in Weights of the Top 5 Holdings in the Minimum Volatility Index over Time')
+	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the Minimum Volatility Index')
 ```
 
 ``` {r fig.cap = paste("The 5 largest holdings of the Minimum Volatility Index are VZ, T, ADP, JNJ, and MCD. Since the index's inception, these stocks have generally remained between a weight of 1.3% and 1.7% of the overall portfolio, with the exception of Verizon, which reached around 2% in 2014."), echo=FALSE}
