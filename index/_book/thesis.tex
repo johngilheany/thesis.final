@@ -1863,7 +1863,7 @@ value of 1.1505}
 in the Minimum Volatility Index ranged from -0.2473 to 3.2021, with a
 mean value of 0.7856}
 \end{figure}
-\chapter{Model}\label{model}
+\chapter{Logistic Regression Model}\label{logistic-regression-model-1}
 
 Once the final data set was created and cleaned, with a number of
 response variables including trailing beta, trailing volatility, price
@@ -1872,275 +1872,9 @@ Volatility index or not (1 if in, 0 if not in). Given the nature of the
 data, a logistic regression was run. Looking at all of the historical
 data and stock various characteristics, this modeled the log odds of a
 stock being in the minimum volatility index as a combination of the
-linear predictors mentioned. Several models were ran, including one by
-certain months, and one by the entire pool of data, and the best one was
-chosen to test in further detail.
-
-\section{Model 1: May Model}\label{model-1-may-model}
-
-Since the index is rebalanced twice a year, one of the times in May, it
-makes sense to look at a model specifically for this month.
-
-\subsection{Removing Class Bias}\label{removing-class-bias}
-
-Ideally, the proportion of stocks in and out of the Min Vol index should
-approximately be the same. However, after checking this, it is clear
-that this is not the case, as, just around 25\% of the data is from
-stocks that are currently in the index, meaning there is a class bias.
-As a result, observations must be sampled in approximately equal
-proportions to get a better model.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(may_final$index_now)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-
-   0    1 
-2105  670 
-\end{verbatim}
-\subsection{Creating Development and Validation
-Data}\label{creating-development-and-validation-data}
-
-One way to address the problem of class bias is to draw the 0's and 1's
-in equal proportions, and using that development sample for the model.
-The unsampled data will be kept as validation sample to test the model
-later on. As a result, the size of development sample will be smaller
-that validation sample, which is not a problem, since there are large
-number of observations.
-
-There is no more class bias, as the sample is now evenly weighted now,
-with each outcome being represented by 468 observations.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(trainingData1$index_now)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-
-  0   1 
-468 468 
-\end{verbatim}
-\subsection{Logistic Regression
-Model}\label{logistic-regression-model-1}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Model 1}
-\NormalTok{logit1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(index_now ~}\StringTok{  }\NormalTok{volatility +}\StringTok{ }\NormalTok{beta +}\StringTok{ }\NormalTok{price_to_book +}\StringTok{ }
-\NormalTok{index_before, }\DataTypeTok{data=}\NormalTok{trainingData1, }\DataTypeTok{family=}\KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
-
-\CommentTok{# Summary of Model 1}
-\KeywordTok{summary}\NormalTok{(logit1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-
-Call:
-glm(formula = index_now ~ volatility + beta + price_to_book + 
-    index_before, family = binomial(link = "logit"), data = trainingData1)
-
-Deviance Residuals: 
-     Min        1Q    Median        3Q       Max  
--2.97967  -0.24913   0.00044   0.16385   2.64827  
-
-Coefficients:
-               Estimate Std. Error z value Pr(>|z|)    
-(Intercept)    1.388773   0.590426   2.352   0.0187 *  
-volatility    -0.055224   0.096908  -0.570   0.5688    
-beta          -4.377319   0.675066  -6.484 8.92e-11 ***
-price_to_book  0.002863   0.025520   0.112   0.9107    
-index_before1  6.525377   0.427180  15.275  < 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 1297.57  on 935  degrees of freedom
-Residual deviance:  262.65  on 931  degrees of freedom
-AIC: 272.65
-
-Number of Fisher Scoring iterations: 7
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Coefficient Interpretation}
-\NormalTok{## Log Odds}
-\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit1))}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-  (Intercept)    volatility          beta price_to_book index_before1 
-   4.00992632    0.94627359    0.01255898    1.00286711  682.23660573 
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## Probability }
-\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit1))) /}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{+(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit1))))}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-  (Intercept)    volatility          beta price_to_book index_before1 
-   0.80039627    0.48619762    0.01240321    0.50071575    0.99853638 
-\end{verbatim}
-\subsection{Interpretation of May
-Model}\label{interpretation-of-may-model}
-
-The coefficients can be interpreted as: \hfill\break
-- Volatility: The odds ratio of being added to the index is 0.95 times
-smaller, given a one unit increase in volatility. This response variable
-is not statistically significant. \hfill\break
-- Beta: The odds ratio of being added to the index is 0.013 times
-smaller, given a one unit increase in beta. This response variable is
-statistically significant. \hfill\break
-- Price to Book: The odds ratio of being added to the index is 1.00
-times smaller, given a one unit increase in price to book ratio. This
-response variable is not statistically significant. \hfill\break
-- Index before: The odds ratio of being added to the index is 682.24
-times greater if the stock was in the index 6 months ago. This response
-variable is statistically significant. \hfill\break
-\hfill\break
-
-\subsection{Model Quality}\label{model-quality}
-
-To test the quality of the model, several tests were done: \hfill\break
-\textbf{Predictive Power} \hfill\break
-The default cutoff prediction probability score is 0.5 or the ratio of
-1's and 0's in the training data. But sometimes, tuning the probability
-cutoff can improve the accuracy in both the development and validation
-samples. The InformationValue::optimalCutoff function provides ways to
-find the optimal cutoff to improve the prediction of 1's, 0's, both 1's
-and 0's and to reduce the misclassification error. Here, the optimal cut
-off is 0.85.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(InformationValue)}
-\NormalTok{predicted1 <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit1, testData1)) }
-\NormalTok{optCutOff1 <-}\StringTok{ }\KeywordTok{optimalCutoff}\NormalTok{(testData1$index_now, predicted1)[}\DecValTok{1}\NormalTok{] }
-\NormalTok{optCutOff1}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.8487479
-\end{verbatim}
-\hfill\break
-\textbf{VIF} \hfill\break
-Like in case of linear regression, we should check for multicollinearity
-in the model. As seen below, all of the variables in the model have VIF
-well below 4.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(car)}
-\KeywordTok{vif}\NormalTok{(logit1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-   volatility          beta price_to_book  index_before 
-     1.028972      1.146407      1.027968      1.150409 
-\end{verbatim}
-\hfill\break
-\textbf{Misclassification Error} \hfill\break
-Misclassification error is the percentage mismatch of predicted vs
-actuals, irrespective of 1's or 0's. The lower the misclassification
-error, the better the model. Here it is 2.3\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{predicted1 <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit1, testData1)) }
-\KeywordTok{misClassError}\NormalTok{(testData1$index_now, predicted1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.0234
-\end{verbatim}
-\hfill\break
-\textbf{ROC} \hfill\break
-Receiver Operating Characteristics Curve traces the percentage of true
-positives accurately predicted by a given logit model as the prediction
-probability cutoff is lowered from 1 to 0. For a good model, as the
-cutoff is lowered, it should mark more of actual 1's as positives and
-lesser of actual 0's as 1's. So for a good model, the curve should rise
-steeply, indicating that the TPR (Y-Axis) increases faster than the FPR
-(X-Axis) as the cutoff score decreases. Greater the area under the ROC
-curve, better the predictive ability of the model. Here, it is 98.19\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plotROC}\NormalTok{(testData1$index_now, predicted1)}
-\end{Highlighting}
-\end{Shaded}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-64-1.pdf}
-\hfill\break
-\textbf{Concordance} \hfill\break
-Ideally, the model-calculated-probability-scores of all actual
-Positive's, (aka Ones) should be greater than the
-model-calculated-probability-scores of ALL the Negatives (aka Zeroes).
-Such a model is said to be perfectly concordant and a highly reliable
-one. This phenomenon can be measured by Concordance and Discordance.
-
-In simpler words, of all combinations of 1-0 pairs (actuals),
-Concordance is the percentage of pairs, whose scores of actual
-positive's are greater than the scores of actual negative's. For a
-perfect model, this will be 100\%. So, the higher the concordance, the
-better is the quality of model. This model has a concordance of 98.2\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{Concordance}\NormalTok{(testData1$index_now, predicted1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-$Concordance
-[1] 0.9827534
-
-$Discordance
-[1] 0.01724659
-
-$Tied
-[1] 4.163336e-17
-
-$Pairs
-[1] 330674
-\end{verbatim}
-\hfill\break
-\textbf{Specificity and Sensitivity} \hfill\break
-- Sensitivity (or True Positive Rate) is the percentage of 1's (actuals)
-correctly predicted by the model, while, specificity is the percentage
-of 0's (actuals) correctly predicted. In this model, it was found to be
-90.6\%. \hfill\break
-- Specificity can also be calculated as 1 - False Positive Rate. In this
-model, it was found to be 98.6\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sensitivity}\NormalTok{(testData1$index_now, predicted1, }\DataTypeTok{threshold =} \NormalTok{optCutOff1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.9059406
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{specificity}\NormalTok{(testData1$index_now, predicted1, }\DataTypeTok{threshold =} \NormalTok{optCutOff1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.9859499
-\end{verbatim}
-\hfill\break
-\textbf{Confusion Matrix} \hfill\break
-In the confusion matrix, the columns are actuals, while rows are
-predicteds.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{confusionMatrix}\NormalTok{(testData1$index_now, predicted1, }\DataTypeTok{threshold =} \NormalTok{optCutOff1)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-     0   1
-0 1614  19
-1   23 183
-\end{verbatim}
-\section{Model 2: Total Rebalancing (November \& May)
-Model}\label{model-2-total-rebalancing-november-may-model}
-
-Since the index is rebalanced twice a year, it makes sense to look at a
-model including the data for both of these months.
+linear predictors mentioned. Since the index is rebalanced twice a year,
+it makes sense to look at a model including the data for both of these
+months. \#\# Data Cleaning
 
 \subsection{Removing for Class Bias}\label{removing-for-class-bias}
 
@@ -2174,7 +1908,7 @@ There is no more class bias, as the sample is now evenly weighted now,
 with each outcome being represented by 969 observations.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(trainingData2$index_now)}
+\KeywordTok{table}\NormalTok{(trainingData$index_now)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2186,19 +1920,19 @@ with each outcome being represented by 969 observations.
 Model}\label{logistic-regression-model-2}
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Model 2}
-\NormalTok{logit2 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(index_now ~}\StringTok{  }\NormalTok{volatility +}\StringTok{ }\NormalTok{beta +}\StringTok{ }\NormalTok{price_to_book }
-\NormalTok{+}\StringTok{ }\NormalTok{index_before, }\DataTypeTok{data=}\NormalTok{trainingData2, }\DataTypeTok{family=}\KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
+\CommentTok{# Model}
+\NormalTok{logit <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(index_now ~}\StringTok{  }\NormalTok{volatility +}\StringTok{ }\NormalTok{beta +}\StringTok{ }\NormalTok{price_to_book }
+\NormalTok{+}\StringTok{ }\NormalTok{index_before, }\DataTypeTok{data=}\NormalTok{trainingData, }\DataTypeTok{family=}\KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
 
-\CommentTok{# Summary of Model 2}
-\KeywordTok{summary}\NormalTok{(logit2)}
+\CommentTok{# Summary of Model}
+\KeywordTok{summary}\NormalTok{(logit)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
 
 Call:
 glm(formula = index_now ~ volatility + beta + price_to_book + 
-    index_before, family = binomial(link = "logit"), data = trainingData2)
+    index_before, family = binomial(link = "logit"), data = trainingData)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
@@ -2226,7 +1960,7 @@ Number of Fisher Scoring iterations: 6
 \begin{Highlighting}[]
 \CommentTok{# Coefficient Interpretation}
 \NormalTok{## Log Odds}
-\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit2))}
+\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2236,7 +1970,7 @@ Number of Fisher Scoring iterations: 6
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{## Probability }
-\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit2))) /}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{+(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit2))))}
+\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))) /}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{+(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))))}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2252,15 +1986,15 @@ is not statistically significant. \hfill\break
 - Beta: The odds ratio of being added to the index is 0.015 times
 smaller, given a one unit increase in beta. This response variable is
 statistically significant. \hfill\break
-- Price to Book: The odds ratio of being added to the index is 0.50
-times smaller, given a one unit increase in price to book ratio. This
-response variable is not statistically significant. \hfill\break
+- Price to Book: The odds ratio of being added to the index is the same,
+given a one unit increase in price to book ratio. This response variable
+is not statistically significant. \hfill\break
 - Index before: The odds ratio of being added to the index is 228.61
 times greater if the stock was in the index 6 months ago. This response
 variable is statistically significant. \hfill\break
 \hfill\break
 
-\subsection{Model Quality}\label{model-quality-1}
+\subsection{Model Quality}\label{model-quality}
 
 To test the quality of the model, several tests were done: \hfill\break
 \textbf{Predictive Power} \hfill\break
@@ -2274,9 +2008,9 @@ off is 0.86.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(InformationValue)}
-\NormalTok{predicted2 <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit2, testData2)) }
-\NormalTok{optCutOff2 <-}\StringTok{ }\KeywordTok{optimalCutoff}\NormalTok{(testData2$index_now, predicted2)[}\DecValTok{1}\NormalTok{] }
-\NormalTok{optCutOff2}
+\NormalTok{predicted <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit, testData)) }
+\NormalTok{optCutOff <-}\StringTok{ }\KeywordTok{optimalCutoff}\NormalTok{(testData$index_now, predicted)[}\DecValTok{1}\NormalTok{] }
+\NormalTok{optCutOff}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2290,7 +2024,7 @@ well below 4.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(car)}
-\KeywordTok{vif}\NormalTok{(logit2)}
+\KeywordTok{vif}\NormalTok{(logit)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2301,10 +2035,10 @@ well below 4.
 \textbf{Misclassification Error} \hfill\break
 Misclassification error is the percentage mismatch of predicted
 vs.~actuals, irrespective of 1's or 0's. The lower the misclassification
-error, the better the model. Here it is 4.0\%.
+error, the better the model. Here it is 4.02\%.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{misClassError}\NormalTok{(testData2$index_now, predicted2)}
+\KeywordTok{misClassError}\NormalTok{(testData$index_now, predicted)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2322,10 +2056,10 @@ steeply, indicating that the TPR (Y-Axis) increases faster than the FPR
 curve, better the predictive ability of the model. Here, it is 96.77\%.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotROC}\NormalTok{(testData2$index_now, predicted2)}
+\KeywordTok{plotROC}\NormalTok{(testData$index_now, predicted)}
 \end{Highlighting}
 \end{Shaded}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-64-1.pdf}
 \hfill\break
 \textbf{Concordance} \hfill\break
 Ideally, the model-calculated-probability-scores of all actual
@@ -2341,7 +2075,7 @@ perfect model, this will be 100\%. So, the higher the concordance, the
 better is the quality of model. This model has a concordance of 96.8\%.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{Concordance}\NormalTok{(testData2$index_now, predicted2)}
+\KeywordTok{Concordance}\NormalTok{(testData$index_now, predicted)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2367,7 +2101,7 @@ of 0's (actuals) correctly predicted. In this model, it was found to be
 model, it was found to be 98.19\%.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sensitivity}\NormalTok{(testData2$index_now, predicted2, }\DataTypeTok{threshold =} \NormalTok{optCutOff2)}
+\KeywordTok{sensitivity}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2375,7 +2109,7 @@ model, it was found to be 98.19\%.
 \end{verbatim}
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{specificity}\NormalTok{(testData2$index_now, predicted2, }\DataTypeTok{threshold =} \NormalTok{optCutOff2)}
+\KeywordTok{specificity}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2387,7 +2121,7 @@ In the confusion matrix, the columns are actuals, while rows are
 predicteds.
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{confusionMatrix}\NormalTok{(testData2$index_now, predicted2, }\DataTypeTok{threshold =} \NormalTok{optCutOff2)}
+\KeywordTok{confusionMatrix}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
@@ -2406,36 +2140,6 @@ the November specific model. Someone looking for abritrage opportunities
 throughout the year during both rebalances might look at the combined
 May and November model.
 
-\section{Side by Side Model
-Comparison}\label{side-by-side-model-comparison}
-\begin{verbatim}
-Warning: package 'tidyr' was built under R version 3.4.2
-\end{verbatim}
-\begin{verbatim}
-Warning: 'rbind_list' is deprecated.
-Use 'bind_rows()' instead.
-See help("Deprecated")
-\end{verbatim}
-\begin{verbatim}
-`mutate_each()` is deprecated.
-Use `mutate_all()`, `mutate_at()` or `mutate_if()` instead.
-To map `funs` over a selection of variables, use `mutate_at()`
-\end{verbatim}
-\begin{verbatim}
-# A tibble: 10 x 4
-            term       key   `1`   `2`
- *         <chr>     <chr> <dbl> <dbl>
- 1   (Intercept)  estimate  1.39  1.86
- 2   (Intercept) std.error  0.59  0.36
- 3          beta  estimate -4.38 -4.19
- 4          beta std.error  0.68  0.39
- 5 index_before1  estimate  6.53  5.43
- 6 index_before1 std.error  0.43  0.24
- 7 price_to_book  estimate  0.00  0.00
- 8 price_to_book std.error  0.03  0.02
- 9    volatility  estimate -0.06 -0.04
-10    volatility std.error  0.10  0.04
-\end{verbatim}
 As seen, each model gave out pretty similar coefficient values for the
 various response variables. Beta ranged between -0.31 and -0.64,
 index\_before ranged from 5.08 to 7.01, price to book ranged from 0.00
