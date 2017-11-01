@@ -216,8 +216,8 @@ xlab("Time") + ylab("Sector Weight") + geom_line(data = Telecom2, aes(x=date,
 y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-\hfill\break
- 
+\clearpage 
+
 
 ## Trailing Volatilities 
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
