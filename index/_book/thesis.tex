@@ -155,8 +155,6 @@ Logistic Regression}
 \setlength{\parskip}{0pt}
 
 % Added by CII
-  %\setlength{\parskip}{\baselineskip}
-  \usepackage[parfill]{parskip}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -399,9 +397,9 @@ months before, during the previous rebalancing. These attributes were
 chosen after looking at the historical literature and understanding of
 the minimum volatility index.
 
-\section{Literature Review}\label{literature-review}
+\chapter{Literature Review}\label{literature-review}
 
-\subsection{Overview of the Low-Risk
+\section{Overview of the Low-Risk
 Anomaly}\label{overview-of-the-low-risk-anomaly}
 
 The Low-Risk Anomaly stems from the observation that portfolios of
@@ -467,10 +465,10 @@ influencing the price of affected stocks, indicating that if a model can
 predict these movements accurately beforehand, there is an additional
 considerable arbitrage opportunity.
 
-\subsection{Evidence of the Low-Risk
+\section{Evidence of the Low-Risk
 Anomaly}\label{evidence-of-the-low-risk-anomaly}
 
-\subsubsection{Measures of Risk}\label{measures-of-risk}
+\subsection{Measures of Risk}\label{measures-of-risk}
 
 Assuming an efficient market, one of the most widely accepted tenets of
 investing is that one will be receiving higher reward for taking on more
@@ -508,7 +506,7 @@ related. Thus, the first sentence of this paragraph can have many
 meanings, but can be interpreted as saying that stocks with higher beta
 or volatility will have higher expected return.
 
-\subsubsection{1929-2015}\label{section}
+\subsection{1929-2015}\label{section}
 
 Jan de Koning and Pim Van Vliet set out to investigate the question:
 \emph{Do high-volatility stocks return more than low-volatility stocks?}
@@ -531,7 +529,7 @@ the low-volatility portfolio was 13\%, and the annualized volatility of
 the high-volatility portfolio was around 2.5 times that, at 36\% (Vliet
 \& Koning, 2016).
 
-\subsubsection{1968-2008}\label{section-1}
+\subsection{1968-2008}\label{section-1}
 
 Baker et al. performed a study similar to that done by van Vliet and de
 Koning, but used 41 years of CRSP data, ranging from January 1968 --
@@ -590,7 +588,7 @@ market-adjusted basis, low-beta consistently generates high alpha (Baker
 et al., 2011). This was consistent with prior research (Pettengill,
 Sundaram, \& Mathur, 1995).
 
-\subsubsection{Critique of the Capital Asset Pricing
+\subsection{Critique of the Capital Asset Pricing
 Model}\label{critique-of-the-capital-asset-pricing-model}
 
 These findings are not new or revolutionary and have been observed in
@@ -625,10 +623,10 @@ it to be (Mullins, 1982). However, other models relating risk and return
 have had difficulty gaining acceptance and widespread usage in the
 finance industry.
 
-\subsection{Possible Explanations for the Low-Risk
+\section{Possible Explanations for the Low-Risk
 Anomaly}\label{possible-explanations-for-the-low-risk-anomaly}
 
-\subsubsection{Compounding}\label{compounding}
+\subsection{Compounding}\label{compounding}
 
 To fully grasp the low-risk anomaly, it is important to understand that
 a higher volatile stock or portfolio will move in greater magnitude than
@@ -672,7 +670,7 @@ times as much value as the low-volatility portfolio by 1932, it would
 have to outperform the low-volatility portfolio by significantly more
 than 600\% in order to return to the same value.
 
-\subsubsection{Benchmarking}\label{benchmarking}
+\subsection{Benchmarking}\label{benchmarking}
 
 Thus, it seems very counterintuitive that fund managers and investors
 would not only invest in low-volatility stocks, as it appears that these
@@ -789,7 +787,7 @@ the anomaly than volatility, especially with large cap stocks, which is
 what most fund managers disproportionately focus their investments in
 (Baker et al., 2011).
 
-\subsubsection{Single-Period Returns}\label{single-period-returns}
+\subsection{Single-Period Returns}\label{single-period-returns}
 
 Another explanation of the low-volatility anomaly is an increased focus
 on returns over short-term periods by many researchers and investors. By
@@ -892,7 +890,7 @@ stocks with high reward potential, driving up price and driving down
 expected return. These reasons appear perennial, so the anomaly is
 unlikely to cease to exist in the near future.
 
-\subsubsection{Profitability and Value}\label{profitability-and-value}
+\subsection{Profitability and Value}\label{profitability-and-value}
 
 Defensive equity strategies generally aim at constructing a portfolio
 comprised of more low-risk stocks. This strategy has been becoming very
@@ -944,7 +942,7 @@ and profitability. In fact, profitability itself is so significant, that
 the case can be made that this alpha may come in large part from
 excluding unprofitable, small growth stocks (Novy-Marx, 2014).
 
-\subsection{Further Decomposition of the Low-Risk Anomaly into Micro and
+\section{Further Decomposition of the Low-Risk Anomaly into Micro and
 Macro
 Effects}\label{further-decomposition-of-the-low-risk-anomaly-into-micro-and-macro-effects}
 
@@ -1013,11 +1011,10 @@ like country to industry. Even though the macro-effects have many
 limitations in practice, micro-effects are also limited due to leverage
 restrictions and benchmark mandates.
 
-\subsection{Real-World Applications of the Low-Risk
+\section{Real-World Applications of the Low-Risk
 Anomaly}\label{real-world-applications-of-the-low-risk-anomaly}
 
-\subsubsection{Betting Against Beta
-(BaB)}\label{betting-against-beta-bab}
+\subsection{Betting Against Beta (BaB)}\label{betting-against-beta-bab}
 
 Prior studies suggest that beta is not a great measure of risk and is
 more related to the anomaly than volatility is. AQR, a successful
@@ -1121,7 +1118,7 @@ By having these constraints, though, the typical public markets investor
 is forced to hold on to riskier, high-beta stocks, leading to
 effectiveness of the BaB factor (Frazzini \& Pedersen, 2014).
 
-\subsubsection{Betting Against
+\subsection{Betting Against
 Correlation}\label{betting-against-correlation}
 
 In trying to understand the low-risk anomaly and how it could be
@@ -1190,7 +1187,7 @@ bit stronger, especially internationally. By cleaning up these factors,
 clearer explanations for previously observed results were provided
 (Asness et al., 2016).
 
-\subsubsection{Stock Price Response to Index
+\subsection{Stock Price Response to Index
 Rebalancing}\label{stock-price-response-to-index-rebalancing}
 
 One of the driving fundamental assumptions of finance is a flat demand
