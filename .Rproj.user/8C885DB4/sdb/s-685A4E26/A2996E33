@@ -4,11 +4,11 @@
     "created" : 1509396875410.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "0|42|19|0|\n21|15|283|0|\n22|57|110|0|\n",
+    "folds" : "0|42|19|0|\n",
     "hash" : "3273455679",
     "id" : "A2996E33",
     "lastKnownWriteTime" : 1509561002,
-    "last_content_update" : 1509561002353,
+    "last_content_update" : 1509564510851,
     "path" : "~/thesis_final/index/03-chap3.Rmd",
     "project_path" : "index/03-chap3.Rmd",
     "properties" : {

@@ -155,6 +155,8 @@ Logistic Regression}
 \setlength{\parskip}{0pt}
 
 % Added by CII
+  %\setlength{\parskip}{\baselineskip}
+  \usepackage[parfill]{parskip}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -173,28 +175,28 @@ mentorship and guidance.
 }
 
 \Abstract{
-The low-risk anomaly has created opportunities for long-term focused
-investors who are not benchmarked against an index. Several studies have
-shown that low-risk portfolios strongly outperform high-risk portfolios
-over long periods of time due to this anomaly. Several hedge funds
-employ trading strategies to bet against factors like beta to take
-advantage of this occurrence. This thesis explores an investment
-strategy similar to index front-running through the creation of a
-logisitc regression model to forecast which stocks will be added or
-removed from the MSCI Minimum Volatility Index. When a stock is added to
-the index, there is an average price move of +0.63\% the following day,
-and when a stock is removed from the index, there is an average price
-move of -0.57\% the following day. Data was collected from USMV, the ETF
-tracking this index, and its parent ETF between October 2011 and
-December 2016. Data from Wharton Research Data Services was used to
-calculate trailing beta, trailing volatility, price to book ratio, and
-previous index membership. A regression model was created using these
-inputs, which calculated probabilities of index membership for stocks
-given the historical data. An accurate model that could accurately
-predict inflow or outflow of stocks could prove to be a profitable
-trading strategy. The top candidates to enter the index and top
-candidates to leave the index were determined and compared to actual
-rebalancing that happened in May 2017.
+Stocks with low volatility perform as well or better than stocks with
+high volatility (Vliet \& Koning, 2016). This effect, termed the
+low-risk anomaly, has been demonstrated in studies showing that
+portfolios of low-risk stocks outperform portfolios of high-risk stocks
+over long periods of time (Baker, Bradley, \& Wurgler, 2011). The MSCI
+Minimum Volatility Index is designed to help investors take advantage of
+this effect. This index uses a software library called the Barra
+Optimizer to create and regularly rebalance a portfolio of low-risk
+stocks. Investors can trade this portfolio through an ETF (USMV) that
+tracks the index. Constituent data was collected from USMV between
+October 2011 and December 2016, and data from Wharton Research Data
+Services was used to calculate trailing beta, trailing volatility, and
+price to book ratio for each stock. Using these predictor variables, a
+logistic regression model was created to calculate the probability of a
+stock being added or removed from the index after future rebalancing.
+Though lower beta and lower volatility each increased the probability of
+a stock being in the index, the effect of beta was interestingly
+stronger. The model was 86\% accurate at predicting which stocks would
+be in the index, and 98\% accurate at predicting which stocks would not
+be in the index. These results suggest there may be an arbitrage
+opportunity in forecasting future membership in the Minimum Volatility
+Index.
 }
 
 % End of CII addition
@@ -237,28 +239,28 @@ rebalancing that happened in May 2017.
 
   \listoffigures
   \begin{abstract}
-    The low-risk anomaly has created opportunities for long-term focused
-    investors who are not benchmarked against an index. Several studies have
-    shown that low-risk portfolios strongly outperform high-risk portfolios
-    over long periods of time due to this anomaly. Several hedge funds
-    employ trading strategies to bet against factors like beta to take
-    advantage of this occurrence. This thesis explores an investment
-    strategy similar to index front-running through the creation of a
-    logisitc regression model to forecast which stocks will be added or
-    removed from the MSCI Minimum Volatility Index. When a stock is added to
-    the index, there is an average price move of +0.63\% the following day,
-    and when a stock is removed from the index, there is an average price
-    move of -0.57\% the following day. Data was collected from USMV, the ETF
-    tracking this index, and its parent ETF between October 2011 and
-    December 2016. Data from Wharton Research Data Services was used to
-    calculate trailing beta, trailing volatility, price to book ratio, and
-    previous index membership. A regression model was created using these
-    inputs, which calculated probabilities of index membership for stocks
-    given the historical data. An accurate model that could accurately
-    predict inflow or outflow of stocks could prove to be a profitable
-    trading strategy. The top candidates to enter the index and top
-    candidates to leave the index were determined and compared to actual
-    rebalancing that happened in May 2017.
+    Stocks with low volatility perform as well or better than stocks with
+    high volatility (Vliet \& Koning, 2016). This effect, termed the
+    low-risk anomaly, has been demonstrated in studies showing that
+    portfolios of low-risk stocks outperform portfolios of high-risk stocks
+    over long periods of time (Baker, Bradley, \& Wurgler, 2011). The MSCI
+    Minimum Volatility Index is designed to help investors take advantage of
+    this effect. This index uses a software library called the Barra
+    Optimizer to create and regularly rebalance a portfolio of low-risk
+    stocks. Investors can trade this portfolio through an ETF (USMV) that
+    tracks the index. Constituent data was collected from USMV between
+    October 2011 and December 2016, and data from Wharton Research Data
+    Services was used to calculate trailing beta, trailing volatility, and
+    price to book ratio for each stock. Using these predictor variables, a
+    logistic regression model was created to calculate the probability of a
+    stock being added or removed from the index after future rebalancing.
+    Though lower beta and lower volatility each increased the probability of
+    a stock being in the index, the effect of beta was interestingly
+    stronger. The model was 86\% accurate at predicting which stocks would
+    be in the index, and 98\% accurate at predicting which stocks would not
+    be in the index. These results suggest there may be an arbitrage
+    opportunity in forecasting future membership in the Minimum Volatility
+    Index.
   \end{abstract}
 
 \mainmatter % here the regular arabic numbering starts
@@ -410,8 +412,8 @@ higher expected return. In several studies, portfolios of high-risk
 stocks and low-risk stocks were constructed and rebalanced regularly to
 reflect these characteristics, and the low-risk portfolios outperformed
 the high-risk portfolios by a factor of several times, over long-periods
-of time including 1929-2015 (Vliet \& Koning, 2016) and 1968-2008
-(Baker, Bradley, \& Wurgler, 2011).
+of time including 1929-2015 (Vliet \& Koning, 2016) and 1968-2008 (Baker
+et al., 2011).
 
 One of the explanations is the need for money managers to be compared to
 a benchmark, such as an index like the S\&P 500. This is reasonable, as
@@ -2129,67 +2131,88 @@ predicteds.
 \end{verbatim}
 \chapter{Conclusion}\label{conclusion}
 
-All in all, the models were comprable in terms of statistical resiliency
-and predictive power. Each model may have a different usage, based of
-each model's strengths and weaknesses, and what goals the investor has
-in mind for the model. For example, an investor looking to capture an
-arbitrage opportunity in November, might be best suited in looking at
-the November specific model. Someone looking for abritrage opportunities
-throughout the year during both rebalances might look at the combined
-May and November model.
+The regression model appeared to be statistically resilient with strong
+predictive power. \hfill\break
+\#\# Top 5 Candidates to Enter the Index The top 5 candidates to enter
+the index are
 
-As seen, each model gave out pretty similar coefficient values for the
-various response variables. Beta ranged between -0.31 and -0.64,
-index\_before ranged from 5.08 to 7.01, price to book ranged from 0.00
-to -0.01, and volatility ranged between -0.04 and 0.06.
+In reality, x out of the 5 actually entered the index during rebalancing
+in May 2017. \hfill\break
+
+\section{Top 5 Candidates to Leave the
+Index}\label{top-5-candidates-to-leave-the-index}
+
+The top 5 candidates to leave the index are
+
+In reality, x out of the 5 actually left the index during rebalancing in
+May 2017.
+
+\hfill\break
 
 \chapter{Discussion}\label{discussion}
 
-After comparing all of the models, it makes sense to discuss the
-applications of these various models to the real world, and to finance.
+\hfill\break
 
 \section{Understanding of
 Relationships}\label{understanding-of-relationships}
 
-Through these models, we can get a better understanding of the
-relationships between the predictor variables, and whether or not the
-stock is in the Min Vol index. In general, each model suggested an
-increase in beta will reduce the likelihood of a stock being in the min
-vol index, with all else held constant. This makes sense, as beta is one
-measure of risk and volatility. Moreover, it is a widely used metric in
-finance, so it is not surpising that it is a statistically significant
-variable. Moreover, the most significant variable was whether or not the
-stock was in the index before. This makes a lot of sense, as a stock
-currently in the index presumably has many min vol characteristics from
-before, that must be signficantly altered if it were to be removed.
-Moreover, stocks that were in the index previously were many times more
-likely to be in the index currently, than stocks that had previously not
-been in the index. This variable was also statistically significant.
-Surpisingly, volatility was not statistically signficant, though the
-index itself is called the ``Minimum Volatility'' Index. Moreover, price
-to book was also an insignficant variable, which does make sense. Each
-model was able to quantify these relationships, and help us better
-understand what
+\hfill\break
+\#\#\# Beta The relationship between Beta and current membership in the
+Minimum Volatility Index was \hfill\break
 
-\section{Arbitrage}\label{arbitrage}
+\subsection{Volatility}\label{volatility}
 
-Each model was able to take various attributes of a stock, and calculate
-a probability for it currently being in the index. Using the optimal
-cutoffs, we were able to get a sense of the probability value that would
-be significant in determining when a stock would be in or out of the
-index. For example, at a cutoff of 0.9, this would tell us that we could
-reasonably expect stocks with a probability of over 90\% to be in the
-index, and stocks with less than a 90\% probability to not be in the
-index. With this information, there are many different arbitrage
-opportunities. One could long stocks currently not in the index that
-have a probability greater than the optimal cutoff for that model. This
-would represent the stocks with the greatest chance of being added to
-the index, that are currently not in the index. If correct, prior
-studies would suggest that the stock price would consequently increase
-from this happening. Moreover, one could short stocks that are currently
-in the index, that have a probability value less than the cutoff. This
-could lead to an arbritrage opportunity if the stock is removed from the
-index, as one is short it.
+The relationship between Volatility and currentmembership in the Minimum
+Volatility Index was \hfill\break
+
+\subsection{Price to Book Ratio}\label{price-to-book-ratio}
+
+The relationship between Price to Book Ratio and current membership in
+the Minimum Volatility Index was \hfill\break
+
+\subsection{Prior Index Membership}\label{prior-index-membership}
+
+The relationship between Prior Index Membership and current membership
+in the Minimum Volatility Index was \hfill\break
+
+\section{Sector risk}\label{sector-risk}
+
+Some sectors were overweight in the Minimum Volatility Index, which
+would imply they are inherently less risky. \hfill\break
+
+\section{Investment Opportunity}\label{investment-opportunity}
+
+Based off the accuracy of the top 5 candidates to join and exit the
+Minimum Volatility Index, \hfill\break
+
+\section{Future Models and Analysis}\label{future-models-and-analysis}
+
+\hfill\break
+\#\#\# Model by Sector Breaking down the data by sector and modeling
+that way might create a more accurate model \hfill\break
+
+\subsection{Modeling by Prior Index
+Membership}\label{modeling-by-prior-index-membership}
+
+Breaking down the data by prior index membership and modeling that way
+might create a more accurate model \hfill\break
+
+\subsection{Model by Month}\label{model-by-month}
+
+Creating one model for May rebalancing and one model for November
+rebalancing might create a more accurate model\\
+\hfill\break
+
+\section{Limitations}\label{limitations}
+
+\hfill\break
+\#\#\# Using ETF data Using ETF data to forecast index membership is
+reasonable but not entirely accruate. The iShares data also had many
+errors that needed to be manually fixed. \hfill\break
+\#\#\# Barra Optimizer The Barra Optimizer is very complex, and this
+thesis did not take it into account when trying to predict index
+membership. Had it done so, the model could have been more accruate at
+predicting index rebalancing.
 
 \appendix
 
