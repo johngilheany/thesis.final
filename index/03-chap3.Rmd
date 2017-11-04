@@ -284,6 +284,7 @@ plot(minvol_beta_plot)
 
 # Logistic Regression Model 
 Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index or not (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at all of the historical data and stock various characteristics, this  modeled the log odds of a stock being in the minimum volatility index as a combination of the linear predictors mentioned. Since the index is rebalanced twice a year, it makes sense to look at a model including the data for both of these months.
+
 ## Data Cleaning
 ```{r, echo=FALSE}
 load("~/thesis_final/data/monthly_data.Rda")
