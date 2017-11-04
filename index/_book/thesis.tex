@@ -1503,6 +1503,23 @@ distributed, and the dates correctly range from 10-31-2011 to
 \end{verbatim}
 To get a sense of the cleaned USMV, an overview is shown below:
 \begin{verbatim}
+Warning: package 'dplyr' was built under R version 3.4.2
+\end{verbatim}
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
+\begin{verbatim}
   ticker                   name asset.class weight  price shares
 1    AAP ADVANCE AUTO PARTS INC      Equity 0.7986  65.07    316
 2   AAPL              APPLE INC      Equity 0.0943 404.78      6
@@ -1636,8 +1653,8 @@ Minimum Volatility Index monthly returns and USMV ETF monthly returns is
 \end{figure}
 \chapter{Data Analysis}\label{data-analysis}
 
-\section{Change in Largest Holdings by Average
-Weight}\label{change-in-largest-holdings-by-average-weight}
+\section{Change in Largest Holdings Over
+Time}\label{change-in-largest-holdings-over-time}
 
 The top 5 largest holdings in the US Equal Weight Index by average
 weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson
@@ -1681,7 +1698,8 @@ inception, these stocks have generally remained between a weight of
 1.3\% and 1.7\% of the overall portfolio, with the exception of Verizon,
 which reached around 2\% in 2014.}
 \end{figure}
-\section{Sector Weights}\label{sector-weights}
+\section{Change in Sector Weights Over
+Time}\label{change-in-sector-weights-over-time}
 
 Sector weights were calculated over time for both the US Equal Weight
 and the Minimum Volatility Index. This was done to get a sense of what
@@ -1857,18 +1875,18 @@ months.
 
 \section{Data Cleaning}\label{data-cleaning-1}
 
-\subsection{Removing for Class Bias}\label{removing-for-class-bias}
+\subsection{Removing Class Bias}\label{removing-class-bias}
 
-Ideally, the proportion of stocks in and out of the Min Vol index should
-approximately be the same. However, after checking this, it is clear
-that this is not the case, as there were 4182 observations for stocks
-not in the index, and just 1385 observations for stocks in the index.
-Since just around 25\% of the data was from stocks that are currently in
-the index, there is class bias. As a result, observations were sampled
-in equal proportions to get a better model.
+Ideally, the proportion of stocks in and out of the Minimum Volatility
+index should approximately be the same. However, after checking this, it
+is clear that this is not the case, as there were 4182 observations for
+stocks not in the index, and just 1385 observations for stocks in the
+index. Since just around 25\% of the data was from stocks that are
+currently in the index, there is class bias. As a result, observations
+were sampled in equal proportions to get a better model.
 
-\subsection{Create Training and Test
-Samples}\label{create-training-and-test-samples}
+\subsection{Creating Development and Test
+Samples}\label{creating-development-and-test-samples}
 
 One way to address the problem of class bias is to draw the 0's and 1's
 for the development sample in equal proportions for a majority of the
@@ -2014,13 +2032,14 @@ positive rate (sensitivity) against the false positive rate
 curve is a measure of the accuracy of the model in distinguishing
 between stocks in the index and stocks not in the index. A perfect model
 would yield a ROC curve passing through the top left corner,
-representing a sensitivity of 100\% and a specificity of 100\%, with the
+representing a sensitivity of 100\% and a specificity of 100\%, with an
 area under the curve of 100\%. The area under the ROC curve for the
 logistic regression model in this study is 96.77\%.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-67-1.pdf}
 \hfill\break
 
-\chapter{Conclusion}\label{conclusion}
+\chapter{Conclusions and Further
+Research}\label{conclusions-and-further-research}
 
 The regression model appeared to be statistically resilient with strong
 predictive power. \hfill\break
@@ -2037,10 +2056,6 @@ The top 5 candidates to leave the index are
 
 In reality, x out of the 5 actually left the index during rebalancing in
 May 2017.
-
-\hfill\break
-
-\chapter{Discussion}\label{discussion}
 
 \hfill\break
 

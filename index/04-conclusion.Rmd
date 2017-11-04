@@ -15,12 +15,12 @@ november_final <- subset(november_final, !is.na(index_before))
 
 both_final <- rbind(may_final, november_final)
 ```
-### Removing for Class Bias
+### Removing Class Bias
 Ideally, the proportion of stocks in and out of the Minimum Volatility index should approximately be the same. However, after checking this, it is clear that this is not the case, as there were 4182 observations for stocks not in the index, and just 1385 observations for stocks in the index. Since just around 25% of the data was from stocks that are currently in the index, there is class bias. As a result, observations were sampled in equal proportions to get a better model.
 ```{r, cache=FALSE, echo = FALSE}
 bias1<- table(both_final$index_now)
 ```
-### Create Training and Test Samples
+### Creating Development and Test Samples
 One way to address the problem of class bias is to draw the 0’s and 1’s for the development sample in equal proportions for a majority of the observations. In doing so, the remaining data will not included for the model, but will be used as the validation sample to evaluate and test the model.  Class bias was removed, as the sample is now evenly weighted, with each outcome being represented by 969 observations. The remainder of the data was placed in the validation sample. 
 
 ```{r, cache=FALSE, echo=FALSE}
@@ -124,7 +124,7 @@ confusionMatrix(testData$index_now, predicted, threshold = optCutOff)
 \hfill\break
 __Receiver Operating Characteristics Curve__
 \hfill\break
-The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with the area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%. 
+The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%. 
 ```{r, echo=FALSE}
 plotROC(testData$index_now, predicted)
 ```

@@ -129,7 +129,8 @@ Shown below are summary statistics for EUSA. Each name is representd 63 times, w
 load("~/thesis_final/data/usa.Rda")
 ```
 
-```{r, echo = FALSE}
+```{r, cache=TRUE, echo = FALSE}
+library(dplyr)
 usa_summ <- select(usa, name, asset.class, weight, sector, date)
 summary(usa_summ)
 ```
