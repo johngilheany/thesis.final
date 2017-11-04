@@ -1,67 +1,133 @@
-# Conclusion 
-The regression model appeared to be statistically resilient with strong predictive power.
-\hfill\break
-## Top 5 Candidates to Enter the Index
-The top 5 candidates to enter the index are 
+# Logistic Regression Model 
+Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index or not (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at all of the historical data and stock various characteristics, this  modeled the log odds of a stock being in the minimum volatility index as a combination of the linear predictors mentioned. Since the index is rebalanced twice a year, it makes sense to look at a model including the data for both of these months.
 
-In reality, x out of the 5 actually entered the index during rebalancing in May 2017. 
+## Data Cleaning
+```{r data_cleaning, echo = FALSE}
+load("~/thesis_final/data/monthly_data.Rda")
+# Subset data for dates from May
+may_final <- filter(monthly_data, date == "2012-05-31" |  date == "2013-05-31"| date == "2014-05-30" | date == "2015-05-29" | date == "2016-05-31")
+# Remove NA values from set
+may_final <- subset(may_final, !is.na(index_before))
+# Subset data for dates from November
+november_final <- filter(monthly_data, date == "2011-11-30" | date == "2012-11-30"| date == "2013-11-29"| date == "2014-11-28" | date == "2015-11-30" | date == "2016-11-30")
+# Remove NA values from set
+november_final <- subset(november_final, !is.na(index_before))
+
+both_final <- rbind(may_final, november_final)
+```
+### Removing for Class Bias
+Ideally, the proportion of stocks in and out of the Min Vol index should approximately be the same. However, after checking this, it is clear that this is not the case, as, just around 25% of the data is from stocks that are currently in the index, meaning there is a class bias. As a result, observations must be sampled in approximately equal proportions to get a better model.
+```{r}
+table(both_final$index_now)
+```
+### Create Training and Test Samples
+One way to address the problem of class bias is to draw the 0’s and 1’s for the trainingData (development sample) in equal proportions. In doing so, we will put rest of the inputData not included for training into testData (validation sample). As a result, the size of development sample will be smaller that validation, which is okay, because, there are large number of observations.
+```{r data_trans, echo=FALSE}
+# Create Training Data
+input_ones2 <- both_final[which(both_final$index_now == 1), ] 
+input_zeros2 <- both_final[which(both_final$index_now == 0), ]
+set.seed(100)  # for repeatability of samples
+input_ones_training_rows2 <- sample(1:nrow(input_ones2), 0.7*nrow(input_ones2)) 
+input_zeros_training_rows2 <- sample(1:nrow(input_zeros2), 0.7*nrow(input_ones2))  
+training_ones2 <- input_ones2[input_ones_training_rows2, ]  
+training_zeros2 <- input_zeros2[input_zeros_training_rows2, ]
+trainingData <- rbind(training_ones2, training_zeros2)   
+# Create Test Data
+test_ones2 <- input_ones2[-input_ones_training_rows2, ]
+test_zeros2 <- input_zeros2[-input_zeros_training_rows2, ]
+testData <- rbind(test_ones2, test_zeros2) 
+```
+There is no more class bias, as the sample is now evenly weighted now, with each outcome being represented by 969 observations. 
+```{r}
+table(trainingData$index_now)
+```
+
+### Logistic Regression Model 
+```{r}
+# Model
+logit <- glm(index_now ~  volatility + beta + price_to_book 
++ index_before, data=trainingData, family=binomial(link="logit"))
+
+# Summary of Model
+summary(logit)
+
+# Coefficient Interpretation
+## Log Odds
+exp(coef(logit))
+## Probability 
+(exp(coef(logit))) / (1+(exp(coef(logit))))
+``` 
+
+### Interpretation of Model
+The coefficients can be interpreted as: 
+\hfill\break
+- Volatility: The odds ratio of being added to the index is 0.96 times smaller, given a one unit increase in volatility. This response variable is not statistically significant.
+\hfill\break
+- Beta: The odds ratio of being added to the index is 0.015 times smaller, given a one unit increase in beta. This response variable is statistically significant. 
+\hfill\break
+- Price to Book: The odds ratio of being added to the index is the same, given a one unit increase in price to book ratio. This response variable is not statistically significant. 
+\hfill\break
+- Index before: The odds ratio of being added to the index is 228.61 times greater if the stock was in the index 6 months ago. This response variable is statistically significant. 
+\hfill\break
 \hfill\break
 
-## Top 5 Candidates to Leave the Index
-The top 5 candidates to leave the index are 
+### Model Quality 
+To test the quality of the model, several tests were done:
+\hfill\break
+__Predictive Power__
+\hfill\break
+The default cutoff prediction probability score is 0.5 or the ratio of 1’s and 0’s in the training data. But sometimes, tuning the probability cutoff can improve the accuracy in both the development and validation samples. The InformationValue::optimalCutoff function provides ways to find the optimal cutoff to improve the prediction of 1’s, 0’s, both 1’s and 0’s and to reduce the misclassification error. Here, the optimal cut off is 0.86.
+```{r}
+library(InformationValue)
+predicted <- plogis(predict(logit, testData)) 
+optCutOff <- optimalCutoff(testData$index_now, predicted)[1] 
+optCutOff
+```
+\hfill\break
+__VIF__
+\hfill\break
+Like in case of linear regression, we should check for multicollinearity in the model. As seen below, all the variables in the model have VIF well below 4.
+```{r, message=FALSE}
+library(car)
+vif(logit)
+```
+\hfill\break
+__Misclassification Error__
+\hfill\break
+Misclassification error is the percentage mismatch of predicted vs. actuals, irrespective of 1’s or 0’s. The lower the misclassification error, the better the model. Here it is 4.02%.
+```{r}
+misClassError(testData$index_now, predicted)
+```
+\hfill\break
+__ROC__
+\hfill\break
+Receiver Operating Characteristics Curve traces the percentage of true positives accurately predicted by a given logit model as the prediction probability cutoff is lowered from 1 to 0. For a good model, as the cutoff is lowered, it should mark more of actual 1’s as positives and lesser of actual 0’s as 1’s. So for a good model, the curve should rise steeply, indicating that the TPR (Y-Axis) increases faster than the FPR (X-Axis) as the cutoff score decreases. Greater the area under the ROC curve, better the predictive ability of the model. Here, it is 96.77%.
+```{r}
+plotROC(testData$index_now, predicted)
+```
+\hfill\break
+__Concordance__
+\hfill\break
+Ideally, the model-calculated-probability-scores of all actual Positive’s, (aka Ones) should be greater than the model-calculated-probability-scores of ALL the Negatives (aka Zeroes). Such a model is said to be perfectly concordant and a highly reliable one. This phenomenon can be measured by Concordance and Discordance.
 
-In reality, x out of the 5 actually left the index during rebalancing in May 2017. 
-
+In simpler words, of all combinations of 1-0 pairs (actuals), Concordance is the percentage of pairs, whose scores of actual positive’s are greater than the scores of actual negative’s. For a perfect model, this will be 100%. So, the higher the concordance, the better is the quality of model. This model has a concordance of 96.8%.
+```{r}
+Concordance(testData$index_now, predicted)
+```
 \hfill\break
-
-# Discussion
+__Specificity and Sensitivity__
 \hfill\break
-
-## Understanding of Relationships 
+- Sensitivity (or True Positive Rate) is the percentage of 1’s (actuals) correctly predicted by the model, while, specificity is the percentage of 0’s (actuals) correctly predicted. In this model, it was found to be 86.29%.
 \hfill\break
-### Beta
-The relationship between Beta and current membership in the Minimum Volatility Index was
+- Specificity can also be calculated as 1 - False Positive Rate. In this model, it was found to be 98.19%. 
+```{r}
+sensitivity(testData$index_now, predicted, threshold = optCutOff)
+specificity(testData$index_now, predicted, threshold = optCutOff)
+```
 \hfill\break
-
-### Volatility 
-The relationship between Volatility and currentmembership in the Minimum Volatility Index was
+__Confusion Matrix__
 \hfill\break
-
-### Price to Book Ratio
-The relationship between Price to Book Ratio and current membership in the Minimum Volatility Index was
-\hfill\break
-
-### Prior Index Membership
-The relationship between Prior Index Membership and current membership in the Minimum Volatility Index was
-\hfill\break
-
-## Sector risk
-Some sectors were overweight in the Minimum Volatility Index, which would imply they are inherently less risky. 
-\hfill\break
-
-## Investment Opportunity  
-Based off the accuracy of the top 5 candidates to join and exit the Minimum Volatility Index, 
-\hfill\break
-
-## Future Models and Analysis
-
-\hfill\break
-### Model by Sector
-Breaking down the data by sector and modeling that way might create a more accurate model 
-\hfill\break
-
-### Modeling by Prior Index Membership
-Breaking down the data by prior index membership and modeling that way might create a more accurate model 
-\hfill\break
-
-### Model by Month
-Creating one model for May rebalancing and one model for November rebalancing might create a more accurate model  
-\hfill\break
-
-## Limitations 
-\hfill\break
-### Using ETF data
-Using ETF data to forecast index membership is reasonable but not entirely accruate. The iShares data also had many errors that needed to be manually fixed. 
-\hfill\break
-### Barra Optimizer
-The Barra Optimizer is very complex, and this thesis did not take it into account when trying to predict index membership. Had it done so, the model could have been more accruate at predicting index rebalancing. 
+In the confusion matrix, the columns are actuals, while rows are predicteds. 
+```{r}
+confusionMatrix(testData$index_now, predicted, threshold = optCutOff)
+```
