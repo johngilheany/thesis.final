@@ -20,7 +20,7 @@ flights <- read.csv("data/flights.csv")
 ```
 
 # Data Analysis
-## Changes in Largest Holdings by Average Weight by Index
+## Change in Largest Holdings Over Time
 The top 5 largest holdings in the US Equal Weight Index by average weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson & Johnson.
 
 ```{r, echo = FALSE}
@@ -62,12 +62,10 @@ holdings1<- ggplot() +
 	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the US Equal Weight Index')
 ```
 
-``` {r topholdingsusa, fig.cap = paste("Average Weight of Top 5 Holdings in the US Equal Weight Index over time"), echo=FALSE}
+``` {r topholdingsusa, fig.cap = paste("The 5 largest holdings are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, each as a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism."), echo=FALSE}
 plot(holdings1)
 ```
 \clearpage 
-
-Shown in figure \ref{topholdingsusa} is the average weight of the top five holdings in the US Equal Weight index. The 5 largest holdings are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, each as a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism.
 
 The top 5 largest holdings in the Minimum Volatility Index by average weight are Verizon, AT&T, Automatic Data Processing, Johnson & Johnson, and McDonald's. 
 
@@ -112,7 +110,7 @@ holdings2<- ggplot() +
 plot(holdings2)
 ```
 
-## Sector Weights
+## Change in Sector Weights Over Time
 Sector weights were calculated over time for both the US Equal Weight and the Minimum Volatility Index. This was done to get a sense of what industries may be inherently more "low-risk" as well as checking to make sure the data is resilient, and each sector weighting in the Minimum Volatility Index is within 5% of the US Equal Weight Index, as specified by the Barra Optimizer. 
 
 ```{r, echo=FALSE}
@@ -222,7 +220,7 @@ y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 \clearpage 
 
 
-## Trailing Volatilities 
+## Trailing Volatility  
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
 
 ```{r, echo = FALSE}
@@ -253,8 +251,8 @@ minvol_volplot <- ggplot(minvol_vol, aes(date, volatility, group = ticker)) + ge
 plot(minvol_volplot)
 ```
 
-## Trailing Betas 
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived. Each tickers' 252-day (annual) trailing beta was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index.
+## Trailing Beta 
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing beta was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index.
 
 ```{r, echo = FALSE}
 library(ggplot2)

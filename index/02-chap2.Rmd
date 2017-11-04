@@ -23,8 +23,8 @@ Data was collected for the iShares MSCI USA Equal Weighted ETF (EUSA), which tra
 After having a quick overview of the data, there were many issues with each respective dataset that needed to be fixed before the analysis could occur. Since USMV is a subset of EUSA, the issues were very similar, and those that existed in USMV, generally existed in USMV as well. The issues could be broken down into 3 main types: erroneous listed stock exchanges, problematic listed tickers, and price discrepancies due to issues like stock splits. Moreover, cash and cash related assets were removed from the data, as this dissertation focuses only on the stocks.  
  
 ### Non-US Exchanges
-Looking at the unique exchanges of the data, it was observed that there were several foreign exchanges like the Swiss Exchange and the Mexican Stock Exchange. For example, in the EUSA data set, there were several foreign stock exchanges:
-```{r}
+Looking at the unique exchanges of the data, it was observed that there were several foreign exchanges like the Swiss Exchange and the Mexican Stock Exchange. Some of the stock exchanges from the data set are shown below:
+```{r,  echo=FALSE}
 load("~/thesis_final/data/usa.Rda")
 # Print out unique exchanges in USA data set
 head(unique(usa$exchange))
@@ -116,9 +116,10 @@ Tickers and stock names that could not be determined were removed. In the end, â
 To get a sense of the cleaned EUSA data, an overview is shown below:
 ```{r, echo=FALSE, cache=TRUE, message=FALSE}
 load("~/thesis_final/data/usa.Rda")
+library(dplyr)
 ```
 
-```{r, echo = FALSE, message=FALSE}
+```{r, cache=TRUE, echo=FALSE}
 library(dplyr)
 head(arrange(usa, date))
 ```

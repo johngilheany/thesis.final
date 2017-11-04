@@ -69,46 +69,6 @@
 % \usepackage{times} % other fonts are available like times, bookman, charter, palatino
 
 % Syntax highlighting #22
-  \usepackage{color}
-  \usepackage{fancyvrb}
-  \newcommand{\VerbBar}{|}
-  \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-  % Add ',fontsize=\small' for more characters per line
-  \usepackage{framed}
-  \definecolor{shadecolor}{RGB}{248,248,248}
-  \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-  \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
-  \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
-  \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
-  \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
-  \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
-  \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
-  \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
-  \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
-  \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
-  \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
-  \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
-  \newcommand{\ImportTok}[1]{{#1}}
-  \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
-  \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
-  \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
-  \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
-  \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
-  \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
-  \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
-  \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
-  \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
-  \newcommand{\BuiltInTok}[1]{{#1}}
-  \newcommand{\ExtensionTok}[1]{{#1}}
-  \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
-  \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
-  \newcommand{\RegionMarkerTok}[1]{{#1}}
-  \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
-  \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
-  \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
-  \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
-  \newcommand{\NormalTok}[1]{{#1}}
 
 % To pass between YAML and LaTeX the dollar signs are added by CII
 \title{Forecasting Constituents of the MSCI Minimum Volatility Index Through
@@ -178,7 +138,7 @@ the writing process, offering countless revisions and edit suggestions.
 I am grateful for Professor Parzen's statistical perspective, and
 helping throughout the data collection and analysis portions. I would
 also like to thank Professor Mark Glickman for looking at my logistic
-regression model and offering suggestions on improving it, and to my
+regression model and offering suggestions for improvement, and to my
 friends and family for proofreading my thesis.
 }
 
@@ -257,7 +217,7 @@ forecasting future membership in the Minimum Volatility Index.
     I am grateful for Professor Parzen's statistical perspective, and
     helping throughout the data collection and analysis portions. I would
     also like to thank Professor Mark Glickman for looking at my logistic
-    regression model and offering suggestions on improving it, and to my
+    regression model and offering suggestions for improvement, and to my
     friends and family for proofreading my thesis.
   \end{acknowledgements}
 
@@ -392,7 +352,7 @@ However, ETFs very closely follow indices, as their tracking errors are
 generally quite small. Thus, although ETF data is not the same as index
 data, the two are extremely comparable.
 
-\section{Model}\label{model}
+\section{Regression Model}\label{regression-model}
 
 A logistic regression model will be created, which can be transformed to
 calculate a probability of a stock being a member of the Minimum
@@ -436,6 +396,44 @@ similarly front-run USMV, but before the market is able to react,
 leading to larger profit opportunities.
 
 \chapter{Literature Review}\label{literature-review}
+
+\section{Measures of Risk}\label{measures-of-risk}
+
+Assuming an efficient market, one of the most widely accepted tenets of
+investing is that one will be receiving higher reward for taking on more
+risk. Presumably, if this were not true, nobody would partake in higher
+risk investments. Some risks to consider when making an investment
+include those with respect to the market, liquidity, credit, inflation,
+and FX (Ontario, 2017). When quantifying risk for a company, one can
+look at the standard deviation of the stock price. By looking at the
+historical dispersion of data from the mean, or normal returns, one
+finds the stock's volatility. These calculations are based only on the
+price fluctuations of the stock and no other external factors
+(Investopedia, 2015). Volatility is also one of the best indicators of
+bankruptcy. The other common form of risk measurement in finance is
+beta, which measures the stock's price volatility compared to that of
+the stock market. The market is typically a benchmarked index relevant
+to the stock; for a large-cap US stock, the associated index could be
+the S\&P 500. Beta is calculated by taking the covariance of the stock
+returns and the market returns, then dividing by the variance of the
+market:
+\begin{figure}
+\centerline{\includegraphics[height=1in]{/Users/johngilheany/Desktop/beta.png}}
+\caption{Beta}
+\label{B}
+\end{figure}
+This yields a coefficient, which can be interpreted: a beta value of 1
+indicates the stock price and market move together identically, a beta
+value of less than 1 indicates the stock is less volatile than the
+market, and a beta value of greater than 1 indicates the stock is more
+volatile than the market. Beta values can be negative as well, and hold
+the same interpretation as positive beta values, with the difference
+being that the stock price and market move in opposite directions. For
+example, a beta of -1 would mean the stock and market have the same
+volatility and changes in price, but that the performance is inversely
+related. Thus, the first sentence of this paragraph can have many
+meanings, but can be interpreted as saying that stocks with higher beta
+or volatility will have higher expected return.
 
 \section{Overview of the Low-Risk
 Anomaly}\label{overview-of-the-low-risk-anomaly}
@@ -505,44 +503,6 @@ considerable arbitrage opportunity.
 
 \section{Evidence of the Low-Risk
 Anomaly}\label{evidence-of-the-low-risk-anomaly}
-
-\subsection{Measures of Risk}\label{measures-of-risk}
-
-Assuming an efficient market, one of the most widely accepted tenets of
-investing is that one will be receiving higher reward for taking on more
-risk. Presumably, if this were not true, nobody would partake in higher
-risk investments. Some risks to consider when making an investment
-include those with respect to the market, liquidity, credit, inflation,
-and FX (Ontario, 2017). When quantifying risk for a company, one can
-look at the standard deviation of the stock price. By looking at the
-historical dispersion of data from the mean, or normal returns, one
-finds the stock's volatility. These calculations are based only on the
-price fluctuations of the stock and no other external factors
-(Investopedia, 2015). Volatility is also one of the best indicators of
-bankruptcy. The other common form of risk measurement in finance is
-beta, which measures the stock's price volatility compared to that of
-the stock market. The market is typically a benchmarked index relevant
-to the stock; for a large-cap US stock, the associated index could be
-the S\&P 500. Beta is calculated by taking the covariance of the stock
-returns and the market returns, then dividing by the variance of the
-market:
-\begin{figure}
-\centerline{\includegraphics[height=1in]{/Users/johngilheany/Desktop/beta.png}}
-\caption{Beta}
-\label{B}
-\end{figure}
-This yields a coefficient, which can be interpreted: a beta value of 1
-indicates the stock price and market move together identically, a beta
-value of less than 1 indicates the stock is less volatile than the
-market, and a beta value of greater than 1 indicates the stock is more
-volatile than the market. Beta values can be negative as well, and hold
-the same interpretation as positive beta values, with the difference
-being that the stock price and market move in opposite directions. For
-example, a beta of -1 would mean the stock and market have the same
-volatility and changes in price, but that the performance is inversely
-related. Thus, the first sentence of this paragraph can have many
-meanings, but can be interpreted as saying that stocks with higher beta
-or volatility will have higher expected return.
 
 \subsection{1929-2015}\label{section}
 
@@ -1337,15 +1297,8 @@ only on the stocks.
 
 Looking at the unique exchanges of the data, it was observed that there
 were several foreign exchanges like the Swiss Exchange and the Mexican
-Stock Exchange. For example, in the EUSA data set, there were several
-foreign stock exchanges:
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"~/thesis_final/data/usa.Rda"}\NormalTok{)}
-\CommentTok{# Print out unique exchanges in USA data set}
-\KeywordTok{head}\NormalTok{(}\KeywordTok{unique}\NormalTok{(usa$exchange))}
-\end{Highlighting}
-\end{Shaded}
+Stock Exchange. Some of the stock exchanges from the data set are shown
+below:
 \begin{verbatim}
 [1] New York Stock Exchange Inc.                      
 [2] NASDAQ                                            
@@ -1498,9 +1451,6 @@ data for a given month-end date.
 \section{Data Overview}\label{data-overview}
 
 To get a sense of the cleaned EUSA data, an overview is shown below:
-\begin{verbatim}
-Warning: package 'dplyr' was built under R version 3.4.2
-\end{verbatim}
 \begin{verbatim}
   ticker                     name asset.class weight  price shares
 1      A AGILENT TECHNOLOGIES INC      Equity 0.1090  37.07     79
@@ -1686,8 +1636,8 @@ Minimum Volatility Index monthly returns and USMV ETF monthly returns is
 \end{figure}
 \chapter{Data Analysis}\label{data-analysis}
 
-\section{Changes in Largest Holdings by Average Weight by
-Index}\label{changes-in-largest-holdings-by-average-weight-by-index}
+\section{Change in Largest Holdings by Average
+Weight}\label{change-in-largest-holdings-by-average-weight}
 
 The top 5 largest holdings in the US Equal Weight Index by average
 weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson
@@ -1706,14 +1656,6 @@ Rank & Ticker & Average Weight\\
 \end{longtable}
 \includegraphics{thesis_files/figure-latex/topholdingsusa-1.pdf}
 \clearpage 
-
-Shown in figure \ref{topholdingsusa} is the average weight of the top
-five holdings in the US Equal Weight index. The 5 largest holdings are
-AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off
-very high, each as a few percent of the overall index, then suddenly all
-drop significantly to a fraction of a percent after 2015-08-31. After
-verifying this with iShares and MSCI, it was discovered that this due to
-change in the weighting mechanism.
 
 The top 5 largest holdings in the Minimum Volatility Index by average
 weight are Verizon, AT\&T, Automatic Data Processing, Johnson \&
@@ -1832,7 +1774,7 @@ volatile over the past few years.}
 \end{figure}
 \clearpage 
 
-\section{Trailing Volatilities}\label{trailing-volatilities}
+\section{Trailing Volatility}\label{trailing-volatility}
 
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
@@ -1866,17 +1808,18 @@ with a mean value of 1.44738.}
 stocks in the Minimum Volatility Index ranged from 0.03085 to 34.20974,
 with a mean value of 1.40784.}
 \end{figure}
-\section{Trailing Betas}\label{trailing-betas}
+\section{Trailing Beta}\label{trailing-beta}
 
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
-derived. Each tickers' 252-day (annual) trailing beta was calculated,
-and a month end spagetti plot was produced for stocks in the Minimum
-Volatility Index, and the remainder of the stock comprising the US Equal
-Weight Index, to get a relative sense of each group's volatility
-attributes. Generally, the stocks comprising the Minimum Volatility
-Index had a lower beta than those in the US Equal Weight Index.
+derived (Wharton Research Data Services, 2017). Each tickers' 252-day
+(annual) trailing beta was calculated, and a month end spagetti plot was
+produced for stocks in the Minimum Volatility Index, and the remainder
+of the stock comprising the US Equal Weight Index, to get a relative
+sense of each group's volatility attributes. Generally, the stocks
+comprising the Minimum Volatility Index had a lower beta than those in
+the US Equal Weight Index.
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -4.9037  0.9316  1.1250  1.1505  1.3512  6.4952 
@@ -1918,54 +1861,25 @@ months.
 
 Ideally, the proportion of stocks in and out of the Min Vol index should
 approximately be the same. However, after checking this, it is clear
-that this is not the case, as, just around 25\% of the data is from
-stocks that are currently in the index, meaning there is a class bias.
-As a result, observations must be sampled in approximately equal
-proportions to get a better model.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(both_final$index_now)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
+that this is not the case, as there were 4182 observations for stocks
+not in the index, and just 1385 observations for stocks in the index.
+Since just around 25\% of the data was from stocks that are currently in
+the index, there is class bias. As a result, observations were sampled
+in equal proportions to get a better model.
 
-   0    1 
-4182 1385 
-\end{verbatim}
 \subsection{Create Training and Test
 Samples}\label{create-training-and-test-samples}
 
 One way to address the problem of class bias is to draw the 0's and 1's
-for the trainingData (development sample) in equal proportions. In doing
-so, we will put rest of the inputData not included for training into
-testData (validation sample). As a result, the size of development
-sample will be smaller that validation, which is okay, because, there
-are large number of observations.
+for the development sample in equal proportions for a majority of the
+observations. In doing so, the remaining data will not included for the
+model, but will be used as the validation sample to evaluate and test
+the model. Class bias was removed, as the sample is now evenly weighted,
+with each outcome being represented by 969 observations. The remainder
+of the data was placed in the validation sample.
 
-There is no more class bias, as the sample is now evenly weighted now,
-with each outcome being represented by 969 observations.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(trainingData$index_now)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-
-  0   1 
-969 969 
-\end{verbatim}
 \subsection{Logistic Regression
 Model}\label{logistic-regression-model-1}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Model}
-\NormalTok{logit <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(index_now ~}\StringTok{  }\NormalTok{volatility +}\StringTok{ }\NormalTok{beta +}\StringTok{ }\NormalTok{price_to_book }
-\NormalTok{+}\StringTok{ }\NormalTok{index_before, }\DataTypeTok{data=}\NormalTok{trainingData, }\DataTypeTok{family=}\KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link=}\StringTok{"logit"}\NormalTok{))}
-
-\CommentTok{# Summary of Model}
-\KeywordTok{summary}\NormalTok{(logit)}
-\end{Highlighting}
-\end{Shaded}
 \begin{verbatim}
 
 Call:
@@ -1994,28 +1908,7 @@ AIC: 755.23
 
 Number of Fisher Scoring iterations: 6
 \end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Coefficient Interpretation}
-\NormalTok{## Log Odds}
-\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-  (Intercept)    volatility          beta price_to_book index_before1 
-   6.41055627    0.96101526    0.01510306    1.00005059  228.61385918 
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## Probability }
-\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))) /}\StringTok{ }\NormalTok{(}\DecValTok{1}\NormalTok{+(}\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(logit))))}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-  (Intercept)    volatility          beta price_to_book index_before1 
-   0.86505736    0.49006006    0.01487835    0.50001265    0.99564486 
-\end{verbatim}
-\subsection{Interpretation of Model}\label{interpretation-of-model}
+\subsection{Model Interpretation}\label{model-interpretation}
 
 The coefficients can be interpreted as: \hfill\break
 - Volatility: The odds ratio of being added to the index is 0.96 times
@@ -2030,143 +1923,103 @@ is not statistically significant. \hfill\break
 - Index before: The odds ratio of being added to the index is 228.61
 times greater if the stock was in the index 6 months ago. This response
 variable is statistically significant. \hfill\break
-\hfill\break
 
-\subsection{Model Quality}\label{model-quality}
+\subsection{Diagnostic Testing}\label{diagnostic-testing}
 
-To test the quality of the model, several tests were done: \hfill\break
-\textbf{Predictive Power} \hfill\break
-The default cutoff prediction probability score is 0.5 or the ratio of
-1's and 0's in the training data. But sometimes, tuning the probability
-cutoff can improve the accuracy in both the development and validation
-samples. The InformationValue::optimalCutoff function provides ways to
-find the optimal cutoff to improve the prediction of 1's, 0's, both 1's
-and 0's and to reduce the misclassification error. Here, the optimal cut
-off is 0.86.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(InformationValue)}
-\NormalTok{predicted <-}\StringTok{ }\KeywordTok{plogis}\NormalTok{(}\KeywordTok{predict}\NormalTok{(logit, testData)) }
-\NormalTok{optCutOff <-}\StringTok{ }\KeywordTok{optimalCutoff}\NormalTok{(testData$index_now, predicted)[}\DecValTok{1}\NormalTok{] }
-\NormalTok{optCutOff}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.8596474
-\end{verbatim}
-\hfill\break
-\textbf{VIF} \hfill\break
-Like in case of linear regression, we should check for multicollinearity
-in the model. As seen below, all the variables in the model have VIF
-well below 4.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(car)}
-\KeywordTok{vif}\NormalTok{(logit)}
-\end{Highlighting}
-\end{Shaded}
+To test the quality of the model, several diagnostic tests were
+performed: \hfill\break
+\textbf{Variance Inflation Factors} \hfill\break
+Variance inflation factors (VIF) are used in regressions to check for
+multicollinearity, which occurs when one predictor variable can be
+predicted from the others with a high degree of accuracy. An example of
+this includes a person's height and weight, as these two variables are
+very closely related. VIFs measure how much the variance of the
+estimated regression coefficients in the model are inflated, compared to
+a case when the predictor variables are linearly unrelated. The general
+rule of thumb is that predictor variables with a VIF over 4 should be
+further inspected, and variables with a VIF above 10 require correction.
+As shown below, all the predictor variables in the model have VIFs well
+below 4, indicating that multicollinearity is not a concern:
 \begin{verbatim}
    volatility          beta price_to_book  index_before 
      1.018738      1.053972      1.020580      1.065880 
 \end{verbatim}
 \hfill\break
+\textbf{Optimal Cutoff} \hfill\break
+To get a sense of the model's predictive power, it is important to first
+tune the optimal cutoff to improve the model by reducing
+misclassification error. The default cutoff is often 0.5, but by tuning
+the probability cutoff, the ability of the model to correctly predict
+0's and 1's greatly improves. In this model, that cutoff was found to be
+0.86.
+
+\hfill\break
+\textbf{Concordant and Discordant Pairs} \hfill\break
+To calculate the number of concordant and discordant pairs, all the
+possible pairs of 0's and 1's will be considered - that is, all the
+pairs of observations for stocks not in the index, and stocks in the
+index. In this data set, a total of 1,336,608 pairs were considered, and
+the probability values for 0 and 1 were calculated for each. Thus,
+considering each pair, which can be represented as (1,0), ranges for
+cutoff values were determined based off of the probability of each
+observed 0 and 1. Concordant pairs were noted when the cutoff value for
+the 1 was higher than the cutoff value of the 0. Discordant pairs were
+noted when this was not the case, and this was equivalent to the case
+where the probability of the event was lower than the probability of a
+non-event. These instances are contrary to the definition of the event
+and non-event based off of the cutoff value calculated. In a perfect
+model, 100\% of the pairs would be concordant. In this model, 96.8\% of
+the pairs were concordant and 3.2\% of the pairs were discordant.
+
+\hfill\break
 \textbf{Misclassification Error} \hfill\break
-Misclassification error is the percentage mismatch of predicted
-vs.~actuals, irrespective of 1's or 0's. The lower the misclassification
-error, the better the model. Here it is 4.02\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{misClassError}\NormalTok{(testData$index_now, predicted)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.0402
-\end{verbatim}
+Misclassification error measures the accuracy of the model by
+determining what the percent mismatch is of the predicted outcomes
+compared to the actual outcomes. By looking at the test data, this
+quantifies how accurate the model was at predicting which stocks were in
+the index and what stocks were not in the index, given their predictor
+variable values. Better models will have lower misclassification errors.
+In this logistic regression model, the misclassification error was
+4.02\%.
+
 \hfill\break
-\textbf{ROC} \hfill\break
-Receiver Operating Characteristics Curve traces the percentage of true
-positives accurately predicted by a given logit model as the prediction
-probability cutoff is lowered from 1 to 0. For a good model, as the
-cutoff is lowered, it should mark more of actual 1's as positives and
-lesser of actual 0's as 1's. So for a good model, the curve should rise
-steeply, indicating that the TPR (Y-Axis) increases faster than the FPR
-(X-Axis) as the cutoff score decreases. Greater the area under the ROC
-curve, better the predictive ability of the model. Here, it is 96.77\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plotROC}\NormalTok{(testData$index_now, predicted)}
-\end{Highlighting}
-\end{Shaded}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-61-1.pdf}
-\hfill\break
-\textbf{Concordance} \hfill\break
-Ideally, the model-calculated-probability-scores of all actual
-Positive's, (aka Ones) should be greater than the
-model-calculated-probability-scores of ALL the Negatives (aka Zeroes).
-Such a model is said to be perfectly concordant and a highly reliable
-one. This phenomenon can be measured by Concordance and Discordance.
+\textbf{Sensitivity and Specificity} \hfill\break
+Sensitivity, also called the true positive rate, is the proportion of
+stocks in the minimum volatility index that were correctly predicted by
+the model. In the logistic regression model, the sensitivity was found
+to be 86.29\%. Specificity, also called the true negative rate, is the
+proportion of stocks not in the minimum volatility index that were
+correctly predicted by the model, and can be calculated as 1 - False
+Positive Rate. In the logistic regression model, the specificity was
+found to be 98.19\%.
 
-In simpler words, of all combinations of 1-0 pairs (actuals),
-Concordance is the percentage of pairs, whose scores of actual
-positive's are greater than the scores of actual negative's. For a
-perfect model, this will be 100\%. So, the higher the concordance, the
-better is the quality of model. This model has a concordance of 96.8\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{Concordance}\NormalTok{(testData$index_now, predicted)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-$Concordance
-[1] 0.968147
-
-$Discordance
-[1] 0.03185302
-
-$Tied
-[1] 3.469447e-17
-
-$Pairs
-[1] 1336608
-\end{verbatim}
-\hfill\break
-\textbf{Specificity and Sensitivity} \hfill\break
-- Sensitivity (or True Positive Rate) is the percentage of 1's (actuals)
-correctly predicted by the model, while, specificity is the percentage
-of 0's (actuals) correctly predicted. In this model, it was found to be
-86.29\%. \hfill\break
-- Specificity can also be calculated as 1 - False Positive Rate. In this
-model, it was found to be 98.19\%.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sensitivity}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.8629808
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{specificity}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-[1] 0.9819483
-\end{verbatim}
 \hfill\break
 \textbf{Confusion Matrix} \hfill\break
-In the confusion matrix, the columns are actuals, while rows are
-predicteds.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{confusionMatrix}\NormalTok{(testData$index_now, predicted, }\DataTypeTok{threshold =} \NormalTok{optCutOff)}
-\end{Highlighting}
-\end{Shaded}
+The confusion matrix is a table showing the total number of true
+positives, true negatives, false positives, and false negatives from the
+test data to evaluate the performance of a model. In this logistic
+regression model, there were a total of 359 true positives, 3155 true
+negatives, 58 false negatives, and 57 false positives. Shown below, the
+columns are actuals outcomes, while the rows are predicted outcomes:
 \begin{verbatim}
      0   1
 0 3155  57
 1   58 359
 \end{verbatim}
+\hfill\break
+\textbf{Receiver Operating Characteristics Curve} \hfill\break
+The Receiver Operating Characteristics (ROC) Curve plots the true
+positive rate (sensitivity) against the false positive rate
+(1-specificity) for all different possible cutoffs. The area under the
+curve is a measure of the accuracy of the model in distinguishing
+between stocks in the index and stocks not in the index. A perfect model
+would yield a ROC curve passing through the top left corner,
+representing a sensitivity of 100\% and a specificity of 100\%, with the
+area under the curve of 100\%. The area under the ROC curve for the
+logistic regression model in this study is 96.77\%.
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-67-1.pdf}
+\hfill\break
+
 \chapter{Conclusion}\label{conclusion}
 
 The regression model appeared to be statistically resilient with strong

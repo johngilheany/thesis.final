@@ -1,4 +1,4 @@
-# Conclusion 
+# Conclusions and Further Research
 The regression model appeared to be statistically resilient with strong predictive power.
 \hfill\break
 ## Top 5 Candidates to Enter the Index
@@ -12,9 +12,6 @@ The top 5 candidates to leave the index are
 
 In reality, x out of the 5 actually left the index during rebalancing in May 2017. 
 
-\hfill\break
-
-# Discussion
 \hfill\break
 
 ## Understanding of Relationships 
