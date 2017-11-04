@@ -1,8 +1,12 @@
 ---
 author: 'John A. Gilheany'
 date: 'November 6, 2017'
-institution: 'Harvard College'
-division: 'Statistics'
+institution: |
+  Harvard University
+  \begin{figure}
+  \centerline{\includegraphics[height=1.5in]{/Users/johngilheany/Desktop/harvardlogo.jpg}}
+  \end{figure}
+division: 'Faculty of Arts and Sciences'
 advisor: 'Professor Michael Parzen'
 altadvisor: 'David Kane'
 department: 'Statistics'
@@ -24,7 +28,7 @@ abstract: |
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the |.
 acknowledgements: |
-  I want to thank David Kane and Prof. Michael Parzen for all of their mentorship and guidance.
+  I would like to thank my thesis co-advisors, David Kane and Prof. Michael Parzen, for all of their mentorship and guidance throughout the process.
 bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
 csl: csl/apa.csl
