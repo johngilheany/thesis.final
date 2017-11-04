@@ -286,7 +286,7 @@ plot(minvol_beta_plot)
 Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index or not (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at all of the historical data and stock various characteristics, this  modeled the log odds of a stock being in the minimum volatility index as a combination of the linear predictors mentioned. Since the index is rebalanced twice a year, it makes sense to look at a model including the data for both of these months.
 
 ## Data Cleaning
-```{r, echo=FALSE}
+```{r data_cleaning, echo = FALSE}
 load("~/thesis_final/data/monthly_data.Rda")
 # Subset data for dates from May
 may_final <- filter(monthly_data, date == "2012-05-31" |  date == "2013-05-31"| date == "2014-05-30" | date == "2015-05-29" | date == "2016-05-31")
@@ -306,7 +306,7 @@ table(both_final$index_now)
 ```
 ### Create Training and Test Samples
 One way to address the problem of class bias is to draw the 0’s and 1’s for the trainingData (development sample) in equal proportions. In doing so, we will put rest of the inputData not included for training into testData (validation sample). As a result, the size of development sample will be smaller that validation, which is okay, because, there are large number of observations.
-```{r, echo=FALSE}
+```{r data_trans, echo=FALSE}
 # Create Training Data
 input_ones2 <- both_final[which(both_final$index_now == 1), ] 
 input_zeros2 <- both_final[which(both_final$index_now == 0), ]
