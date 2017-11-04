@@ -1503,23 +1503,6 @@ distributed, and the dates correctly range from 10-31-2011 to
 \end{verbatim}
 To get a sense of the cleaned USMV, an overview is shown below:
 \begin{verbatim}
-Warning: package 'dplyr' was built under R version 3.4.2
-\end{verbatim}
-\begin{verbatim}
-
-Attaching package: 'dplyr'
-\end{verbatim}
-\begin{verbatim}
-The following objects are masked from 'package:stats':
-
-    filter, lag
-\end{verbatim}
-\begin{verbatim}
-The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union
-\end{verbatim}
-\begin{verbatim}
   ticker                   name asset.class weight  price shares
 1    AAP ADVANCE AUTO PARTS INC      Equity 0.7986  65.07    316
 2   AAPL              APPLE INC      Equity 0.0943 404.78      6
@@ -1896,8 +1879,7 @@ the model. Class bias was removed, as the sample is now evenly weighted,
 with each outcome being represented by 969 observations. The remainder
 of the data was placed in the validation sample.
 
-\subsection{Logistic Regression
-Model}\label{logistic-regression-model-1}
+\section{Logistic Regression Model}\label{logistic-regression-model-1}
 \begin{verbatim}
 
 Call:
@@ -2019,11 +2001,15 @@ test data to evaluate the performance of a model. In this logistic
 regression model, there were a total of 359 true positives, 3155 true
 negatives, 58 false negatives, and 57 false positives. Shown below, the
 columns are actuals outcomes, while the rows are predicted outcomes:
-\begin{verbatim}
-     0   1
-0 3155  57
-1   58 359
-\end{verbatim}
+\begin{longtable}[t]{lrr}
+\caption{\label{tab:unnamed-chunk-66}Regression Model Confusion Matrix}\\
+\toprule
+  & 0 & 1\\
+\midrule
+0 & 3155 & 57\\
+1 & 58 & 359\\
+\bottomrule
+\end{longtable}
 \hfill\break
 \textbf{Receiver Operating Characteristics Curve} \hfill\break
 The Receiver Operating Characteristics (ROC) Curve plots the true
@@ -2035,6 +2021,7 @@ would yield a ROC curve passing through the top left corner,
 representing a sensitivity of 100\% and a specificity of 100\%, with an
 area under the curve of 100\%. The area under the ROC curve for the
 logistic regression model in this study is 96.77\%.
+
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-67-1.pdf}
 \hfill\break
 

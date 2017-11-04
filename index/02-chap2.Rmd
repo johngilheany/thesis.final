@@ -140,7 +140,7 @@ To get a sense of the cleaned USMV, an overview is shown below:
 load("~/thesis_final/data/minvol.Rda")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, cache=TRUE}
 library(dplyr)
 head(arrange(minvol, date))
 ```
@@ -150,7 +150,8 @@ Shown below are summary statistics for USMV Each name is representd 63 times, wh
 load("~/thesis_final/data/minvol.Rda")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, cache=TRUE}
+library(dplyr)
 minvol_summ <- select(minvol, name, asset.class, weight, sector, date)
 summary(minvol_summ)
 ```

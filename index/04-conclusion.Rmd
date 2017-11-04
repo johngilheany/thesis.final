@@ -43,7 +43,7 @@ testData <- rbind(test_ones2, test_zeros2)
 bias2<- table(trainingData$index_now)
 ```
 
-### Logistic Regression Model 
+## Logistic Regression Model 
 ```{r, echo=FALSE}
 # Model
 logit <- glm(index_now ~  volatility + beta + price_to_book 
@@ -118,14 +118,21 @@ spec1<- specificity(testData$index_now, predicted, threshold = optCutOff)
 __Confusion Matrix__
 \hfill\break
 The confusion matrix is a table showing the total number of true positives, true negatives, false positives, and false negatives from the test data to evaluate the performance of a model. In this logistic regression model, there were a total of 359 true positives, 3155 true negatives, 58 false negatives, and 57 false positives. Shown below, the columns are actuals outcomes, while the rows are predicted outcomes: 
-```{r, echo=FALSE}
-confusionMatrix(testData$index_now, predicted, threshold = optCutOff)
+```{r fig.cap = paste("Regression Model Confusion Matrix"), echo=FALSE}
+matrix1<- confusionMatrix(testData$index_now, predicted, threshold = optCutOff)
+
+kable(matrix1, 
+     # col.names = c("Rank", "Ticker", "Average Weight"),
+      caption = "Regression Model Confusion Matrix",
+      longtable = TRUE,
+      booktabs = TRUE)
 ```
 \hfill\break
 __Receiver Operating Characteristics Curve__
 \hfill\break
 The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%. 
-```{r, echo=FALSE}
+
+```{r fig.cap = paste("ROC Curve for Logistic Regression Model"), echo=FALSE}
 plotROC(testData$index_now, predicted)
 ```
 \hfill\break
