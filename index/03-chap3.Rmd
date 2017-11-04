@@ -62,9 +62,12 @@ holdings1<- ggplot() +
 	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the US Equal Weight Index')
 ```
 
-``` {r fig.cap = paste("The 5 largest holdings of the US Equal Weight Index are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After calling iShares and MSCI to verify this in the data, it was discovered this due to change in the weighting mechanism."), echo=FALSE}
+``` {r topholdingsusa, fig.cap = paste("Average Weight of Top 5 Holdings in the US Equal Weight Index over time"), echo=FALSE}
 plot(holdings1)
 ```
+\clearpage 
+
+Shown in figure \ref{topholdingsusa} is the average weight of the top five holdings in the US Equal Weight index. The 5 largest holdings are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, each as a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism.
 
 The top 5 largest holdings in the Minimum Volatility Index by average weight are Verizon, AT&T, Automatic Data Processing, Johnson & Johnson, and McDonald's. 
 
@@ -102,7 +105,7 @@ holdings2<- ggplot() +
 	geom_line(data = filter(minvol_sub1, ticker == "ADP"), aes(x = date, y = weight, color = "ADP"))  +
 	geom_line(data = filter(minvol_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
 	geom_line(data = filter(minvol_sub1, ticker == "MCD"), aes(x = date, y = weight, color = "MCD"))  +
-	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the Minimum Volatility Index')
+	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of Top 5 Holdings in the Minimum Volatility Index')
 ```
 
 ``` {r fig.cap = paste("The 5 largest holdings of the Minimum Volatility Index are VZ, T, ADP, JNJ, and MCD. Since the index's inception, these stocks have generally remained between a weight of 1.3% and 1.7% of the overall portfolio, with the exception of Verizon, which reached around 2% in 2014."), echo=FALSE}
@@ -220,7 +223,7 @@ y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 
 
 ## Trailing Volatilities 
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
 
 ```{r, echo = FALSE}
 library(ggplot2)

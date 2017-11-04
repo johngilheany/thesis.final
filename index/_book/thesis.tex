@@ -1022,8 +1022,8 @@ like country to industry. Even though the macro-effects have many
 limitations in practice, micro-effects are also limited due to leverage
 restrictions and benchmark mandates.
 
-\section{Real-World Applications of the Low-Risk
-Anomaly}\label{real-world-applications-of-the-low-risk-anomaly}
+\section{Applications of the Low-Risk
+Anomaly}\label{applications-of-the-low-risk-anomaly}
 
 \subsection{Betting Against Beta (BaB)}\label{betting-against-beta-bab}
 
@@ -1292,7 +1292,8 @@ notional value of the position, sector, sedol number, isin number,
 exchange that the stock is listed on, and the month end date for the
 data. Each month-end dataset was individually downloaded, then
 aggregated to create the two separate raw data sets - one for EUSA and
-one for USMV. The data was then cleaned.
+one for USMV. The data was then cleaned and stored in R (RStudio Team,
+2015).
 
 \section{Data Cleaning}\label{data-cleaning}
 
@@ -1677,21 +1678,22 @@ Rank & Ticker & Average Weight\\
 5 & JNJ & 1.135282\\
 \bottomrule
 \end{longtable}
-\begin{figure}[htbp]
-\centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-32-1.pdf}
-\caption{\label{fig:unnamed-chunk-32}The 5 largest holdings of the US Equal
-Weight Index are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5
-companies start off very high, a few percent of the overall index, then
-suddenly all drop significantly to a fraction of a percent after
-2015-08-31. After calling iShares and MSCI to verify this in the data,
-it was discovered this due to change in the weighting mechanism.}
-\end{figure}
+\includegraphics{thesis_files/figure-latex/topholdingsusa-1.pdf}
+\clearpage 
+
+Shown in figure \ref{topholdingsusa} is the average weight of the top
+five holdings in the US Equal Weight index. The 5 largest holdings are
+AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off
+very high, each as a few percent of the overall index, then suddenly all
+drop significantly to a fraction of a percent after 2015-08-31. After
+verifying this with iShares and MSCI, it was discovered that this due to
+change in the weighting mechanism.
+
 The top 5 largest holdings in the Minimum Volatility Index by average
 weight are Verizon, AT\&T, Automatic Data Processing, Johnson \&
 Johnson, and McDonald's.
 \begin{longtable}[t]{rlr}
-\caption{\label{tab:unnamed-chunk-34}Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight}\\
+\caption{\label{tab:unnamed-chunk-33}Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight}\\
 \toprule
 Rank & Ticker & Average Weight\\
 \midrule
@@ -1704,8 +1706,8 @@ Rank & Ticker & Average Weight\\
 \end{longtable}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-36-1.pdf}
-\caption{\label{fig:unnamed-chunk-36}The 5 largest holdings of the Minimum
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-35-1.pdf}
+\caption{\label{fig:unnamed-chunk-35}The 5 largest holdings of the Minimum
 Volatility Index are VZ, T, ADP, JNJ, and MCD. Since the index's
 inception, these stocks have generally remained between a weight of
 1.3\% and 1.7\% of the overall portfolio, with the exception of Verizon,
@@ -1721,16 +1723,16 @@ Minimum Volatility Index is within 5\% of the US Equal Weight Index, as
 specified by the Barra Optimizer.
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-38-1.pdf}
-\caption{\label{fig:unnamed-chunk-38}The weighting of energy in the US Equal
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-37-1.pdf}
+\caption{\label{fig:unnamed-chunk-37}The weighting of energy in the US Equal
 Weight Index is consistenty higher than the weighting in the Minimum
 Volatility Index. This might imply that energy is a more volatile
 industry when compared to others.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-39-1.pdf}
-\caption{\label{fig:unnamed-chunk-39}The weighting of financials in the US
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-38-1.pdf}
+\caption{\label{fig:unnamed-chunk-38}The weighting of financials in the US
 Equal Weight Index are pretty consistent until a significant decrease
 towards the latter half of 2016. In the Minimum Volatility Index, the
 weighting of financials fluctuate quite a bit, and experience a similar
@@ -1738,40 +1740,40 @@ drop in weight at the same time as the US Equal Weight Index.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-40-1.pdf}
-\caption{\label{fig:unnamed-chunk-40}The weighting of consumer staples in
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-39-1.pdf}
+\caption{\label{fig:unnamed-chunk-39}The weighting of consumer staples in
 the US Equal Weight Index is consistenty lower than the weighting of
 consumer staples in the Minimum Volatility Index. This might imply that
 consumer staples is a low volatile industry.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-41-1.pdf}
-\caption{\label{fig:unnamed-chunk-41}The weight of consumer discretionary
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-40-1.pdf}
+\caption{\label{fig:unnamed-chunk-40}The weight of consumer discretionary
 stocks is consistenty higher in the US Equal Weight Index than in the
 Minimum Volatility Index. This might imply that consumer discretionary
 is inherently a volatile industry.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-42-1.pdf}
-\caption{\label{fig:unnamed-chunk-42}The weight of healthcare stocks is
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-41-1.pdf}
+\caption{\label{fig:unnamed-chunk-41}The weight of healthcare stocks is
 consistenty higher over time in the Minimum Volatility Index than in the
 US Equal Weight Index. This could imply that the healthcare sector may
 not be as volatile as other sectors.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-43-1.pdf}
-\caption{\label{fig:unnamed-chunk-43}The weight of industrials is
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-42-1.pdf}
+\caption{\label{fig:unnamed-chunk-42}The weight of industrials is
 consistenty higher over time in the US Equal Weight Index than in the
 Minimum Volatility Index. This could imply that industrial companies may
 be more volatile than companies in other sectors.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-44-1.pdf}
-\caption{\label{fig:unnamed-chunk-44}The weighting of information technology
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-43-1.pdf}
+\caption{\label{fig:unnamed-chunk-43}The weighting of information technology
 stocks between 2012 and 2013 were significantly greater in the Minimum
 Volatility Index than in the US Equal Weight Index. However, since 2014,
 the weights of IT in both indices have converged, implying the industry
@@ -1779,24 +1781,24 @@ may have more volatile over the last few years.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-45-1.pdf}
-\caption{\label{fig:unnamed-chunk-45}The weight of materials is consistenty
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-44-1.pdf}
+\caption{\label{fig:unnamed-chunk-44}The weight of materials is consistenty
 higher over time in the US Equal Weight Index than in the Minimum
 Volatility Index. This could imply that materials companies may be more
 volatile than companies in other sectors.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-46-1.pdf}
-\caption{\label{fig:unnamed-chunk-46}The weight of utilities stocks is
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-45-1.pdf}
+\caption{\label{fig:unnamed-chunk-45}The weight of utilities stocks is
 higher over time in the Minimum Volatility Index than in the US Equal
 Weight Index. This could imply that the utilities sector may not be as
 volatile as other sectors.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-47-1.pdf}
-\caption{\label{fig:unnamed-chunk-47}The weight of telecommunications stocks
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-46-1.pdf}
+\caption{\label{fig:unnamed-chunk-46}The weight of telecommunications stocks
 is higher over time in the Minimum Volatility Index than in the US Equal
 Weight Index. However, over time the weight of telecommunications has
 consistently decreased, which would imply the industry has gotten more
@@ -1809,21 +1811,21 @@ volatile over the past few years.}
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
-derived. Each tickers' 252-day (annual) trailing volatility was
-calculated, and a month end spagetti plot was produced for stocks in the
-Minimum Volatility Index, and the remainder of the stock comprising the
-US Equal Weight Index, to get a relative sense of each group's
-volatility attributes. The stocks comprising the Minimum Volatility
-Index generally had a lower volatility than those in the US Equal Weight
-Index.
+derived (Wharton Research Data Services, 2017). Each tickers' 252-day
+(annual) trailing volatility was calculated, and a month end spagetti
+plot was produced for stocks in the Minimum Volatility Index, and the
+remainder of the stock comprising the US Equal Weight Index, to get a
+relative sense of each group's volatility attributes. The stocks
+comprising the Minimum Volatility Index generally had a lower volatility
+than those in the US Equal Weight Index.
 \begin{verbatim}
     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
  0.00492  0.50030  0.87466  1.44738  1.56562 87.37030 
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-49-1.pdf}
-\caption{\label{fig:unnamed-chunk-49}The 52-week trailing volatilities for
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-48-1.pdf}
+\caption{\label{fig:unnamed-chunk-48}The 52-week trailing volatilities for
 stocks in the US Equal Weight Index ranged from 0.00492 to 87.37030,
 with a mean value of 1.44738.}
 \end{figure}
@@ -1833,8 +1835,8 @@ with a mean value of 1.44738.}
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-51-1.pdf}
-\caption{\label{fig:unnamed-chunk-51}The 52-week trailing volatilities for
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-50-1.pdf}
+\caption{\label{fig:unnamed-chunk-50}The 52-week trailing volatilities for
 stocks in the Minimum Volatility Index ranged from 0.03085 to 34.20974,
 with a mean value of 1.40784.}
 \end{figure}
@@ -1855,8 +1857,8 @@ Index had a lower beta than those in the US Equal Weight Index.
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-53-1.pdf}
-\caption{\label{fig:unnamed-chunk-53}The 52-week trailing betas for stocks
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-52-1.pdf}
+\caption{\label{fig:unnamed-chunk-52}The 52-week trailing betas for stocks
 in the US Equal Weight Index ranged from -4.9037 to 6.4952, with a mean
 value of 1.1505}
 \end{figure}
@@ -1866,8 +1868,8 @@ value of 1.1505}
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-55-1.pdf}
-\caption{\label{fig:unnamed-chunk-55}The 52-week trailing betas for stocks
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-54-1.pdf}
+\caption{\label{fig:unnamed-chunk-54}The 52-week trailing betas for stocks
 in the Minimum Volatility Index ranged from -0.2473 to 3.2021, with a
 mean value of 0.7856}
 \end{figure}
@@ -2069,7 +2071,7 @@ curve, better the predictive ability of the model. Here, it is 96.77\%.
 \KeywordTok{plotROC}\NormalTok{(testData$index_now, predicted)}
 \end{Highlighting}
 \end{Shaded}
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{thesis_files/figure-latex/unnamed-chunk-61-1.pdf}
 \hfill\break
 \textbf{Concordance} \hfill\break
 Ideally, the model-calculated-probability-scores of all actual
@@ -2404,6 +2406,11 @@ Pettengill, G. N., Sundaram, S., \& Mathur, I. (1995). The conditional
 relation between beta and returns. \emph{Journal of Financial and
 Quantitative Analysis}, \emph{30}(1), 101--116.
 
+\hypertarget{ref-rstudio2017}{}
+RStudio Team. (2015). \emph{RStudio: Integrated development environment
+for r}. Boston, MA: RStudio, Inc. Retrieved from
+\url{http://www.rstudio.com/}
+
 \hypertarget{ref-sec2017}{}
 SEC. (2017, January). Mutual funds and exchange-traded funds (etfs) -- a
 guide for investors. Retrieved from
@@ -2421,6 +2428,10 @@ Journal of Finance}, \emph{41}(3), 579--590.
 \hypertarget{ref-van2016}{}
 Vliet, P. V., \& Koning, J. de. (2016). \emph{High returns from low
 risk: A remarkable stock market paradox}. John Wiley \& Sons.
+
+\hypertarget{ref-wrds2017}{}
+Wharton Research Data Services. (2017, May). WRDS data. Retrieved from
+\url{https://wrds-web.wharton.upenn.edu/wrds/}
 
 \hypertarget{ref-wynne2016}{}
 Wynne, B. (2016, april). Understanding the iShares msci usa minimum
