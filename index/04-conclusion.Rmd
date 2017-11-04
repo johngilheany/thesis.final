@@ -130,8 +130,7 @@ kable(matrix1,
 \hfill\break
 __Receiver Operating Characteristics Curve__
 \hfill\break
-The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%. 
-
+The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%:
 ```{r fig.cap = paste("ROC Curve for Logistic Regression Model"), echo=FALSE}
 plotROC(testData$index_now, predicted)
 ```

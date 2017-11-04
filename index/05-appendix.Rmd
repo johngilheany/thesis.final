@@ -1,17 +1,5 @@
-# Conclusions and Further Research
+# Conclusions and Discussion
 The regression model appeared to be statistically resilient with strong predictive power.
-\hfill\break
-## Top 5 Candidates to Enter the Index
-The top 5 candidates to enter the index are 
-
-In reality, x out of the 5 actually entered the index during rebalancing in May 2017. 
-\hfill\break
-
-## Top 5 Candidates to Leave the Index
-The top 5 candidates to leave the index are 
-
-In reality, x out of the 5 actually left the index during rebalancing in May 2017. 
-
 \hfill\break
 
 ## Understanding of Relationships 
@@ -36,11 +24,19 @@ The relationship between Prior Index Membership and current membership in the Mi
 Some sectors were overweight in the Minimum Volatility Index, which would imply they are inherently less risky. 
 \hfill\break
 
-## Investment Opportunity  
+## Investment Implications  
 Based off the accuracy of the top 5 candidates to join and exit the Minimum Volatility Index, 
 \hfill\break
 
-## Future Models and Analysis
+## Limitations 
+\hfill\break
+### Using ETF data
+Using ETF data to forecast index membership is reasonable but not entirely accruate. The iShares data also had many errors that needed to be manually fixed. 
+\hfill\break
+### Barra Optimizer
+The Barra Optimizer is very complex, and this thesis did not take it into account when trying to predict index membership. Had it done so, the model could have been more accruate at predicting index rebalancing. 
+
+## Model Improvements
 
 \hfill\break
 ### Model by Sector
@@ -55,10 +51,3 @@ Breaking down the data by prior index membership and modeling that way might cre
 Creating one model for May rebalancing and one model for November rebalancing might create a more accurate model  
 \hfill\break
 
-## Limitations 
-\hfill\break
-### Using ETF data
-Using ETF data to forecast index membership is reasonable but not entirely accruate. The iShares data also had many errors that needed to be manually fixed. 
-\hfill\break
-### Barra Optimizer
-The Barra Optimizer is very complex, and this thesis did not take it into account when trying to predict index membership. Had it done so, the model could have been more accruate at predicting index rebalancing. 

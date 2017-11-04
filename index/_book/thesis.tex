@@ -1694,7 +1694,7 @@ specified by the Barra Optimizer.
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-37-1.pdf}
 \caption{\label{fig:unnamed-chunk-37}The weighting of energy in the US Equal
-Weight Index is consistenty higher than the weighting in the Minimum
+Weight Index is consistently higher than the weighting in the Minimum
 Volatility Index. This might imply that energy is a more volatile
 industry when compared to others.}
 \end{figure}
@@ -1711,7 +1711,7 @@ drop in weight at the same time as the US Equal Weight Index.}
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-39-1.pdf}
 \caption{\label{fig:unnamed-chunk-39}The weighting of consumer staples in
-the US Equal Weight Index is consistenty lower than the weighting of
+the US Equal Weight Index is consistently lower than the weighting of
 consumer staples in the Minimum Volatility Index. This might imply that
 consumer staples is a low volatile industry.}
 \end{figure}
@@ -1719,7 +1719,7 @@ consumer staples is a low volatile industry.}
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-40-1.pdf}
 \caption{\label{fig:unnamed-chunk-40}The weight of consumer discretionary
-stocks is consistenty higher in the US Equal Weight Index than in the
+stocks is consistently higher in the US Equal Weight Index than in the
 Minimum Volatility Index. This might imply that consumer discretionary
 is inherently a volatile industry.}
 \end{figure}
@@ -1727,15 +1727,15 @@ is inherently a volatile industry.}
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-41-1.pdf}
 \caption{\label{fig:unnamed-chunk-41}The weight of healthcare stocks is
-consistenty higher over time in the Minimum Volatility Index than in the
-US Equal Weight Index. This could imply that the healthcare sector may
-not be as volatile as other sectors.}
+consistently higher over time in the Minimum Volatility Index than in
+the US Equal Weight Index. This could imply that the healthcare sector
+may not be as volatile as other sectors.}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-42-1.pdf}
 \caption{\label{fig:unnamed-chunk-42}The weight of industrials is
-consistenty higher over time in the US Equal Weight Index than in the
+consistently higher over time in the US Equal Weight Index than in the
 Minimum Volatility Index. This could imply that industrial companies may
 be more volatile than companies in other sectors.}
 \end{figure}
@@ -1751,7 +1751,7 @@ may have more volatile over the last few years.}
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-44-1.pdf}
-\caption{\label{fig:unnamed-chunk-44}The weight of materials is consistenty
+\caption{\label{fig:unnamed-chunk-44}The weight of materials is consistently
 higher over time in the US Equal Weight Index than in the Minimum
 Volatility Index. This could imply that materials companies may be more
 volatile than companies in other sectors.}
@@ -1781,7 +1781,7 @@ Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
 derived (Wharton Research Data Services, 2017). Each tickers' 252-day
-(annual) trailing volatility was calculated, and a month end spagetti
+(annual) trailing volatility was calculated, and a month end spaghetti
 plot was produced for stocks in the Minimum Volatility Index, and the
 remainder of the stock comprising the US Equal Weight Index, to get a
 relative sense of each group's volatility attributes. The stocks
@@ -1815,12 +1815,12 @@ Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
 derived (Wharton Research Data Services, 2017). Each tickers' 252-day
-(annual) trailing beta was calculated, and a month end spagetti plot was
-produced for stocks in the Minimum Volatility Index, and the remainder
-of the stock comprising the US Equal Weight Index, to get a relative
-sense of each group's volatility attributes. Generally, the stocks
-comprising the Minimum Volatility Index had a lower beta than those in
-the US Equal Weight Index.
+(annual) trailing beta was calculated, and a month end spaghetti plot
+was produced for stocks in the Minimum Volatility Index, and the
+remainder of the stock comprising the US Equal Weight Index, to get a
+relative sense of each group's volatility attributes. Generally, the
+stocks comprising the Minimum Volatility Index had a lower beta than
+those in the US Equal Weight Index.
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -4.9037  0.9316  1.1250  1.1505  1.3512  6.4952 
@@ -2020,31 +2020,14 @@ between stocks in the index and stocks not in the index. A perfect model
 would yield a ROC curve passing through the top left corner,
 representing a sensitivity of 100\% and a specificity of 100\%, with an
 area under the curve of 100\%. The area under the ROC curve for the
-logistic regression model in this study is 96.77\%.
-
+logistic regression model in this study is 96.77\%:
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-67-1.pdf}
 \hfill\break
 
-\chapter{Conclusions and Further
-Research}\label{conclusions-and-further-research}
+\chapter{Conclusions and Discussion}\label{conclusions-and-discussion}
 
 The regression model appeared to be statistically resilient with strong
 predictive power. \hfill\break
-\#\# Top 5 Candidates to Enter the Index The top 5 candidates to enter
-the index are
-
-In reality, x out of the 5 actually entered the index during rebalancing
-in May 2017. \hfill\break
-
-\section{Top 5 Candidates to Leave the
-Index}\label{top-5-candidates-to-leave-the-index}
-
-The top 5 candidates to leave the index are
-
-In reality, x out of the 5 actually left the index during rebalancing in
-May 2017.
-
-\hfill\break
 
 \section{Understanding of
 Relationships}\label{understanding-of-relationships}
@@ -2073,12 +2056,23 @@ in the Minimum Volatility Index was \hfill\break
 Some sectors were overweight in the Minimum Volatility Index, which
 would imply they are inherently less risky. \hfill\break
 
-\section{Investment Opportunity}\label{investment-opportunity}
+\section{Investment Implications}\label{investment-implications}
 
 Based off the accuracy of the top 5 candidates to join and exit the
 Minimum Volatility Index, \hfill\break
 
-\section{Future Models and Analysis}\label{future-models-and-analysis}
+\section{Limitations}\label{limitations}
+
+\hfill\break
+\#\#\# Using ETF data Using ETF data to forecast index membership is
+reasonable but not entirely accruate. The iShares data also had many
+errors that needed to be manually fixed. \hfill\break
+\#\#\# Barra Optimizer The Barra Optimizer is very complex, and this
+thesis did not take it into account when trying to predict index
+membership. Had it done so, the model could have been more accruate at
+predicting index rebalancing.
+
+\section{Model Improvements}\label{model-improvements}
 
 \hfill\break
 \#\#\# Model by Sector Breaking down the data by sector and modeling
@@ -2095,17 +2089,6 @@ might create a more accurate model \hfill\break
 Creating one model for May rebalancing and one model for November
 rebalancing might create a more accurate model\\
 \hfill\break
-
-\section{Limitations}\label{limitations}
-
-\hfill\break
-\#\#\# Using ETF data Using ETF data to forecast index membership is
-reasonable but not entirely accruate. The iShares data also had many
-errors that needed to be manually fixed. \hfill\break
-\#\#\# Barra Optimizer The Barra Optimizer is very complex, and this
-thesis did not take it into account when trying to predict index
-membership. Had it done so, the model could have been more accruate at
-predicting index rebalancing.
 
 \backmatter
 

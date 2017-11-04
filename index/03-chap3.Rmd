@@ -119,7 +119,7 @@ load("~/thesis_final/data/minvol_percent.Rda")
 library(ggplot2)
 ```
 
-``` {r fig.cap = paste("The weighting of energy in the US Equal Weight Index is consistenty higher than the weighting in the Minimum Volatility Index. This might imply that energy is a more volatile industry when compared to others."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weighting of energy in the US Equal Weight Index is consistently higher than the weighting in the Minimum Volatility Index. This might imply that energy is a more volatile industry when compared to others."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Energy
 Eng1 <- usa_percent[which(usa_percent$sector_name=="Energy"), ]
 Eng2 <- minvol_percent[which(minvol_percent$sector_name=="Energy"), ]
@@ -137,7 +137,7 @@ ggtitle("Index Financial Sector Weight Comparisons Over Time")+xlab("Time")+ylab
 geom_line(data = Fin2, aes(x=date, y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = paste("The weighting of consumer staples in the US Equal Weight Index is consistenty lower than the weighting of consumer staples in the Minimum Volatility Index. This might imply that consumer staples is a low volatile industry."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weighting of consumer staples in the US Equal Weight Index is consistently lower than the weighting of consumer staples in the Minimum Volatility Index. This might imply that consumer staples is a low volatile industry."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Consumer Staples
 ConStap1 <- usa_percent[which(usa_percent$sector_name=="Consumer Staples"), ]
 ConStap2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Staples"), ]
@@ -147,7 +147,7 @@ ylab("Sector Weight") + geom_line(data = ConStap2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = paste("The weight of consumer discretionary stocks is consistenty higher in the US Equal Weight Index than in the Minimum Volatility Index. This might imply that consumer discretionary is inherently a volatile industry."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weight of consumer discretionary stocks is consistently higher in the US Equal Weight Index than in the Minimum Volatility Index. This might imply that consumer discretionary is inherently a volatile industry."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Consumer Discretionary
 ConDis1 <- usa_percent[which(usa_percent$sector_name=="Consumer Discretionary"), ]
 ConDis2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Discretionary"), ]
@@ -157,7 +157,7 @@ ylab("Sector Weight") + geom_line(data = ConDis2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = paste("The weight of healthcare stocks is consistenty higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the healthcare sector may not be as volatile as other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the healthcare sector may not be as volatile as other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Healthcare
 Health1 <- usa_percent[which(usa_percent$sector_name=="Health Care"), ]
 Health2 <- minvol_percent[which(minvol_percent$sector_name=="Health Care"), ]
@@ -167,7 +167,7 @@ ylab("Sector Weight") + geom_line(data = Health2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = paste("The weight of industrials is consistenty higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that industrial companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weight of industrials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that industrial companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Industrials
 Ind1 <- usa_percent[which(usa_percent$sector_name=="Industrials"), ]
 Ind2 <- minvol_percent[which(minvol_percent$sector_name=="Industrials"), ]
@@ -187,7 +187,7 @@ xlab("Time") + ylab("Sector Weight") + geom_line(data = IT2, aes(x=date, y=perce
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = paste("The weight of materials is consistenty higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that materials companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = paste("The weight of materials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that materials companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
 ## Materials
 Mat1 <- usa_percent[which(usa_percent$sector_name=="Materials"), ]
 Mat2 <- minvol_percent[which(minvol_percent$sector_name=="Materials"), ]
@@ -198,11 +198,11 @@ colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 ``` {r fig.cap = paste("The weight of utilities stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the utilities sector may not be as volatile as other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
-## Utilites
+## Utilities
 Util1 <- usa_percent[which(usa_percent$sector_name=="Utilities"), ]
 Util2 <- minvol_percent[which(minvol_percent$sector_name=="Utilities"), ]
 ggplot(Util1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Utilites Sector Weight Comparisons Over Time") + xlab("Time") + 
+ggtitle("Index Utilities Sector Weight Comparisons Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = Util2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
@@ -221,7 +221,7 @@ y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 
 
 ## Trailing Volatility  
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
 
 ```{r, echo = FALSE}
 library(ggplot2)
@@ -252,7 +252,7 @@ plot(minvol_volplot)
 ```
 
 ## Trailing Beta 
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing beta was calculated, and a month end spagetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index.
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing beta was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index.
 
 ```{r, echo = FALSE}
 library(ggplot2)
