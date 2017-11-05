@@ -416,9 +416,8 @@ the stock market. The market is typically a benchmarked index relevant
 to the stock; for a large-cap US stock, the associated index could be
 the S\&P 500. Beta is calculated by taking the covariance of the stock
 returns and the market returns, then dividing by the variance of the
-market. Shown below is there formula for \(\beta\), where \(R_s\)
-represents the return of the stock and \(R_m\) represents the return of
-the market:
+market. Shown below is the formula for beta, where \(R_s\) represents
+the return of the stock and \(R_m\) represents the return of the market:
 \begin{figure}
 $$ \beta = \frac{Cov(R_s, R_m)} {Var(R_m)}$$
 \caption{Beta}
@@ -464,13 +463,20 @@ management from 30\% to 60\% in 1968-2008, the low-risk anomaly
 intensified. Another metric of fund manager performance is through the
 ``information ratio'' (IR), or the expected return difference between
 the manager and the expected return of the S\&P 500, divided by the
-volatility of this return difference. The goal of an investment manager
-is to maximize this number, best as possible, through picking stocks
-that will outperform the market. These help to create a greater demand
-for higher-risk stocks while discouraging investments in low-beta,
-low-volatility stocks, and ultimately increases the market's appetite
-for risky stocks with high reward potential, driving up price and
-driving down expected return.
+volatility of this return difference (Goodwin, 1998). Shown below is the
+formula for IR, where \(R_p\) represents the return of the portfolio,
+\(R_i\) represents the return of the index, and \(\sigma_p\) represents
+the standard deviation of portfolio returns:
+\begin{figure}
+$$ IR = \frac{(R_p - R_i)} {\sigma_p}$$
+\caption{Information Ratio}
+\end{figure}
+The goal of an investment manager is to maximize this number, best as
+possible, through picking stocks that will outperform the market. These
+help to create a greater demand for higher-risk stocks while
+discouraging investments in low-beta, low-volatility stocks, and
+ultimately increases the market's appetite for risky stocks with high
+reward potential, driving up price and driving down expected return.
 
 In addition to the focus on relative rather than absolute risk, money
 managers also often focus on single period returns, often as short as a
@@ -598,11 +604,13 @@ quantifies the relationship between risk and expected return for a
 stock, and considers that investors should be compensated for the time
 value of their money and risk they are taking. This is calculated as the
 risk free rate plus the beta times the difference between the risk free
-rate and expected market return (Brennan, 1989):
+rate and expected market return (Brennan, 1989). Shown below is the
+calculation for the expected return on an asset, \(r_a\), where \(r_f\)
+represents the risk-free rate, \(\beta\) represents the stock's beta,
+and \(\bar{r_m}\) represents the expected market return:
 \begin{figure}
-\centerline{\includegraphics[height=1.5in]{/Users/johngilheany/Desktop/capm.png}}
+$$ \bar{r_a} = r_f + \beta(\bar{r_m}-r_f)$$
 \caption{Capital Asset Pricing Model}
-\label{CAPM}
 \end{figure}
 This will give the expected return of the stock, and anything in excess
 of this will be considered alpha. Black, Jensen, and Scholes were able
@@ -747,25 +755,19 @@ directly benchmarked against an index like the S\&P 500, fund managers
 can also be compared using the ``information ratio'' (IR) which is the
 expected return difference between the manager and the expected return
 of the S\&P 500, divided by the volatility of this return difference
-(tracking error) (Goodwin, 1998):
-\begin{figure}
-\centerline{\includegraphics[height=2in]{/Users/johngilheany/Desktop/ir.png}}
-\caption{Information Ratio}
-\label{IR}
-\end{figure}
-The goal of an investment manager is to maximize this number, as best
-possible, through picking stocks. In fact, over 61\% of U.S. mutual fund
-managers are benchmarked against the S\&P 500, while over 94\% are
-benchmarked to some U.S. index benchmark (Sensoy, 2009). Moreover, SEC
-rules require mutual funds to compare their performance to some
-benchmark (SEC, 2017). This intuitively makes sense, as it allows
-investors to assess the skill and ability of managers in an unbiased
-way, and also allows fund managers a chance to differentiate themselves.
-However, this makes institutional investors, who are managing the
-majority of the money in the United States, less likely to buy
-low-volatility stocks, leading to higher prices and lower expected
-returns for the high-volatility stocks and further exacerbating the
-low-risk anomaly.
+(tracking error) (Goodwin, 1998). The goal of an investment manager is
+to maximize this number, as best possible, through picking stocks. In
+fact, over 61\% of U.S. mutual fund managers are benchmarked against the
+S\&P 500, while over 94\% are benchmarked to some U.S. index benchmark
+(Sensoy, 2009). Moreover, SEC rules require mutual funds to compare
+their performance to some benchmark (SEC, 2017). This intuitively makes
+sense, as it allows investors to assess the skill and ability of
+managers in an unbiased way, and also allows fund managers a chance to
+differentiate themselves. However, this makes institutional investors,
+who are managing the majority of the money in the United States, less
+likely to buy low-volatility stocks, leading to higher prices and lower
+expected returns for the high-volatility stocks and further exacerbating
+the low-risk anomaly.
 
 Going back to Baker's findings, it is very hard for fund managers to
 attain a high IR with a low-risk portfolio. Part of this stems from the
@@ -1032,11 +1034,13 @@ given certain levels of risk. Any excess above this risk-adjusted return
 is the Sharpe Ratio, or alpha that is generated by the stock. The Sharpe
 Ratio is calculated by taking the mean portfolio return and subtracting
 the risk free rate, then dividing by the standard deviation of portfolio
-returns (Investopedia, 2017):
+returns (Investopedia, 2017). Shown below is the formula for the Sharpe
+Ratio, where \(\bar{r_p}\) represents the expected return of the
+portfolio, \(r_f\) represents the risk-free rate, and \(\sigma_p\)
+represents standard deviation of portfolio returns:
 \begin{figure}
-\centerline{\includegraphics[height=1.5in]{/Users/johngilheany/Desktop/sharpe.png}}
+$$ SR = \frac{\bar{r_p}-r_f} {\sigma_p} $$
 \caption{Sharpe Ratio}
-\label{Sharpe}
 \end{figure}
 Investors try to maximize this number, and one way to do it is by
 levering up, or using borrowed capital to invest. By paying a fixed
