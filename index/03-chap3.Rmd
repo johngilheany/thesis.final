@@ -146,6 +146,7 @@ ggtitle("Financial Sector Weight Over Time")+xlab("Time")+ylab("Sector Weight") 
 geom_line(data = Fin2, aes(x=date, y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
+\newline
 Shown below in Figure \ref{fig:sector3} are the sector weights over time for consumer staple stocks in both indices. The weighting of consumer staples in the US Equal Weight Index is consistently lower than the weighting of consumer staples in the Minimum Volatility Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
 
 ``` {r fig.cap = "Weight of consumer staple stocks by index over time\\label{fig:sector3}", fig.height=2.8, fig.width=6.5, echo=FALSE}
@@ -171,10 +172,11 @@ colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 
-``` {r fig.cap = "Weight of consumer discretionary stocks by index over time\\label{fig:sector4}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of consumer discretionary stocks by index over time\\label{fig:sector4}", fig.height=2.85, fig.width=6.5, echo=FALSE}
 plot(cons1)
 ```
 
+\newline
 Shown below in Figure \ref{fig:sector5} are the sector weights over time for healthcare stocks in both indices. The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
 
 ``` {r, cache=TRUE, echo=FALSE}
@@ -187,7 +189,7 @@ ylab("Sector Weight") + geom_line(data = Health2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = "Weight of healthcare stocks by index over time\\label{fig:sector5}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of healthcare stocks by index over time\\label{fig:sector5}", fig.height=2.85, fig.width=6.5, echo=FALSE}
 plot(healthcare1)
 ```
 
@@ -203,10 +205,11 @@ ylab("Sector Weight") + geom_line(data = Ind2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = "Weight of industrials stocks by index over time\\label{fig:sector6}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of industrials stocks by index over time\\label{fig:sector6}", fig.height=2.85, fig.width=6.5, echo=FALSE}
 plot(industrials1)
 ```
 
+\newline
 Shown below in Figure \ref{fig:sector7} are the sector weights over time for information technology stocks in both indices. The weight of information technology stocks between 2012 and 2013 was significantly greater in the Minimum Volatility Index than in the US Equal Weight Index. However, since 2014, the weights of IT in both indices have converged, implying the industry may have become more volatile over the last few years.
 
 ``` {r, cache=TRUE, echo=FALSE}
@@ -219,7 +222,7 @@ xlab("Time") + ylab("Sector Weight") + geom_line(data = IT2, aes(x=date, y=perce
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = "Weight of information technology stocks by index over time\\label{fig:sector7}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of information technology stocks by index over time\\label{fig:sector7}", fig.height=2.85, fig.width=6.5, echo=FALSE}
 plot(infotech1)
 ```
 
@@ -235,10 +238,11 @@ ylab("Sector Weight") + geom_line(data = Mat2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = "Weight of materials stocks by index over time\\label{fig:sector8}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of materials stocks by index over time\\label{fig:sector8}", fig.height=2.9, fig.width=6.5, echo=FALSE}
 plot(materials1)
 ```
 
+\newline
 Shown below in Figure \ref{fig:sector9} are the sector weights over time for utilities stocks in both indices. The weight of utilities stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the utilities sector may not be as volatile as other sectors.
 
 ``` {r, cache=TRUE, echo=FALSE}
@@ -251,7 +255,7 @@ ylab("Sector Weight") + geom_line(data = Util2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-``` {r fig.cap = "Weight of utilities stocks by index over time\\label{fig:sector9}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of utilities stocks by index over time\\label{fig:sector9}", fig.height=2.9, fig.width=6.5, echo=FALSE}
 plot(utilities1)
 ```
 
