@@ -1225,9 +1225,9 @@ whether or not index reshuffling is an information-free event - that is,
 whether a company being added or removed adds information about the
 company to the market.
 
-Huji et al. looked at factor index rebalancing for an information-free
-event (Huij \& Kyosev, 2016). Factor indices are part of a parent index
-of many other stocks and are constructed in a mechanical way that is
+Others looked at factor index rebalancing for an information-free event
+(Huij \& Kyosev, 2016). Factor indices are part of a parent index of
+many other stocks and are constructed in a mechanical way that is
 publicly available and usually based on ranking stocks off a particular
 ratio of characteristic. The authors looked at one example, the MSCI
 Minimum Volatility index, and recorded returns for the stocks that had
@@ -1271,7 +1271,7 @@ exists if index additions or deletions can be accurately predicted.
 \section{Data Aggregation}\label{data-aggregation}
 
 Data was collected for the iShares MSCI USA Equal Weighted ETF (EUSA),
-which tracks the parent index of the minimum volatiltiy index, and
+which tracks the parent index of the minimum volatility index, and
 iShares Edge MSCI Min Vol USA ETF (USMV), which tracks the minimum
 volatility index, from Oct 31, 2011 to December 31, 2016 (BlackRock,
 2017). The iShares data contained this information for the two ETFs of
@@ -1316,7 +1316,7 @@ below:
 This did not make sense, given the ETF constituents are supposed to be
 US-focused, meaning they should be listed on US-based exchanges. Of the
 non-US exchange errors, they can be further broken up into two
-subgroups: companies that were incorretly listed overseas and are
+subgroups: companies that were incorrectly listed overseas and are
 actually listed on US exchanges, and companies that also are actually
 listed on US exchanges but instead had their overseas exchange tickers
 listed.
@@ -1368,12 +1368,11 @@ but when checking the recorded price of the stock for corresponding
 dates, it matched up with the Aflac, Inc. stock on the NYSE, with ticker
 ``AFL''. Thus, when this happened, each company was treated on a
 case-by-case basis. In this case, since the stock price corresponded to
-AFL, the ticker name was changed from ``8686'' to ``AFL''. This would
-ensure the data could be properly read in later on.
+AFL, the ticker name was changed from ``8686'' to ``AFL''.
 
 \subsection{Unrecognized Tickers}\label{unrecognized-tickers}
 
-The final general type of error in the data occured when the ticker
+The final general type of error in the data occurred when the ticker
 incorrectly recorded in the data set. This was evaluated, once again, on
 a case-by-case basis, by observing which tickers were not recognize, and
 looking at the company name to understand why. Sometimes, the issue was
@@ -1392,7 +1391,7 @@ it. One ticker was ``AAPL*'':
 \end{verbatim}
 This would cause future issues when reading the data in, because that
 ticker was not read in as ``AAPL'' due to the asterisk. This was fixed
-by simply removing the asterik from the ticker name.
+by simply removing the asterisk from the ticker name.
 
 Another example of the ticker not being read in properly was when it
 contained numbers. Alflac was an example that was mentioned previously,
@@ -1479,14 +1478,14 @@ To get a sense of the cleaned EUSA data, an overview is shown below:
 5                       New York Stock Exchange Inc. 2011-10-31
 6                       New York Stock Exchange Inc. 2011-10-31
 \end{verbatim}
-Shown below are summary statistics for EUSA. Each name is representd 63
-times, which is indicates no name is over represented in the dataset.
+Shown below are summary statistics for EUSA. Each name is represented 63
+times, which indicates no name is overrepresented in the dataset.
 Moreover, every row is an equity, which makes sense considering cash and
-cash assets were removed from at the beginning of the cleaning process.
-The weights of each stock in the EUSA ETF are also all between 0 and
-4.6773\%. There are no negative values and no stocks that appear to be
-incorrectly overweight. Moreover, each sector appears to be reasonably
-distributed, and the dates correctly range from 10-31-2011 to
+cash assets were removed from the dataset at the beginning of the
+cleaning process. The weights of each stock in the EUSA ETF are also all
+between 0 and 4.6773\%. There are no negative values and no stocks that
+appear to be incorrectly overweight. Moreover, each sector appears to be
+reasonably distributed, and the dates correctly range from 10-31-2011 to
 12-30-2016.
 \begin{verbatim}
                       name             asset.class        weight      
@@ -1530,14 +1529,14 @@ To get a sense of the cleaned USMV, an overview is shown below:
 5                                             NASDAQ 2011-10-31
 6                       New York Stock Exchange Inc. 2011-10-31
 \end{verbatim}
-Shown below are summary statistics for USMV Each name is representd 63
-times, which is indicates no name is over represented in the dataset.
+Shown below are summary statistics for USMV. Each name is represented 63
+times, which indicates no name is overrepresented in the dataset.
 Moreover, every row is an equity, which makes sense considering cash and
-cash assets were removed from at the beginning of the cleaning process.
-The weights of each stock in the USMV ETF are also all between 0.0002
-and 2.8287\%. There are no negative values and no stocks that appear to
-be incorrectly overweight. Moreover, each sector appears to be
-reasonably distributed, and the dates correctly range from 10-31-2011 to
+cash assets were removed from the dataset at the beginning of the
+cleaning process. The weights of each stock in the USMV ETF are between
+0.0002 and 2.8287\%. There are no negative values and no stocks appear
+to be incorrectly overweight. Moreover, sectors appear reasonably
+distributed, and the dates correctly range from 10-31-2011 to
 12-30-2016.
 \begin{verbatim}
                             name            asset.class       weight      
@@ -1570,74 +1569,62 @@ Total weights of the constructed US Equal Weight and Minimum Volatility
 indices were calculated by adding up each constituent's weight on a
 monthly basis. If the data were perfect, these should add up to 1 for
 each month. However, given some tickers and cash were removed, and given
-tracking error between the ETF and index, this was not expected. The
-monthly change in weights for the constructed US Equal Weight Index is
-shown below:
+tracking error between the ETF and index, this was not expected.
 
-\clearpage 
-\begin{verbatim}
-      date                weight      
- Min.   :2011-10-31   Min.   : 99.54  
- 1st Qu.:2013-02-14   1st Qu.: 99.73  
- Median :2014-05-30   Median : 99.80  
- Mean   :2014-05-30   Mean   : 99.79  
- 3rd Qu.:2015-09-15   3rd Qu.: 99.84  
- Max.   :2016-12-30   Max.   :100.21  
-\end{verbatim}
+The monthly change in weights for the constructed US Equal Weight Index
+is shown below in Figure \ref{fig:plot1}. The weights of the constructed
+index are very close to 100\%, with just two months exceeding that
+value.The minimum weight is 99.54\%, while the largest weight is
+100.21\%. The mean weight is 99.79\%.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf}
-\caption{\label{fig:unnamed-chunk-22}The weights for the constructed US
-Equal Weight Index are very close to 100\%, with just two months
-exceeding 100\%.The minimum weight is 99.54\%, while the largest weight
-is 100.21\%. The mean weight is 99.79\%.}
+\caption{\label{fig:unnamed-chunk-22}The weights of the constructed US Equal
+Weight Index by month\label{fig:plot1}}
 \end{figure}
-\clearpage  The monthly change in weights for the constructed Minimum
-Volatility Index is shown below:
-\begin{verbatim}
-      date                weight     
- Min.   :2011-10-31   Min.   :99.58  
- 1st Qu.:2013-02-14   1st Qu.:99.72  
- Median :2014-05-30   Median :99.76  
- Mean   :2014-05-30   Mean   :99.76  
- 3rd Qu.:2015-09-15   3rd Qu.:99.81  
- Max.   :2016-12-30   Max.   :99.99  
-\end{verbatim}
+\newline
+
+The monthly change in weights for the constructed Minimum Volatility
+Index is shown below in Figure \ref{fig:plot2}. The weights of the
+constructed index are very close to 100\%, but with no value exceeding
+that. The minimum weight is 99.58\%, while the largest weight is
+99.99\%. The mean weight is 99.76\%.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-24-1.pdf}
-\caption{\label{fig:unnamed-chunk-24}The weights for the constructed Minimum
-Volatility Index are very close to 100\%, with no value exceeding 100\%.
-The minimum weight is 99.58\%, while the largest weight is 99.99\%. The
-mean weight is 99.76\%.}
+\caption{\label{fig:unnamed-chunk-24}The weights of the constructed Minimum
+Volatility Index by month\label{fig:plot2}}
 \end{figure}
 \subsection{Comparing ETF returns to Constructed Index
 returns}\label{comparing-etf-returns-to-constructed-index-returns}
 
-Given the weights were very close to 100\% for both constru on a monthly
-basis, an additional check was performed by comparing the weighted
-returns of the constructed indices to the actual ETFs that mirror them.
-The ETFs are traded in the stock market, so price daily information on
-each was widely available. Thus, this provided a way to check how the
-constructed weighted returns compared to the ETF returns for both the
-constructed US Equal Weight Index and Minimum Volatility Index.
-Correlations were calculated between the performance of the constructed
-US Equal Weight Index and EUSA, as well as between the performance of
-the constructed Minimum Volatility Index and USMV. The higher the
-correlation, the more accruate the data is.
+Given the weights were very close to 100\% for both constructed indices
+on a monthly basis, an additional check was performed by comparing the
+weighted returns of the constructed indices to the actual ETFs that
+mirror them. The ETFs are traded in the stock market, so daily price
+information on each was widely available. Thus, this provided a way to
+check how the constructed weighted returns compared to the ETF returns
+for both the constructed US Equal Weight Index and Minimum Volatility
+Index. Correlations were calculated between the performance of the
+constructed index and its ETF, and plotted over time. As shown in Figure
+\ref{fig:plot3}, the overall correlation between the constructed US
+Equal Weight Index monthly returns and EUSA ETF monthly returns was
+98.06\%. As shown in Figure \ref{fig:plot4}, the overall correlation
+between the constructed Minimum Volatility Index monthly returns and
+USMV ETF monthly returns is 99.07\%.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-26-1.pdf}
-\caption{\label{fig:unnamed-chunk-26}The correlation between the Constructed
-US Equal Weight Index monthly returns and EUSA ETF monthly returns is
-98.06\%.}
+\caption{\label{fig:unnamed-chunk-26}Correlations between the constructed US
+Equal Weight Index monthly returns and EUSA ETF monthly
+returns\label{fig:plot3}}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-28-1.pdf}
-\caption{\label{fig:unnamed-chunk-28}The correlation between the Constructed
-Minimum Volatility Index monthly returns and USMV ETF monthly returns is
-99.07\%.}
+\caption{\label{fig:unnamed-chunk-28}Correlations between the constructed
+Minimum Volatility Index monthly returns and USMV ETF monthly
+returns\label{fig:plot4}}
 \end{figure}
 \chapter{Data Analysis}\label{data-analysis}
 
@@ -1650,7 +1637,7 @@ weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson
 \begin{longtable}[t]{rlr}
 \caption{\label{tab:unnamed-chunk-30}Top 5 Holdings in the US Equal Weight Index over Time by Average Weight}\\
 \toprule
-Rank & Ticker & Average Weight\\
+Rank & Ticker & Average Weight (\%)\\
 \midrule
 1 & AAPL & 2.542271\\
 2 & XOM & 1.946284\\
@@ -1668,7 +1655,7 @@ Johnson, and McDonald's.
 \begin{longtable}[t]{rlr}
 \caption{\label{tab:unnamed-chunk-33}Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight}\\
 \toprule
-Rank & Ticker & Average Weight\\
+Rank & Ticker & Average Weight (\%)\\
 \midrule
 1 & VZ & 1.508046\\
 2 & T & 1.493976\\
