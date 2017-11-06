@@ -160,7 +160,7 @@ colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 \clearpage
-Shown below in Figure \ref{fig:sector4} are the sector weights over time for consumer discretionary stocks in both indices. The weight of consumer discretionary stocks is consistently greater in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that consumer staple stocks are more volatile than stocks in other industries. 
+Shown below in Figure \ref{fig:sector4} are the sector weights over time for consumer discretionary stocks in both indices. The weight of consumer discretionary stocks is consistently greater in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that consumer discretionary stocks are more volatile than stocks in other industries. 
 ``` {r, cache=TRUE, echo=FALSE}
 ## Consumer Discretionary
 ConDis1 <- usa_percent[which(usa_percent$sector_name=="Consumer Discretionary"), ]
@@ -177,7 +177,7 @@ plot(cons1)
 ```
 
 \newline
-Shown below in Figure \ref{fig:sector5} are the sector weights over time for healthcare stocks in both indices. The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
+Shown below in Figure \ref{fig:sector5} are the sector weights over time for healthcare stocks in both indices. The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that healthcare stocks are less volatile than stocks in other industries. 
 
 ``` {r, cache=TRUE, echo=FALSE}
 ## Healthcare
@@ -210,7 +210,7 @@ plot(industrials1)
 ```
 
 \newline
-Shown below in Figure \ref{fig:sector7} are the sector weights over time for information technology stocks in both indices. The weight of information technology stocks between 2012 and 2013 was significantly greater in the Minimum Volatility Index than in the US Equal Weight Index. However, since 2014, the weights of IT in both indices have converged, implying the industry may have become more volatile over the last few years.
+Shown below in Figure \ref{fig:sector7} are the sector weights over time for information technology stocks in both indices. The weight of information technology stocks between 2012 and 2013 was significantly greater in the Minimum Volatility Index than in the US Equal Weight Index. However, since 2014, the weights of information technology in both indices have converged, implying the industry may have become more volatile over the last few years.
 
 ``` {r, cache=TRUE, echo=FALSE}
 ## Information Technology

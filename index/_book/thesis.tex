@@ -129,17 +129,17 @@ process. David helped spark my interest in the field of quantitative
 finance while advising me, alongside Professor Parzen, for a statistics
 research and reading class. Much of the literature I read then served as
 the foundation for this thesis. David also supervised me directly while
-I interned at Hutchin Hill Capital during January break, talking with me
-daily about my progress. I am also very grateful to David for meeting
-with me throughout the semester to give suggestions and comments on my
-work. I cannot thank David enough for his time and guidance. Professor
-Parzen has also been extremely helpful throughout the writing process,
-offering countless revisions and edit suggestions. I am grateful for
-Professor Parzen's statistical perspective, and helping throughout the
-data collection and analysis portions. I would also like to thank
-Professor Mark Glickman for reviewing my logistic regression model and
-offering suggestions for improvement, and to my friends and family for
-proofreading my thesis.
+I interned at Hutchin Hill Capital during January break, regularly
+discussing my research with me. I am also very grateful to David for
+meeting with me throughout the semester to give suggestions and comments
+on my work. I cannot thank David enough for his time and guidance.
+Professor Parzen has also been extremely helpful throughout the writing
+process, offering countless revisions and edit suggestions. I am
+grateful for Professor Parzen's statistical perspective, and helping
+throughout the data collection and analysis portions. I would also like
+to thank Professor Mark Glickman for reviewing my logistic regression
+model and offering suggestions for improvement, and to my friends and
+family for proofreading my thesis.
 }
 
 \Dedication{
@@ -207,17 +207,17 @@ quartile have a 3\% of being added.
     finance while advising me, alongside Professor Parzen, for a statistics
     research and reading class. Much of the literature I read then served as
     the foundation for this thesis. David also supervised me directly while
-    I interned at Hutchin Hill Capital during January break, talking with me
-    daily about my progress. I am also very grateful to David for meeting
-    with me throughout the semester to give suggestions and comments on my
-    work. I cannot thank David enough for his time and guidance. Professor
-    Parzen has also been extremely helpful throughout the writing process,
-    offering countless revisions and edit suggestions. I am grateful for
-    Professor Parzen's statistical perspective, and helping throughout the
-    data collection and analysis portions. I would also like to thank
-    Professor Mark Glickman for reviewing my logistic regression model and
-    offering suggestions for improvement, and to my friends and family for
-    proofreading my thesis.
+    I interned at Hutchin Hill Capital during January break, regularly
+    discussing my research with me. I am also very grateful to David for
+    meeting with me throughout the semester to give suggestions and comments
+    on my work. I cannot thank David enough for his time and guidance.
+    Professor Parzen has also been extremely helpful throughout the writing
+    process, offering countless revisions and edit suggestions. I am
+    grateful for Professor Parzen's statistical perspective, and helping
+    throughout the data collection and analysis portions. I would also like
+    to thank Professor Mark Glickman for reviewing my logistic regression
+    model and offering suggestions for improvement, and to my friends and
+    family for proofreading my thesis.
   \end{acknowledgements}
 
   \hypersetup{linkcolor=black}
@@ -259,21 +259,21 @@ The iShares Edge MSCI USA Minimum Volatility (USMV) Exchange Traded Fund
 (ETF) is designed to track the investment results of the MSCI Minimum
 Volatility USA index, which is composed of stocks with a lower
 volatility than the general market. This can provide investors with
-exposure to a portfolio with low risk that has historically declined
-less in value than the broader market during economic downturns. The ETF
-is comprised of 189 holdings, and is rebalanced two times per year, with
+exposure to a low risk portfolio that has historically declined less in
+value than the broader market during economic downturns. The ETF is
+comprised of 189 holdings, and is rebalanced two times per year, with
 the intention of mirroring the changes made by the index. The purpose of
-this dissertation is to create a logistic regression model that will
-forecast which stocks will be added or removed from this ETF when it is
-rebalanced, and to understand what factors are significant. The model
+this thesis is to create a logistic regression model that will calculate
+the probability that a stock will be in the index after the next
+rebalance, and to understand what factors are significant. The model
 will take into account volatility attributes of each stock, as well as
 others potentially significant predictor variables from prior studies.
 
 \section{Low-Risk Anomaly}\label{low-risk-anomaly}
 
-Several studies have shown that portfolios of low-risk stocks have
-higher risk-adjusted returns than portfolios of high-risk stocks (Baker
-et al., 2011). Low-risk stocks can be considered stocks with a low-beta
+The literature has proven that portfolios of low-risk stocks have higher
+risk-adjusted returns than portfolios of high-risk stocks (Baker et al.,
+2011). Low-risk stocks are publicly traded companies with a low-beta
 and/or low-volatility. This anomaly exists for several reasons including
 the need for money managers to be compared to a benchmark and an
 increased focus on relative rather than absolute risk. The MSCI Minimum
@@ -284,11 +284,11 @@ Index}\label{msci-minimum-volatility-index}
 
 The MSCI Minimum Volatility USA index constituents come from the MSCI
 USA Index, which is roughly comprised of the top 600 US stocks by market
-cap. This minimum volatility index is intended to have a lower beta,
+cap. The minimum volatility index is intended to have a lower beta,
 lower volatility, lower cap bias, and contain more stocks with less risk
 than its parent index, which contains US mid-cap and large-cap stocks.
-On the last trading days of May and November, the index is rebalanced
-twice a year. The index typically has around 180 constituents, with an
+On the last trading days of May and November, the index is rebalanced.
+The index is comprised of approximately 180 constituents, with an
 average of 20 new additions and 14 deletions every 6 months. Over the
 last five years, the number of additions has ranged from 12 to 25, while
 the deletions have been between 10 and 19. Changes to the index are
@@ -314,14 +314,14 @@ index aims to keep the weight of specific countries within a 5\% range
 of the weight in the parent index, or three times the weight of the
 country in the parent index. Sector weights cannot deviate more than 5\%
 from the sector weights in the parent index. One-way turnover of the
-index is also maxed at 10\%. Thus, taking into account these
-constraints, the Barra Open Optimizer creates the lowest absolute
-volatility portfolio possible (Wynne, 2016).
+index is also maxed at 10\%. Thus, given these constraints, the Barra
+Open Optimizer creates the lowest absolute volatility portfolio (Wynne,
+2016).
 
 \section{iShares MSCI Min Vol USA
 ETF}\label{ishares-msci-min-vol-usa-etf}
 
-An Exchange Traded Fund (ETF) is a collection of stocks and/or bonds in
+An exchange-traded fund (ETF) is a collection of stocks and/or bonds in
 a single portfolio that is traded on a major exchange (Hayes, 2017). As
 a result, the price of an ETF fluctuates on a regular basis. Exchange
 Traded Funds generally have more liquidity and lower fees when compared
@@ -352,15 +352,15 @@ data, the two are extremely comparable.
 
 \section{Regression Model}\label{regression-model}
 
-A logistic regression model will be created, which can be transformed to
+A logistic regression model was created, which can be transformed to
 calculate a probability of a stock being a member of the Minimum
 Volatility Index. A logistic regression model will be used since the
 dependent variable is dichotomous. The predictor variables will include
-52-week trailing volatility, 52-week trailing beta, price/book ratio,
-and whether or not the stock was in the index 6 months before, during
-the previous rebalancing. These attributes were chosen after looking at
-the historical literature and understanding of the minimum volatility
-index.
+52-week trailing volatility, 52-week trailing beta, price to book ratio,
+and whether or not the stock was in the index after the previous
+rebalance. These attributes were chosen after studying the historical
+literature and gaining a deeper understanding of the Minimum Volatility
+Index.
 
 \section{Significance}\label{significance}
 
@@ -1293,8 +1293,8 @@ similar, and those that existed in USMV, generally existed in USMV as
 well. The issues could be broken down into 3 main types: erroneous
 listed stock exchanges, problematic listed tickers, and price
 discrepancies due to issues like stock splits. Moreover, cash and cash
-related assets were removed from the data, as this dissertation focuses
-only on the stocks.
+related assets were removed from the data, as this thesis focuses only
+on the stocks.
 
 \subsection{Non-US Exchanges}\label{non-us-exchanges}
 
@@ -1503,7 +1503,8 @@ reasonably distributed, and the dates correctly range from 10-31-2011 to
  Energy                :3208   Max.   :2016-12-30  
  (Other)               :7729                       
 \end{verbatim}
-To get a sense of the cleaned USMV, an overview is shown below:
+To get a sense of the cleaned USMV, an overview is shown on the next
+page:
 \begin{verbatim}
   ticker                   name asset.class weight  price shares
 1    AAP ADVANCE AUTO PARTS INC      Equity 0.7986  65.07    316
@@ -1744,7 +1745,7 @@ Shown below in Figure \ref{fig:sector4} are the sector weights over time
 for consumer discretionary stocks in both indices. The weight of
 consumer discretionary stocks is consistently greater in the US Equal
 Weight Index than in the Minimum Volatility Index. This could imply that
-consumer staple stocks are more volatile than stocks in other
+consumer discretionary stocks are more volatile than stocks in other
 industries.
 \begin{figure}[htbp]
 \centering
@@ -1756,8 +1757,8 @@ by index over time\label{fig:sector4}}
 Shown below in Figure \ref{fig:sector5} are the sector weights over time
 for healthcare stocks in both indices. The weight of healthcare stocks
 is consistently higher over time in the Minimum Volatility Index than in
-the US Equal Weight Index. This could imply that consumer staple stocks
-are less volatile than stocks in other industries.
+the US Equal Weight Index. This could imply that healthcare stocks are
+less volatile than stocks in other industries.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-44-1.pdf}
@@ -1781,9 +1782,9 @@ Shown below in Figure \ref{fig:sector7} are the sector weights over time
 for information technology stocks in both indices. The weight of
 information technology stocks between 2012 and 2013 was significantly
 greater in the Minimum Volatility Index than in the US Equal Weight
-Index. However, since 2014, the weights of IT in both indices have
-converged, implying the industry may have become more volatile over the
-last few years.
+Index. However, since 2014, the weights of information technology in
+both indices have converged, implying the industry may have become more
+volatile over the last few years.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-48-1.pdf}
@@ -1911,25 +1912,26 @@ Minimum Volatility Index\label{fig:vol4}}
 Once the final data set was created and cleaned, with a number of
 response variables including trailing beta, trailing volatility, price
 to book ratio, and the whether or not a stock was in the Minimum
-Volatility index or not (1 if in, 0 if not in). Given the nature of the
-data, a logistic regression was run. Looking at all of the historical
-data and stock various characteristics, this modeled the log odds of a
-stock being in the minimum volatility index as a combination of the
-linear predictors mentioned. Since the index is rebalanced twice a year,
-it makes sense to look at a model including the data for both of these
-months.
+Volatility index after the previous rebalance (1 if in, 0 if not in).
+Given the nature of the data, a logistic regression was run. Looking at
+the historical data and various stock characteristics, the regression
+modeled the log odds of a stock being a member of the minimum volatility
+index as a combination of the linear predictors mentioned. Since the
+index is rebalanced in May and November, the model used data from those
+two months.
 
 \section{Data Cleaning}\label{data-cleaning-1}
 
 \subsection{Removing Class Bias}\label{removing-class-bias}
 
-Ideally, the proportion of stocks in and out of the Minimum Volatility
-index should approximately be the same. However, after checking this, it
-is clear that this is not the case, as there were 4182 observations for
-stocks not in the index, and just 1385 observations for stocks in the
-index. Since just around 25\% of the data was from stocks that are
-currently in the index, there is class bias. As a result, observations
-were sampled in equal proportions to get a better model.
+Ideally, the number of observations of stocks that are and are not
+members of the Minimum Volatility index should be approximately the
+same. However, after checking this, it was clear that this is not the
+case, as there were 4182 observations for stocks not in the index, and
+just 1385 observations for stocks in the index. Since just around 25\%
+of the data was from stocks that are currently in the index, there was
+evidence of class bias. As a result, observations were sampled in equal
+proportions to get a better model.
 
 \subsection{Creating Development and Test
 Samples}\label{creating-development-and-test-samples}
@@ -1938,9 +1940,9 @@ One way to address the problem of class bias is to draw the 0's and 1's
 for the development sample in equal proportions for a majority of the
 observations. In doing so, the remaining data will not included for the
 model, but will be used as the validation sample to evaluate and test
-the model. Class bias was removed, as the sample is now evenly weighted,
-with each outcome being represented by 969 observations. The remainder
-of the data was placed in the validation sample.
+it. Class bias was removed, as the sample is now evenly weighted, with
+each outcome being represented by 969 observations. The remainder of the
+data was placed in the validation sample.
 
 \section{Logistic Regression Model}\label{logistic-regression-model-1}
 \begin{verbatim}
@@ -1973,13 +1975,13 @@ Number of Fisher Scoring iterations: 6
 \end{verbatim}
 To calculate the log odds of a stock being an index constituent:
 \begin{figure}
-$$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index $$
+$$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index $$
 \caption{Log Odds Equation}
 \end{figure}
 \hfill\break
 To calculate the odds of a stock being an index constituent:
 \begin{figure}
-$$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index} $$
+$$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index} $$
 \caption{Odds Equation}
 \end{figure}
 \hfill\break
@@ -1987,7 +1989,7 @@ $$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059
 \hfill\break
 To calculate the probability of a stock being an index constituent:
 \begin{figure}
-$$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} {1 + e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} $$
+$$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index}} {1 + e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index}} $$
 \caption{Probability Equation}
 \end{figure}
 \subsection{Coefficient
@@ -1995,7 +1997,7 @@ Interpretation}\label{coefficient-interpretation}
 
 The coefficients can be interpreted as: \hfill\break
 - Volatility: For a one unit increase in volatility, the log odds of a
-stock being an index constituent change by -0.3976 \hfill\break
+stock being an index constituent change by -0.03976 \hfill\break
 - Beta: For a one unit increase in beta, the log odds of a stock being
 an index constituent change by -4.193 \hfill\break
 - Price to Book: For a one unit increase in price to book ratio, the log
@@ -2015,7 +2017,7 @@ multicollinearity, which occurs when one predictor variable can be
 predicted from the others with a high degree of accuracy. An example of
 this includes a person's height and weight, as these two variables are
 very closely related. VIFs measure how much the variance of the
-estimated regression coefficients in the model are inflated, compared to
+estimated regression coefficients in the model is inflated, compared to
 a case when the predictor variables are linearly unrelated. The general
 rule of thumb is that predictor variables with a VIF over 4 should be
 further inspected, and variables with a VIF above 10 require correction.
@@ -2045,20 +2047,20 @@ considering each pair, which can be represented as (1,0), ranges for
 cutoff values were determined based off of the probability of each
 observed 0 and 1. Concordant pairs were noted when the cutoff value for
 the 1 was higher than the cutoff value of the 0. Discordant pairs were
-noted when this was not the case, and this was equivalent to the case
-where the probability of the event was lower than the probability of a
-non-event. These instances are contrary to the definition of the event
-and non-event based off of the cutoff value calculated. In a perfect
-model, 100\% of the pairs would be concordant. In this model, 96.8\% of
-the pairs were concordant and 3.2\% of the pairs were discordant.
+noted when this was not true; this was equivalent to the case where the
+probability of the event is lower than the probability of a non-event.
+These instances are contrary to the definition of the event and
+non-event based off of the cutoff value calculated. In a perfect model,
+100\% of the pairs would be concordant. In this model, 96.8\% of the
+pairs were concordant and 3.2\% of the pairs were discordant.
 
 \hfill\break
 \textbf{Misclassification Error} \hfill\break
 Misclassification error measures the accuracy of the model by
 determining what the percent mismatch is of the predicted outcomes
 compared to the actual outcomes. By looking at the test data, this
-quantifies how accurate the model was at predicting which stocks were in
-the index and what stocks were not in the index, given their predictor
+quantifies how accurate the model is at predicting which stocks are in
+the index and what stocks are not in the index, given their predictor
 variable values. Better models will have lower misclassification errors.
 In this logistic regression model, the misclassification error was
 4.02\%.

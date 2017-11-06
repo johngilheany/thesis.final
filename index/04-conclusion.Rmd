@@ -1,5 +1,5 @@
 # Logistic Regression Model 
-Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index or not (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at all of the historical data and stock various characteristics, this  modeled the log odds of a stock being in the minimum volatility index as a combination of the linear predictors mentioned. Since the index is rebalanced twice a year, it makes sense to look at a model including the data for both of these months.
+Once the final data set was created and cleaned, with a number of response variables including trailing beta, trailing volatility, price to book ratio, and the whether or not a stock was in the Minimum Volatility index after the previous rebalance (1 if in, 0 if not in). Given the nature of the data, a logistic regression was run. Looking at the historical data and various stock characteristics, the regression modeled the log odds of a stock being a member of the minimum volatility index as a combination of the linear predictors mentioned. Since the index is rebalanced in May and November, the model used data from those two months.  
 
 ## Data Cleaning
 ```{r, echo = FALSE}
@@ -16,12 +16,12 @@ november_final <- subset(november_final, !is.na(index_before))
 both_final <- rbind(may_final, november_final)
 ```
 ### Removing Class Bias
-Ideally, the proportion of stocks in and out of the Minimum Volatility index should approximately be the same. However, after checking this, it is clear that this is not the case, as there were 4182 observations for stocks not in the index, and just 1385 observations for stocks in the index. Since just around 25% of the data was from stocks that are currently in the index, there is class bias. As a result, observations were sampled in equal proportions to get a better model.
+Ideally, the number of observations of stocks that are and are not members of the Minimum Volatility index should be approximately the same. However, after checking this, it was clear that this is not the case, as there were 4182 observations for stocks not in the index, and just 1385 observations for stocks in the index. Since just around 25% of the data was from stocks that are currently in the index, there was evidence of class bias. As a result, observations were sampled in equal proportions to get a better model.
 ```{r, cache=FALSE, echo = FALSE}
 bias1<- table(both_final$index_now)
 ```
 ### Creating Development and Test Samples
-One way to address the problem of class bias is to draw the 0’s and 1’s for the development sample in equal proportions for a majority of the observations. In doing so, the remaining data will not included for the model, but will be used as the validation sample to evaluate and test the model.  Class bias was removed, as the sample is now evenly weighted, with each outcome being represented by 969 observations. The remainder of the data was placed in the validation sample. 
+One way to address the problem of class bias is to draw the 0’s and 1’s for the development sample in equal proportions for a majority of the observations. In doing so, the remaining data will not included for the model, but will be used as the validation sample to evaluate and test it. Class bias was removed, as the sample is now evenly weighted, with each outcome being represented by 969 observations. The remainder of the data was placed in the validation sample. 
 
 ```{r, cache=FALSE, echo=FALSE}
 # Create Training Data
@@ -63,14 +63,14 @@ summary(logit)
 
 To calculate the log odds of a stock being an index constituent:
 \begin{figure}
-$$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index $$
+$$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index $$
 \caption{Log Odds Equation}
 \end{figure}
 
 \hfill\break
 To calculate the odds of a stock being an index constituent:
 \begin{figure}
-$$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index} $$
+$$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index} $$
 \caption{Odds Equation}
 \end{figure}
 
@@ -79,7 +79,7 @@ $$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059
 \hfill\break
 To calculate the probability of a stock being an index constituent:
 \begin{figure}
-$$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} {1 + e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} $$
+$$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index}} {1 + e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{Price}{Book} + 5.432 \times Index}} $$
 \caption{Probability Equation}
 \end{figure}
 
@@ -87,7 +87,7 @@ $$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.
 ### Coefficient Interpretation
 The coefficients can be interpreted as: 
 \hfill\break
-- Volatility: For a one unit increase in volatility, the log odds of a stock being an index constituent change by -0.3976
+- Volatility: For a one unit increase in volatility, the log odds of a stock being an index constituent change by -0.03976
 \hfill\break
 - Beta: For a one unit increase in beta, the log odds of a stock being an index constituent change by -4.193
 \hfill\break
@@ -101,7 +101,7 @@ To test the quality of the model, several diagnostic tests were performed:
 \hfill\break
 __Variance Inflation Factors__
 \hfill\break
-Variance inflation factors (VIF) are used in regressions to check for multicollinearity, which occurs when one predictor variable can be predicted from the others with a high degree of accuracy. An example of this includes a person's height and weight, as these two variables are very closely related. VIFs measure how much the variance of the estimated regression coefficients in the model are inflated, compared to a case when the predictor variables are linearly unrelated. The general rule of thumb is that predictor variables with a VIF over 4 should be further inspected, and variables with a VIF above 10 require correction. As shown below, all the predictor variables in the model have VIFs well below 4, indicating that multicollinearity is not a concern:
+Variance inflation factors (VIF) are used in regressions to check for multicollinearity, which occurs when one predictor variable can be predicted from the others with a high degree of accuracy. An example of this includes a person's height and weight, as these two variables are very closely related. VIFs measure how much the variance of the estimated regression coefficients in the model is inflated, compared to a case when the predictor variables are linearly unrelated. The general rule of thumb is that predictor variables with a VIF over 4 should be further inspected, and variables with a VIF above 10 require correction. As shown below, all the predictor variables in the model have VIFs well below 4, indicating that multicollinearity is not a concern:
 ```{r, echo=FALSE, message=FALSE}
 library(car)
 vif(logit)
@@ -118,14 +118,14 @@ optCutOff <- optimalCutoff(testData$index_now, predicted)[1]
 \hfill\break
 __Concordant and Discordant Pairs__
 \hfill\break
-To calculate the number of concordant and discordant pairs, all the possible pairs of 0's and 1's will be considered - that is, all the pairs of observations for stocks not in the index, and stocks in the index. In this data set, a total of 1,336,608 pairs were considered, and the probability values for 0 and 1 were calculated for each. Thus, considering each pair, which can be represented as (1,0), ranges for cutoff values were determined based off of the probability of each observed 0 and 1. Concordant pairs were noted when the cutoff value for the 1 was higher than the cutoff value of the 0. Discordant pairs were noted when this was not the case, and this was equivalent to the case where the probability of the event was lower than the probability of a non-event. These instances are contrary to the definition of the event and non-event based off of the cutoff value calculated. In a perfect model, 100% of the pairs would be concordant. In this model, 96.8% of the pairs were concordant and 3.2% of the pairs were discordant.
+To calculate the number of concordant and discordant pairs, all the possible pairs of 0's and 1's will be considered - that is, all the pairs of observations for stocks not in the index, and stocks in the index. In this data set, a total of 1,336,608 pairs were considered, and the probability values for 0 and 1 were calculated for each. Thus, considering each pair, which can be represented as (1,0), ranges for cutoff values were determined based off of the probability of each observed 0 and 1. Concordant pairs were noted when the cutoff value for the 1 was higher than the cutoff value of the 0. Discordant pairs were noted when this was not true; this was equivalent to the case where the probability of the event is lower than the probability of a non-event. These instances are contrary to the definition of the event and non-event based off of the cutoff value calculated. In a perfect model, 100% of the pairs would be concordant. In this model, 96.8% of the pairs were concordant and 3.2% of the pairs were discordant.
 ```{r, cache=FALSE, echo=FALSE}
 concord1 <- Concordance(testData$index_now, predicted)
 ```
 \hfill\break
 __Misclassification Error__
 \hfill\break
-Misclassification error measures the accuracy of the model by determining what the percent mismatch is of the predicted outcomes compared to the actual outcomes. By looking at the test data, this quantifies how accurate the model was at predicting which stocks were in the index and what stocks were not in the index, given their predictor variable values. Better models will have lower misclassification errors. In this logistic regression model, the misclassification error was 4.02%. 
+Misclassification error measures the accuracy of the model by determining what the percent mismatch is of the predicted outcomes compared to the actual outcomes. By looking at the test data, this quantifies how accurate the model is at predicting which stocks are in the index and what stocks are not in the index, given their predictor variable values. Better models will have lower misclassification errors. In this logistic regression model, the misclassification error was 4.02%. 
 ```{r, cache=FALSE, echo=FALSE}
 miscl1<- misClassError(testData$index_now, predicted)
 ```
