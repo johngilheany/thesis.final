@@ -151,27 +151,18 @@ friends and family for proofreading my thesis.
 }
 
 \Abstract{
-Stocks with low volatility perform as well or better than stocks with
-high volatility (Vliet \& Koning, 2016). This effect, termed the
-low-risk anomaly, has been demonstrated in studies showing that
-portfolios of low-risk stocks outperform portfolios of high-risk stocks
-over long periods of time (Baker, Bradley, \& Wurgler, 2011). The MSCI
-Minimum Volatility Index is designed to help investors take advantage of
-this effect. This index uses a software library called the Barra Open
-Optimizer to create and regularly rebalance a portfolio of low-risk
-stocks. Investors can trade this portfolio through an ETF (USMV) that
-tracks the index. Constituent data was collected from USMV between
-October 2011 and December 2016, and data from Wharton Research Data
-Services was used to calculate trailing beta, trailing volatility, and
-price to book ratio for each stock. Using these predictor variables, a
-logistic regression model was created to calculate the probability of a
-stock being a member of the index. Though lower beta and lower
-volatility individually each increased the probability of a stock being
-in the index, the effect of beta was interestingly stronger. The model
-was 86\% accurate at predicting which stocks would be in the index, and
-98\% accurate at predicting which stocks would not be in the index.
-These results suggest there may be an arbitrage opportunity in
-forecasting future membership in the Minimum Volatility Index.
+The low-risk anomaly is the term in academic literature for the
+empirical regularity that low-volatility stocks perform as well or
+better than high-volatility stocks (Baker, Bradley, \& Wurgler, 2011).
+The MSCI Minimum Volatility Index is designed to exploit this effect by
+holding a minimum variance portfolio of stocks. USMV is an
+exchange-traded fund that tracks the index. I used information from
+Wharton Research Data Services to calculate the trailing beta, trailing
+volatility, and price to book ratio for each stock. Using this data, I
+created a logistic regression model to calculate the probability of an
+individual stock being a member of the index at the next rebalance. It
+was found that stocks with lower beta and lower volatility are more
+likely to be in the index in the next period.
 }
 
 % End of CII addition
@@ -229,27 +220,18 @@ forecasting future membership in the Minimum Volatility Index.
 
   \listoffigures
   \begin{abstract}
-    Stocks with low volatility perform as well or better than stocks with
-    high volatility (Vliet \& Koning, 2016). This effect, termed the
-    low-risk anomaly, has been demonstrated in studies showing that
-    portfolios of low-risk stocks outperform portfolios of high-risk stocks
-    over long periods of time (Baker, Bradley, \& Wurgler, 2011). The MSCI
-    Minimum Volatility Index is designed to help investors take advantage of
-    this effect. This index uses a software library called the Barra Open
-    Optimizer to create and regularly rebalance a portfolio of low-risk
-    stocks. Investors can trade this portfolio through an ETF (USMV) that
-    tracks the index. Constituent data was collected from USMV between
-    October 2011 and December 2016, and data from Wharton Research Data
-    Services was used to calculate trailing beta, trailing volatility, and
-    price to book ratio for each stock. Using these predictor variables, a
-    logistic regression model was created to calculate the probability of a
-    stock being a member of the index. Though lower beta and lower
-    volatility individually each increased the probability of a stock being
-    in the index, the effect of beta was interestingly stronger. The model
-    was 86\% accurate at predicting which stocks would be in the index, and
-    98\% accurate at predicting which stocks would not be in the index.
-    These results suggest there may be an arbitrage opportunity in
-    forecasting future membership in the Minimum Volatility Index.
+    The low-risk anomaly is the term in academic literature for the
+    empirical regularity that low-volatility stocks perform as well or
+    better than high-volatility stocks (Baker, Bradley, \& Wurgler, 2011).
+    The MSCI Minimum Volatility Index is designed to exploit this effect by
+    holding a minimum variance portfolio of stocks. USMV is an
+    exchange-traded fund that tracks the index. I used information from
+    Wharton Research Data Services to calculate the trailing beta, trailing
+    volatility, and price to book ratio for each stock. Using this data, I
+    created a logistic regression model to calculate the probability of an
+    individual stock being a member of the index at the next rebalance. It
+    was found that stocks with lower beta and lower volatility are more
+    likely to be in the index in the next period.
   \end{abstract}
 
 \mainmatter % here the regular arabic numbering starts
