@@ -32,14 +32,14 @@ usa_topweight$weight <- usa_topweight$weight/63
 usa_topweight$rank <- seq.int(nrow(usa_topweight))
 ```
 
-```{r fig.cap = "Average Weight of Top 5 Holdings in US Equal Weight Index over Time", echo=FALSE}
+```{r fig.cap = "Weight of Top Holdings in US Equal Weight Index", echo=FALSE}
 
 usa_topweight <- select(usa_topweight, rank, ticker, weight)
 usa_topweight <- usa_topweight[1:5,]
 
 kable(usa_topweight, 
       col.names = c("Rank", "Ticker", "Average Weight (%)"),
-      caption = "Top 5 Holdings in the US Equal Weight Index over Time by Average Weight",
+      caption = "Average Weight of Top 5 Holdings in the US Equal Weight Index",
       longtable = TRUE,
       booktabs = TRUE)
 ```
@@ -55,14 +55,14 @@ minvol_topweight$weight <- minvol_topweight$weight/63
 minvol_topweight$rank <- seq.int(nrow(minvol_topweight))
 ```
 
-```{r fig.cap = "Average Weight of Top 5 Holdings in Minimum Volatility Index over Time", echo=FALSE}
+```{r fig.cap = "Weight of 5 Holdings in Minimum Volatility Index", echo=FALSE}
 
 minvol_topweight <- select(minvol_topweight, rank, ticker, weight)
 minvol_topweight <- minvol_topweight[1:5,]
 
 kable(minvol_topweight, 
       col.names = c("Rank", "Ticker", "Average Weight (%)"),
-      caption = "Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight",
+      caption = "Average Weight of Top 5 Holdings in the Minimum Volatility Index",
       longtable = TRUE,
       booktabs = TRUE)
 ```

@@ -1618,7 +1618,7 @@ weight are Apple (AAPL), Exxon Mobil (XOM), Microsoft (MSFT), General
 Electric (GE), and Johnson \& Johnson (JNJ). Each stock's average weight
 is shown below in Table 4.1.
 \begin{longtable}[t]{rlr}
-\caption{\label{tab:unnamed-chunk-30}Top 5 Holdings in the US Equal Weight Index over Time by Average Weight}\\
+\caption{\label{tab:unnamed-chunk-30}Average Weight of Top 5 Holdings in the US Equal Weight Index}\\
 \toprule
 Rank & Ticker & Average Weight (\%)\\
 \midrule
@@ -1634,7 +1634,7 @@ weight are Verizon (VZ), AT\&T (T), Automatic Data Processing (ADP),
 Johnson \& Johnson (JNJ), and McDonald's (MCD). Each stock's average
 weight is shown below in Table 4.2.
 \begin{longtable}[t]{rlr}
-\caption{\label{tab:unnamed-chunk-32}Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight}\\
+\caption{\label{tab:unnamed-chunk-32}Average Weight of Top 5 Holdings in the Minimum Volatility Index}\\
 \toprule
 Rank & Ticker & Average Weight (\%)\\
 \midrule
@@ -2149,26 +2149,6 @@ were consistently overweight in the minimum volatility index when
 compared to the parent index. This could imply that these sectors are
 inherently less volatile than other sectors.
 
-\section{Investment Implications}\label{investment-implications}
-
-Given the accuracy and predictive power of the logistic regression
-model, there are many ways it could be applied and used an investment
-opportunity. If the model can accurately forecast index membership in
-advance of its rebalancing, investors could long stocks that are
-predicted to be added to the index, and short the stocks that are
-expected to be removed from the index. Given that approximately 20
-stocks are added and 14 stocks are removed during each rebalancing
-(BlackRock, 2017), it could make sense to purchase stock in the top 5
-companies that are currently not in the minimum volatility index but
-have a high probability of being added, and short-sell stocks that are
-currently in the minimum volatility but have a low probability of
-remaining. When the iShares MSCI Minimum Volatility ETF is rebalanced,
-stocks that were added enjoyed an average 0.63\% increase in price the
-day after the announcement, and stocks that were removed lost 0.57\% of
-value after the announcement. Though the values are small by themselves,
-on an annualized basis, an accurate model could lead to a very lucrative
-investment strategy.
-
 \section{Future Models}\label{future-models}
 
 The logistic regression model took into account all of the data from the
@@ -2189,6 +2169,26 @@ by month could be telling too. By combining the May and November
 rebalancing data, the current model does not take into account specific
 factors that might be unique to rebalancing that occurs in either
 period.
+
+\section{Investment Implications}\label{investment-implications}
+
+Given the accuracy and predictive power of the logistic regression
+model, there are many ways it could be applied and used an investment
+opportunity. If the model can accurately forecast index membership in
+advance of its rebalancing, investors could long stocks that are
+predicted to be added to the index, and short the stocks that are
+expected to be removed from the index. Given that approximately 20
+stocks are added and 14 stocks are removed during each rebalancing
+(BlackRock, 2017), it could make sense to purchase stock in the top 5
+companies that are currently not in the minimum volatility index but
+have a high probability of being added, and short-sell stocks that are
+currently in the minimum volatility but have a low probability of
+remaining. When the iShares MSCI Minimum Volatility ETF is rebalanced,
+stocks that were added enjoyed an average 0.63\% increase in price the
+day after the announcement, and stocks that were removed lost 0.57\% of
+value after the announcement. Though the values are small by themselves,
+on an annualized basis, an accurate model could lead to a very lucrative
+investment strategy.
 
 \backmatter
 
@@ -2350,8 +2350,7 @@ death. \emph{Journal of Financial and Quantitative Analysis},
 \emph{37}(4), 559--594.
 
 \hypertarget{ref-macdonald2009}{}
-MacDonald, L. (2009, october). How traders are front-running etfs.
-Retrieved from
+MacDonald, L. (2009). How traders are front-running etfs. Retrieved from
 \url{https://seekingalpha.com/article/165877-how-traders-are-front-running-etfs}
 
 \hypertarget{ref-msci2013}{}
