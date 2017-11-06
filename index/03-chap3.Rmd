@@ -117,7 +117,7 @@ plot(holdings2)
 ## Change in Sector Weights Over Time
 Sector weights were calculated over time for both the US Equal Weight and the Minimum Volatility Index by dividing the number of holdings for each industry by the total number of holdings in the portfolio. This was done to get a sense of what industries may be inherently more "low-risk" or "high-risk." Moreover, this could help verify the accuracy of the data, as each sector weighting in the Minimum Volatility index should be within 5% of each sector weighting in the US Equal Weight Index, as specified by the Barra Open Optimizer [@msci2013].
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks. The weighting of energy stocks in the US Equal Weight index is consistently greater than the weighting of energy stocks in the Minimum Volatility index. This could imply that by nature, energy stocks are more volatile than stocks in other industries. 
+Shown below in Figure \ref{fig:sector1} are the sector weights over time for energy stocks in both indices. The weighting of energy stocks in the US Equal Weight Index is consistently greater than the weighting of energy stocks in the Minimum Volatility Index. This could imply that by nature, energy stocks are more volatile than stocks in other industries. 
 
 ```{r, echo=FALSE}
 load("~/thesis_final/data/usa_percent.Rda")
@@ -125,118 +125,151 @@ load("~/thesis_final/data/minvol_percent.Rda")
 library(ggplot2)
 ```
 
-``` {r fig.cap = "Weight of energy stocks by index over time\\label{fig:plot7}", fig.height=4.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of energy stocks by index over time\\label{fig:sector1}", fig.height=4.5, fig.width=6.5, echo=FALSE}
 ## Energy
 Eng1 <- usa_percent[which(usa_percent$sector_name=="Energy"), ]
 Eng2 <- minvol_percent[which(minvol_percent$sector_name=="Energy"), ]
 ggplot(Eng1, aes(date, percent, colour = "US Equal Weight")) + geom_line() +  
-ggtitle("Index Energy Sector Weight Comparisons Over Time") + xlab("Time") + ylab("Sector Weight") +
+ggtitle("Energy Sector Weight Over Time") + xlab("Time") + ylab("Sector Weight") +
 geom_line(data = Eng2, aes(x=date, y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 \clearpage
-Shown below in Figure \ref{fig:plot8} are the sector weights over time for financial stocks. The weighting of financial stocks in the US Equal Weight Index is fairly consistent, until a significant drop towards the latter half of 2016. This timing coincides with the Federal Reserve's decision to hike rates for just the second time in a decade, amid positive economic signs [@cox2016]. In the Minimum Volatility Index, the weighting of financials fluctuate quite a bit, and experience a similar drop in weight at that same point in time.
+Shown below in Figure \ref{fig:sector2} are the sector weights over time for financial stocks in both indices. The weighting of financial stocks in the US Equal Weight Index is fairly consistent, until a significant drop towards the latter half of 2016. This timing coincides with the Federal Reserve's decision to hike rates for just the second time in a decade, amid positive economic signs [@cox2016]. In the Minimum Volatility Index, the weighting of financials fluctuate quite a bit, and experience a similar drop in weight at that same point in time.
 
-``` {r fig.cap = "Weight of financial stocks by index over time\\label{fig:plot8}", fig.height=2.9, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of financial stocks by index over time\\label{fig:sector2}", fig.height=2.8, fig.width=6.5, echo=FALSE}
 ## Financials
 Fin1 <- usa_percent[which(usa_percent$sector_name=="Financials"), ]
 Fin2 <- minvol_percent[which(minvol_percent$sector_name=="Financials"), ]
 ggplot(Fin1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Financial Sector Weight Comparisons Over Time")+xlab("Time")+ylab("Sector Weight") + 
+ggtitle("Financial Sector Weight Over Time")+xlab("Time")+ylab("Sector Weight") + 
 geom_line(data = Fin2, aes(x=date, y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-\newline
-Shown below in Figure \ref{fig:plot9} are the sector weights over time for consumer staple stocks. The weighting of consumer staples in the US Equal Weight Index is consistently lower than the weighting of consumer staples in the Minimum Volatility Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
+Shown below in Figure \ref{fig:sector3} are the sector weights over time for consumer staple stocks in both indices. The weighting of consumer staples in the US Equal Weight Index is consistently lower than the weighting of consumer staples in the Minimum Volatility Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
 
-``` {r fig.cap = "Weight of consumer staple stocks by index over time\\label{fig:plot9}", fig.height=2.9, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of consumer staple stocks by index over time\\label{fig:sector3}", fig.height=2.8, fig.width=6.5, echo=FALSE}
 ## Consumer Staples
 ConStap1 <- usa_percent[which(usa_percent$sector_name=="Consumer Staples"), ]
 ConStap2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Staples"), ]
 ggplot(ConStap1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Consumer Staples Sector Weight Comparisons Over Time") + xlab("Time") + 
+ggtitle("Consumer Staples Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = ConStap2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 \clearpage
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of consumer discretionary stocks is consistently higher in the US Equal Weight Index than in the Minimum Volatility Index. This might imply that consumer discretionary is inherently a volatile industry."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+Shown below in Figure \ref{fig:sector4} are the sector weights over time for consumer discretionary stocks in both indices. The weight of consumer discretionary stocks is consistently greater in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that consumer staple stocks are more volatile than stocks in other industries. 
+``` {r, cache=TRUE, echo=FALSE}
 ## Consumer Discretionary
 ConDis1 <- usa_percent[which(usa_percent$sector_name=="Consumer Discretionary"), ]
 ConDis2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Discretionary"), ]
-ggplot(ConDis1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Consumer Discretionary Sector Weight Comparisons Over Time") + xlab("Time") + 
+cons1<- ggplot(ConDis1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Consumer Discretionary Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = ConDis2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the healthcare sector may not be as volatile as other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of consumer discretionary stocks by index over time\\label{fig:sector4}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(cons1)
+```
+
+Shown below in Figure \ref{fig:sector5} are the sector weights over time for healthcare stocks in both indices. The weight of healthcare stocks is consistently higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that consumer staple stocks are less volatile than stocks in other industries. 
+
+``` {r, cache=TRUE, echo=FALSE}
 ## Healthcare
 Health1 <- usa_percent[which(usa_percent$sector_name=="Health Care"), ]
 Health2 <- minvol_percent[which(minvol_percent$sector_name=="Health Care"), ]
-ggplot(Health1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Healthcare Sector Weight Comparisons Over Time") + xlab("Time") + 
+healthcare1<-ggplot(Health1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Healthcare Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = Health2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
+``` {r fig.cap = "Weight of healthcare stocks by index over time\\label{fig:sector5}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(healthcare1)
+```
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of industrials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that industrial companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
-## Industrials
+
+\clearpage
+Shown below in Figure \ref{fig:sector6} are the sector weights over time for industrial stocks in both indices. The weight of industrials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that industrial stocks are more volatile than stocks in other industries. 
+``` {r, cache=TRUE, echo=FALSE}
 Ind1 <- usa_percent[which(usa_percent$sector_name=="Industrials"), ]
 Ind2 <- minvol_percent[which(minvol_percent$sector_name=="Industrials"), ]
-ggplot(Ind1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Industrials Sector Weight Comparisons Over Time") + xlab("Time") + 
+industrials1<-ggplot(Ind1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Industrials Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = Ind2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weighting of information technology stocks between 2012 and 2013 were significantly greater in the Minimum Volatility Index than in the US Equal Weight Index. However, since 2014, the weights of IT in both indices have converged, implying the industry may have more volatile over the last few years."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of industrials stocks by index over time\\label{fig:sector6}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(industrials1)
+```
+
+Shown below in Figure \ref{fig:sector7} are the sector weights over time for information technology stocks in both indices. The weight of information technology stocks between 2012 and 2013 was significantly greater in the Minimum Volatility Index than in the US Equal Weight Index. However, since 2014, the weights of IT in both indices have converged, implying the industry may have become more volatile over the last few years.
+
+``` {r, cache=TRUE, echo=FALSE}
 ## Information Technology
 IT1 <- usa_percent[which(usa_percent$sector_name=="Information Technology"), ]
 IT2 <- minvol_percent[which(minvol_percent$sector_name=="Information Technology"), ]
-ggplot(IT1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Information Technology Sector Weight Comparisons Over Time") + 
+infotech1<- ggplot(IT1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Information Technology Sector Weight Over Time") + 
 xlab("Time") + ylab("Sector Weight") + geom_line(data = IT2, aes(x=date, y=percent,
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of materials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that materials companies may be more volatile than companies in other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of information technology stocks by index over time\\label{fig:sector7}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(infotech1)
+```
+
+\clearpage
+Shown below in Figure \ref{fig:sector8} are the sector weights over time for materials stocks in both indices. The weight of materials is consistently higher over time in the US Equal Weight Index than in the Minimum Volatility Index. This could imply that materials companies may be more volatile than companies in other sectors.
+``` {r, cache=TRUE, echo=FALSE}
 ## Materials
 Mat1 <- usa_percent[which(usa_percent$sector_name=="Materials"), ]
 Mat2 <- minvol_percent[which(minvol_percent$sector_name=="Materials"), ]
-ggplot(Mat1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Materials Sector Weight Comparisons Over Time") + xlab("Time") + 
+materials1<- ggplot(Mat1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Materials Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = Mat2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of utilities stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the utilities sector may not be as volatile as other sectors."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of materials stocks by index over time\\label{fig:sector8}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(materials1)
+```
+
+Shown below in Figure \ref{fig:sector9} are the sector weights over time for utilities stocks in both indices. The weight of utilities stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. This could imply that the utilities sector may not be as volatile as other sectors.
+
+``` {r, cache=TRUE, echo=FALSE}
 ## Utilities
 Util1 <- usa_percent[which(usa_percent$sector_name=="Utilities"), ]
 Util2 <- minvol_percent[which(minvol_percent$sector_name=="Utilities"), ]
-ggplot(Util1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Utilities Sector Weight Comparisons Over Time") + xlab("Time") + 
+utilities1<-ggplot(Util1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Utilities Sector Weight Over Time") + xlab("Time") + 
 ylab("Sector Weight") + geom_line(data = Util2, aes(x=date, y=percent, 
 colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
-Shown below in Figure \ref{fig:plot7} are the sector weights over time for energy stocks.
-``` {r fig.cap = paste("The weight of telecommunications stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. However, over time the weight of telecommunications has consistently decreased, which would imply the industry has gotten more volatile over the past few years."), fig.height=3.5, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Weight of utilities stocks by index over time\\label{fig:sector9}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(utilities1)
+```
+
+\clearpage
+Shown below in Figure \ref{fig:sector10} are the sector weights over time for telecommunications stocks in both indices. The weight of telecommunications stocks is higher over time in the Minimum Volatility Index than in the US Equal Weight Index. However, over time the weight of telecommunications has consistently decreased, which would imply the industry has gotten more volatile over the past few years.
+``` {r, cache=TRUE, echo=FALSE}
 ## Telecommunication Services
 Telecom1 <- usa_percent[which(usa_percent$sector_name=="Telecommunications"), ]
 Telecom2 <- minvol_percent[which(minvol_percent$sector_name=="Telecommunications"), ]
-ggplot(Telecom1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Index Telecommunication Sector Weight Comparisons Over Time") + 
+telecommunication1<-ggplot(Telecom1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
+ggtitle("Telecommunication Sector Weight Over Time") + 
 xlab("Time") + ylab("Sector Weight") + geom_line(data = Telecom2, aes(x=date, 
 y=percent, colour="Minimum Volatility"),show.legend = TRUE)
+
+```
+
+``` {r fig.cap = "Weight of telecommunications stocks by index over time\\label{fig:sector10}", fig.height=3.5, fig.width=6.5, echo=FALSE}
+plot(telecommunication1)
 ```
 
 \clearpage 
