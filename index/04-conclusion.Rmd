@@ -73,7 +73,7 @@ The coefficients can be interpreted as:
 - Index before: The odds ratio of being added to the index is 228.61 times greater if the stock was in the index 6 months ago. This response variable is statistically significant. 
 \hfill\break
 
-### Diagnostic Testing 
+## Diagnostic Testing 
 To test the quality of the model, several diagnostic tests were performed:
 \hfill\break
 __Variance Inflation Factors__

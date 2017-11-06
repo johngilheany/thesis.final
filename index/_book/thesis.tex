@@ -76,7 +76,7 @@ Logistic Regression}
 \author{John A. Gilheany}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
 \date{November 6, 2017}
-\division{Faculty of Arts and Sciences}
+\division{The Faculty of Arts and Sciences}
 \advisor{Professor Michael Parzen}
 \institution{Harvard University
 \begin{figure}
@@ -587,9 +587,9 @@ stock, and considers that investors should be compensated for the time
 value of their money and risk they are taking. This is calculated as the
 risk free rate plus the beta times the difference between the risk free
 rate and expected market return (Brennan, 1989). Shown below is the
-calculation for the expected return on an asset, \(r_a\), where \(r_f\)
-represents the risk-free rate, \(\beta\) represents the stock's beta,
-and \(\bar{r_m}\) represents the expected market return:
+calculation for the expected return on an asset, \(\bar{r_a}\), where
+\(r_f\) represents the risk-free rate, \(\beta\) represents the stock's
+beta, and \(\bar{r_m}\) represents the expected market return:
 \begin{figure}
 $$ \bar{r_a} = r_f + \beta(\bar{r_m}-r_f)$$
 \caption{Capital Asset Pricing Model}
@@ -1102,8 +1102,8 @@ By having these constraints, though, the typical public markets investor
 is forced to hold on to riskier, high-beta stocks, leading to
 effectiveness of the BaB factor (Frazzini \& Pedersen, 2014).
 
-\subsection{Betting Against
-Correlation}\label{betting-against-correlation}
+\subsection{Betting Against Correlation
+(BaC)}\label{betting-against-correlation-bac}
 
 In trying to understand the low-risk anomaly and how it could be
 applied, Asness et al. considered two possible explanations. The first
@@ -1645,12 +1645,12 @@ Rank & Ticker & Average Weight (\%)\\
 5 & MCD & 1.458286\\
 \bottomrule
 \end{longtable}
-The 5 largest holdings in the US Equal Weight index are AAPLE, XOM,
-MSFT, GE, and JNJ. As shown in Figure \ref{fig:plot5}, the weights of
-the 5 companies start off very high, each comprising a few percent of
-the overall index, then suddenly all drop significantly to a fraction of
-a percent after 2015-08-31. After verifying this with iShares and MSCI,
-it was discovered that this due to change in the weighting
+The 5 largest holdings in the US Equal Weight index are AAPL, XOM, MSFT,
+GE, and JNJ. As shown in Figure \ref{fig:plot5}, the weights of the 5
+companies start off very high, each comprising a few percent of the
+overall index, then suddenly all drop significantly to a fraction of a
+percent after 2015-08-31. After verifying this with iShares and MSCI, it
+was discovered that this due to change in the weighting
 mechanism.\newline
 \begin{figure}[htbp]
 \centering
@@ -1971,7 +1971,7 @@ is not statistically significant. \hfill\break
 times greater if the stock was in the index 6 months ago. This response
 variable is statistically significant. \hfill\break
 
-\subsection{Diagnostic Testing}\label{diagnostic-testing}
+\section{Diagnostic Testing}\label{diagnostic-testing}
 
 To test the quality of the model, several diagnostic tests were
 performed: \hfill\break
@@ -2177,7 +2177,7 @@ have been made to increase predictive power. Models could have been made
 by using data by sector. As shown in the analysis, some sectors are more
 volatile and risky than others, so using stocks without regard to sector
 might lead to a less accurate model. Sector could also have been used as
-a categorical predictor variable. variable.
+a categorical predictor variable.
 
 Seeing how significant of a predictor variable previous index membership
 was in the regression model, it could make sense to create two separate

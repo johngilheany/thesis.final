@@ -6,7 +6,7 @@ institution: |
   \begin{figure}
   \centerline{\includegraphics[height=1.5in]{/Users/johngilheany/Desktop/harvardlogo.jpg}}
   \end{figure}
-division: 'Faculty of Arts and Sciences'
+division: 'The Faculty of Arts and Sciences'
 advisor: 'Professor Michael Parzen'
 altadvisor: 'David Kane'
 department: 'Statistics'

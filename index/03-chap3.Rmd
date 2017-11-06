@@ -32,7 +32,7 @@ usa_topweight$weight <- usa_topweight$weight/63
 usa_topweight$rank <- seq.int(nrow(usa_topweight))
 ```
 
-```{r fig.cap = "Top 5 Holdings in US Equal Weight Index over Time by Average Weight", echo=FALSE}
+```{r fig.cap = "Average Weight of Top 5 Holdings in US Equal Weight Index over Time", echo=FALSE}
 
 usa_topweight <- select(usa_topweight, rank, ticker, weight)
 usa_topweight <- usa_topweight[1:5,]
@@ -55,7 +55,7 @@ minvol_topweight$weight <- minvol_topweight$weight/63
 minvol_topweight$rank <- seq.int(nrow(minvol_topweight))
 ```
 
-```{r fig.cap = "Top 5 Holdings in Minimum Volatility Index over Time by Average Weight", echo=FALSE}
+```{r fig.cap = "Average Weight of Top 5 Holdings in Minimum Volatility Index over Time", echo=FALSE}
 
 minvol_topweight <- select(minvol_topweight, rank, ticker, weight)
 minvol_topweight <- minvol_topweight[1:5,]
@@ -67,7 +67,7 @@ kable(minvol_topweight,
       booktabs = TRUE)
 ```
 
-The 5 largest holdings in the US Equal Weight index are AAPLE, XOM, MSFT, GE, and JNJ. As shown in Figure \ref{fig:plot5}, the weights of the 5 companies start off very high, each comprising a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism.\newline
+The 5 largest holdings in the US Equal Weight index are AAPL, XOM, MSFT, GE, and JNJ. As shown in Figure \ref{fig:plot5}, the weights of the 5 companies start off very high, each comprising a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism.\newline
 ```{r, echo = FALSE}
 load("~/thesis_final/data/usa.Rda")
 load("~/thesis_final/data/minvol.Rda")
@@ -142,7 +142,7 @@ Shown below in Figure \ref{fig:sector2} are the sector weights over time for fin
 Fin1 <- usa_percent[which(usa_percent$sector_name=="Financials"), ]
 Fin2 <- minvol_percent[which(minvol_percent$sector_name=="Financials"), ]
 ggplot(Fin1, aes(date, percent, colour = "US Equal Weight")) + geom_line() + 
-ggtitle("Financial Sector Weight Over Time")+xlab("Time")+ylab("Sector Weight") + 
+ggtitle("Financials Sector Weight Over Time")+xlab("Time")+ylab("Sector Weight") + 
 geom_line(data = Fin2, aes(x=date, y=percent, colour="Minimum Volatility"),show.legend = TRUE)
 ```
 
