@@ -38,7 +38,7 @@ usa_topweight <- select(usa_topweight, rank, ticker, weight)
 usa_topweight <- usa_topweight[1:5,]
 
 kable(usa_topweight, 
-      col.names = c("Rank", "Ticker", "Average Weight"),
+      col.names = c("Rank", "Ticker", "Average Weight (%)"),
       caption = "Top 5 Holdings in the US Equal Weight Index over Time by Average Weight",
       longtable = TRUE,
       booktabs = TRUE)
@@ -84,7 +84,7 @@ minvol_topweight <- select(minvol_topweight, rank, ticker, weight)
 minvol_topweight <- minvol_topweight[1:5,]
 
 kable(minvol_topweight, 
-      col.names = c("Rank", "Ticker", "Average Weight"),
+      col.names = c("Rank", "Ticker", "Average Weight (%)"),
       caption = "Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight",
       longtable = TRUE,
       booktabs = TRUE)
