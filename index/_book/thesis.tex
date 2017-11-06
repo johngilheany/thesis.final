@@ -1836,7 +1836,7 @@ index over time\label{fig:sector10}}
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
-derived (Wharton Research Data Services, 2017). Each tickers' 252-day
+derived (Wharton Research Data Services, 2017). Each stock's 252-day
 (annual) trailing volatility was calculated, and a month end spaghetti
 plot was produced for stocks in the Minimum Volatility Index, and the
 remainder of the stock comprising the US Equal Weight Index, to get a
@@ -1876,7 +1876,7 @@ in the Minimum Volatility Index\label{fig:vol2}}
 Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research
 Data Services (WRDS) for the 908 historical constituents of the USA
 Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is
-derived (Wharton Research Data Services, 2017). Each tickers' 252-day
+derived (Wharton Research Data Services, 2017). Each stock's 252-day
 (annual) trailing beta was calculated, and a month end spaghetti plot
 was produced for stocks in the Minimum Volatility Index, and the
 remainder of the stock comprising the US Equal Weight Index, to get a
@@ -2059,23 +2059,6 @@ Positive Rate. In the logistic regression model, the specificity was
 found to be 98.19\%.
 
 \hfill\break
-\textbf{Confusion Matrix} \hfill\break
-The confusion matrix is a table showing the total number of true
-positives, true negatives, false positives, and false negatives from the
-test data to evaluate the performance of a model. In this logistic
-regression model, there were a total of 359 true positives, 3155 true
-negatives, 58 false negatives, and 57 false positives. Shown below, the
-columns are actuals outcomes, while the rows are predicted outcomes:
-\begin{longtable}[t]{lrr}
-\caption{\label{tab:unnamed-chunk-74}Regression Model Confusion Matrix}\\
-\toprule
-  & 0 & 1\\
-\midrule
-0 & 3155 & 57\\
-1 & 58 & 359\\
-\bottomrule
-\end{longtable}
-\hfill\break
 \textbf{Receiver Operating Characteristics Curve} \hfill\break
 The Receiver Operating Characteristics (ROC) Curve plots the true
 positive rate (sensitivity) against the false positive rate
@@ -2085,8 +2068,32 @@ between stocks in the index and stocks not in the index. A perfect model
 would yield a ROC curve passing through the top left corner,
 representing a sensitivity of 100\% and a specificity of 100\%, with an
 area under the curve of 100\%. The area under the ROC curve for the
-logistic regression model in this study is 96.77\%:
-\includegraphics{thesis_files/figure-latex/unnamed-chunk-75-1.pdf}
+logistic regression model in this study is 96.77\%: \hfill\break
+\begin{figure}
+
+{\centering \includegraphics{thesis_files/figure-latex/unnamed-chunk-74-1} 
+
+}
+
+\caption{ROC Curve for Logistic Regression Model}\label{fig:unnamed-chunk-74}
+\end{figure}
+\hfill\break
+\textbf{Confusion Matrix} \hfill\break
+The confusion matrix is a table showing the total number of true
+positives, true negatives, false positives, and false negatives from the
+test data to evaluate the performance of a model. In this logistic
+regression model, there were a total of 359 true positives, 3155 true
+negatives, 58 false negatives, and 57 false positives. Shown below, the
+columns are actuals outcomes, while the rows are predicted outcomes:
+\begin{longtable}[t]{lrr}
+\caption{\label{tab:unnamed-chunk-75}Regression Model Confusion Matrix}\\
+\toprule
+  & 0 & 1\\
+\midrule
+0 & 3155 & 57\\
+1 & 58 & 359\\
+\bottomrule
+\end{longtable}
 \hfill\break
 
 \chapter{Conclusions and Future Work}\label{conclusions-and-future-work}
