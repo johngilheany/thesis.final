@@ -21,7 +21,7 @@ flights <- read.csv("data/flights.csv")
 
 # Data Analysis
 ## Change in Largest Holdings Over Time
-The top 5 largest holdings in the US Equal Weight Index by average weight are Apple, Exxon Mobil, Microsoft, General Electric, and Johnson & Johnson.
+The top 5 largest holdings in the US Equal Weight Index by average weight are Apple (AAPL), Exxon Mobil (XOM), Microsoft (MSFT), General Electric (GE), and Johnson & Johnson (JNJ). Each stock's average weight is shown below in Table 4.1. 
 
 ```{r, echo = FALSE}
 load("~/thesis_final/data/usa.Rda")
@@ -32,7 +32,7 @@ usa_topweight$weight <- usa_topweight$weight/63
 usa_topweight$rank <- seq.int(nrow(usa_topweight))
 ```
 
-```{r fig.cap = paste("Top 5 Holdings in US Equal Weight Index over Time by Average Weight"), echo=FALSE}
+```{r fig.cap = "Top 5 Holdings in US Equal Weight Index over Time by Average Weight", echo=FALSE}
 
 usa_topweight <- select(usa_topweight, rank, ticker, weight)
 usa_topweight <- usa_topweight[1:5,]
@@ -44,6 +44,30 @@ kable(usa_topweight,
       booktabs = TRUE)
 ```
 
+The top 5 largest holdings in the Minimum Volatility Index by average weight are Verizon (VZ), AT&T (T), Automatic Data Processing (ADP), Johnson & Johnson (JNJ), and McDonald's (MCD). Each stock's average weight is shown below in Table 4.2. 
+
+```{r, echo = FALSE}
+load("~/thesis_final/data/minvol.Rda")
+
+minvol_topweight <- aggregate(weight ~ ticker, data=minvol, FUN=sum)
+minvol_topweight <- arrange(minvol_topweight, desc(weight))
+minvol_topweight$weight <- minvol_topweight$weight/63
+minvol_topweight$rank <- seq.int(nrow(minvol_topweight))
+```
+
+```{r fig.cap = "Top 5 Holdings in Minimum Volatility Index over Time by Average Weight", echo=FALSE}
+
+minvol_topweight <- select(minvol_topweight, rank, ticker, weight)
+minvol_topweight <- minvol_topweight[1:5,]
+
+kable(minvol_topweight, 
+      col.names = c("Rank", "Ticker", "Average Weight (%)"),
+      caption = "Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight",
+      longtable = TRUE,
+      booktabs = TRUE)
+```
+
+The 5 largest holdings in the US Equal Weight index are AAPLE, XOM, MSFT, GE, and JNJ. As shown in Figure \ref{fig:plot5}, the weights of the 5 companies start off very high, each comprising a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism.\newline
 ```{r, echo = FALSE}
 load("~/thesis_final/data/usa.Rda")
 load("~/thesis_final/data/minvol.Rda")
@@ -59,37 +83,15 @@ holdings1<- ggplot() +
 	geom_line(data = filter(usa_sub1, ticker == "MSFT"), aes(x = date, y = weight, color = "MSFT"))  +
 	geom_line(data = filter(usa_sub1, ticker == "GE"), aes(x = date, y = weight, color = "GE"))  +
 	geom_line(data = filter(usa_sub1, ticker == "JNJ"), aes(x = date, y = weight, color = "JNJ"))  +
-	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of  Top 5 Holdings in the US Equal Weight Index')
+	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of Top 5 Holdings in the US Equal Weight Index')
 ```
 
-``` {r topholdingsusa, fig.cap = paste("The 5 largest holdings are AAPLE, XOM, MSFT, GE, and JNJ. The weights of the 5 companies start off very high, each as a few percent of the overall index, then suddenly all drop significantly to a fraction of a percent after 2015-08-31. After verifying this with iShares and MSCI, it was discovered that this due to change in the weighting mechanism."), echo=FALSE}
+``` {r, fig.cap = "The change in weight for the top 5 holdings in the US Equal Weight index\\label{fig:plot5}", fig.height=2.8, fig.width=6.5, echo=FALSE}
 plot(holdings1)
 ```
-\clearpage 
 
-The top 5 largest holdings in the Minimum Volatility Index by average weight are Verizon, AT&T, Automatic Data Processing, Johnson & Johnson, and McDonald's. 
-
-```{r, echo = FALSE}
-load("~/thesis_final/data/minvol.Rda")
-
-minvol_topweight <- aggregate(weight ~ ticker, data=minvol, FUN=sum)
-minvol_topweight <- arrange(minvol_topweight, desc(weight))
-minvol_topweight$weight <- minvol_topweight$weight/63
-minvol_topweight$rank <- seq.int(nrow(minvol_topweight))
-```
-
-```{r fig.cap = paste("Top 5 Holdings in Minimum Volatility Index over Time by Average Weight"), echo=FALSE}
-
-minvol_topweight <- select(minvol_topweight, rank, ticker, weight)
-minvol_topweight <- minvol_topweight[1:5,]
-
-kable(minvol_topweight, 
-      col.names = c("Rank", "Ticker", "Average Weight (%)"),
-      caption = "Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight",
-      longtable = TRUE,
-      booktabs = TRUE)
-```
-
+\newline
+The 5 largest holdings of the Minimum Volatility index are VZ, T, ADP, JNJ, and MCD. As shown in Figure \ref{fig:plot6}, since the index's inception these stocks have generally oscillated between a weight of 1.3% and 1.7% of the overall portfolio, with the exception of Verizon which reached around 2% in 2014.
 ```{r, echo = FALSE}
 load("~/thesis_final/data/minvol.Rda")
 minvol_sub1 <- filter(minvol, ticker == "VZ" | ticker == "T" | ticker == "ADP" | ticker == "JNJ" | ticker == "MCD")
@@ -106,9 +108,11 @@ holdings2<- ggplot() +
 	xlab('date') + ylab('weight') + ggtitle('Average Weight Change of Top 5 Holdings in the Minimum Volatility Index')
 ```
 
-``` {r fig.cap = paste("The 5 largest holdings of the Minimum Volatility Index are VZ, T, ADP, JNJ, and MCD. Since the index's inception, these stocks have generally remained between a weight of 1.3% and 1.7% of the overall portfolio, with the exception of Verizon, which reached around 2% in 2014."), echo=FALSE}
+``` {r fig.cap = "The change in weight for the top 5 holdings in the Minimum Volatility index\\label{fig:plot6}", fig.height=2.8, fig.width=6.5, echo=FALSE}
 plot(holdings2)
 ```
+
+\clearpage
 
 ## Change in Sector Weights Over Time
 Sector weights were calculated over time for both the US Equal Weight and the Minimum Volatility Index. This was done to get a sense of what industries may be inherently more "low-risk" as well as checking to make sure the data is resilient, and each sector weighting in the Minimum Volatility Index is within 5% of the US Equal Weight Index, as specified by the Barra Optimizer. 
