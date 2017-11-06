@@ -84,16 +84,16 @@ $$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.
 \end{figure}
 
 
-### Coefficients Interpretation
+### Coefficient Interpretation
 The coefficients can be interpreted as: 
 \hfill\break
-- Volatility: The odds ratio of being added to the index is 0.96 times smaller, given a one unit increase in volatility. This response variable is not statistically significant.
+- Volatility: For a one unit increase in volatility, the log odds of a stock being an index constituent change by -0.3976
 \hfill\break
-- Beta: The odds ratio of being added to the index is 0.015 times smaller, given a one unit increase in beta. This response variable is statistically significant. 
+- Beta: For a one unit increase in beta, the log odds of a stock being an index constituent change by -4.193
 \hfill\break
-- Price to Book: The odds ratio of being added to the index is the same, given a one unit increase in price to book ratio. This response variable is not statistically significant. 
+- Price to Book: For a one unit change in price to book ratio, the log odds of a stock being an index constituent increase by 0.00005059
 \hfill\break
-- Index before: The odds ratio of being added to the index is 228.61 times greater if the stock was in the index 6 months ago. This response variable is statistically significant. 
+- Index before: For a one unit change in previous index membership, the log odds of a stock being an index constituent increase by 5.432
 \hfill\break
 
 ## Diagnostic Testing 
