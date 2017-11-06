@@ -128,7 +128,7 @@ and David Kane, for their mentorship and guidance throughout the
 process. David helped spark my interest in the field of quantitative
 finance while advising me, alongside Professor Parzen, for a statistics
 research and reading class. Much of the literature I read then served as
-the foundation for this thesis. David also supervised me directly while
+the motivation for this thesis. David also supervised me directly while
 I interned at Hutchin Hill Capital during January break, regularly
 discussing my research with me. I am also very grateful to David for
 meeting with me throughout the semester to give suggestions and comments
@@ -158,20 +158,20 @@ The MSCI Minimum Volatility Index is designed to exploit this effect by
 holding a minimum variance portfolio of stocks. USMV is an
 exchange-traded fund that tracks the index. I used information from
 Wharton Research Data Services to calculate the trailing beta, trailing
-volatility, and price to book ratio for each stock. Using this data, I
-created a logistic regression model to calculate the probability of an
-individual stock being a member of the index at the next rebalance. I
-found that stocks with lower beta and lower volatility are more likely
-to be in the index in the next period. Stocks in the index with an
-average price to book ratio, average volatility, and a beta value in the
-bottom quartile have a 98\% probability of being included in the next
-period, whereas similar stocks in the index with a beta value in the top
-quartile have an 87\% probability of remaining. Stocks that are not
-current members of the index that have an average price to book ratio,
-average volatility, and a beta value in the bottom quartile have a 16\%
-probability of being included in the next period, whereas similar stocks
-with a beta value in the top quartile have a 3\% probability of being
-added.
+volatility, and price to book ratio for each stock in the index. Using
+this data, I created a logistic regression model to calculate the
+probability of an individual stock being a member of the index at the
+next rebalance. I found that stocks with lower beta and lower volatility
+are more likely to be in the index in the next period. Stocks in the
+index with an average price to book ratio, average volatility, and a
+beta value in the bottom quartile have a 98\% probability of being
+included in the next period, whereas similar stocks in the index with a
+beta value in the top quartile have an 87\% probability of remaining.
+Stocks that are not current members of the index that have an average
+price to book ratio, average volatility, and a beta value in the bottom
+quartile have a 16\% probability of being included in the next period,
+whereas similar stocks with a beta value in the top quartile have a 3\%
+probability of being added.
 }
 
 % End of CII addition
@@ -207,7 +207,7 @@ added.
     process. David helped spark my interest in the field of quantitative
     finance while advising me, alongside Professor Parzen, for a statistics
     research and reading class. Much of the literature I read then served as
-    the foundation for this thesis. David also supervised me directly while
+    the motivation for this thesis. David also supervised me directly while
     I interned at Hutchin Hill Capital during January break, regularly
     discussing my research with me. I am also very grateful to David for
     meeting with me throughout the semester to give suggestions and comments
@@ -236,20 +236,20 @@ added.
     holding a minimum variance portfolio of stocks. USMV is an
     exchange-traded fund that tracks the index. I used information from
     Wharton Research Data Services to calculate the trailing beta, trailing
-    volatility, and price to book ratio for each stock. Using this data, I
-    created a logistic regression model to calculate the probability of an
-    individual stock being a member of the index at the next rebalance. I
-    found that stocks with lower beta and lower volatility are more likely
-    to be in the index in the next period. Stocks in the index with an
-    average price to book ratio, average volatility, and a beta value in the
-    bottom quartile have a 98\% probability of being included in the next
-    period, whereas similar stocks in the index with a beta value in the top
-    quartile have an 87\% probability of remaining. Stocks that are not
-    current members of the index that have an average price to book ratio,
-    average volatility, and a beta value in the bottom quartile have a 16\%
-    probability of being included in the next period, whereas similar stocks
-    with a beta value in the top quartile have a 3\% probability of being
-    added.
+    volatility, and price to book ratio for each stock in the index. Using
+    this data, I created a logistic regression model to calculate the
+    probability of an individual stock being a member of the index at the
+    next rebalance. I found that stocks with lower beta and lower volatility
+    are more likely to be in the index in the next period. Stocks in the
+    index with an average price to book ratio, average volatility, and a
+    beta value in the bottom quartile have a 98\% probability of being
+    included in the next period, whereas similar stocks in the index with a
+    beta value in the top quartile have an 87\% probability of remaining.
+    Stocks that are not current members of the index that have an average
+    price to book ratio, average volatility, and a beta value in the bottom
+    quartile have a 16\% probability of being included in the next period,
+    whereas similar stocks with a beta value in the top quartile have a 3\%
+    probability of being added.
   \end{abstract}
 
 \mainmatter % here the regular arabic numbering starts
@@ -2132,15 +2132,15 @@ is known.
 \section{Improved Understanding of
 Relationships}\label{improved-understanding-of-relationships}
 
-This model help add to previous understanding of what traits of a stock
-are important in its membership in the Minimum Volatility index. The
+This model helps add to previous understanding of what traits of a stock
+are important for its membership in the Minimum Volatility index. The
 relationship between trailing volatility and current membership in the
 index was negative; the larger a stock's volatility, the less likely it
 is to be in the index. To be specific, for a one unit increase in
 volatility, the log odds of a stock being an index constituent change by
 -0.03976. This makes sense, given the Barra Open Optimizer works to
 create a minimum variance portfolio. The relationship between beta and
-membership in the minimum volatility index was also negative; the larger
+membership in the minimum volatility index is also negative; the larger
 the magnitude of a stock's beta is, the less likely it is to be in the
 index. To be specific, for a one unit increase in beta, the log odds of
 a stock being an index constituent change by -4.193. This is also
@@ -2151,15 +2151,14 @@ increase in price to book ratio, the log odds of a stock being an index
 constituent increase by 0.00005059. This is an interesting finding,
 especially in relation to the importance of profitability in defensive
 equity strategies (Novy-Marx, 2014). It is important to point out that
-the coefficient is positive, which means companies with a higher value
-are more likely to be constituents of the Minimum Volatility index. The
-relationship between prior index membership and current index membership
-in the minimum volatility index was by far the most influential. A stock
-that was a member of the index during the last rebalance has an higher
-log odds of 5.432 when compared to a stock that was not a member during
-the last rebalance. A stock was over 228 times more likely to a member
-of the index if it was a member six months. This is logical, considering
-a vast majority of the stocks in the index remain. There are
+the coefficient is positive, which means companies with a higher
+``value'' are more likely to be constituents of the Minimum Volatility
+index. The relationship between prior index membership and current index
+membership in the minimum volatility index was by far the most
+influential. A stock that was a member of the index during the last
+rebalance has a higher log odds of 5.432 as compared to a stock that was
+not a member during the last rebalance. This is logical, considering a
+vast majority of the stocks in the index remain - there are
 approximately 180 stocks in the index, and during each rebalance only
 around 14 are removed (BlackRock, 2017).
 
@@ -2182,7 +2181,7 @@ the index during the next rebalance. Stocks that are not current members
 of the index that have an average price to book ratio, average
 volatility, and a beta value in the top quartile have a 3\% probability
 of being added. Thus, in this case, a reduction in beta by 0.4389
-results in a current member of the index having an 13\% higher
+results in a current member of the index having a 13\% higher
 probability of remaining in the index.
 
 \section{Sector-Specific Risk}\label{sector-specific-risk}
@@ -2191,7 +2190,7 @@ Some sectors were overweight or underweight in the Minimum Volatility
 Index when compared to its parent index, which could have implications
 about sector-specific risk. Macro-effects, like industry specific
 effects mentioned in previous literature, have been shown to be
-significant in effecting a portfolio's risk-adjusted returns (Baker et
+significant in affecting a portfolio's risk-adjusted returns (Baker et
 al., 2014). Based off of the findings in this thesis, energy, consumer
 discretionary, industrials, and materials stocks were shown to be
 underweight in the Minimum Volatility Index since 2011 when compared to
@@ -2202,7 +2201,7 @@ overweight in the Minimum Volatility Index since 2011 when compared to
 the parent index. This could imply that companies in these sectors are
 inherently less volatile than companies in other sectors.
 
-\section{Future Models}\label{future-models}
+\section{Additional Models}\label{additional-models}
 
 The logistic regression model took into account all of the data from the
 months when a rebalance occurred. However, predictive power could
@@ -2232,21 +2231,21 @@ could also have additional predictive power.
 Given the accuracy and predictive abilities of the logistic regression
 model, there are several applications to the world of finance. If the
 model can accurately forecast index membership in advance of its
-rebalancing, investors could long stocks that are predicted to be added
-to the index, and short the stocks that are expected to be removed from
-the index. Given that approximately 20 stocks are added and 14 stocks
-are removed from the index during each rebalance (BlackRock, 2017), one
-strategy could be to purchase stock in the top companies that are
-currently not in the index but have the high probabilities of being
-added, and short-selling stocks that are currently in the minimum
-volatility but have the lowest probability of remaining. When the
-iShares MSCI Minimum Volatility ETF is rebalanced, stocks that were
-added enjoyed an average increase in price the day after the
-announcement of 0.63\%, and stocks that were removed lost an average of
-0.57\% of price after the announcement (Huij \& Kyosev, 2016). Though
-the values are small by themselves, on an annualized basis, an accurate
-model could lead to a very lucrative investment strategy. A computer
-algorithm could be developed to systematically trade this strategy.
+rebalance, investors could long stocks that are predicted to be added to
+the index, and short the stocks that are expected to be removed from the
+index. Given that approximately 20 stocks are added and 14 stocks are
+removed from the index during each rebalance (BlackRock, 2017), one
+strategy could be to purchase stock in companies that are currently not
+in the index but have the highest probabilities of being added, and
+short-selling stocks that are currently in the Minimum Volatility index
+but have the lowest probability of remaining. When the iShares MSCI
+Minimum Volatility ETF is rebalanced, stocks that were added enjoyed an
+average increase in price the day after the announcement of 0.63\%, and
+the price of stocks that were removed decreased by an average of 0.57\%
+after the announcement (Huij \& Kyosev, 2016). Especially when
+considered on an annualized basis, an accurate model could lead to a
+very lucrative investment. A computer algorithm could be developed to
+systematically trade this strategy.
 
 \backmatter
 
