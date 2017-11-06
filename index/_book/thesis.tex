@@ -2120,113 +2120,133 @@ logistic regression model in this study is 96.77\%: \hfill\break
 
 The logistic regression model was statistically resilient and had strong
 predictive power. Based off of historical data, it was able to correctly
-predict 86.29\% of stocks that were in the minimum volatility index, and
-98.19\% of the stocks that were not members of the minimum volatility
-index, using the optimal cut off. Overall, the logistic regression model
-had a 96.77\% accuracy in distinguishing between stocks that were
-members of the index, and stocks that were not members of the index. The
-model can also be easily transformed to calculate the probability of a
-stock being a member of the minimum volatility index based off of its
-trailing beta, trailing volatility, price to book ratio, and prior index
-membership.
+predict 86.29\% of stocks that were members of the minimum volatility
+index, and 98.19\% of the stocks that were not members. Overall, the
+logistic regression model had a 96.77\% accuracy in distinguishing
+between stocks that were members of the index, and stocks that were not
+members of the index. The model is able to calculate a stock's odds and
+probability of being a member of the index, if its trailing volatility,
+trailing beta, price to book ratio, and previous membership information
+is known.
 
-\section{Understanding of
-Relationships}\label{understanding-of-relationships}
+\section{Improved Understanding of
+Relationships}\label{improved-understanding-of-relationships}
 
-The model can help build on previous understanding of what traits of a
-stock are important in its membership in the minimum volatility index.
-The relationship between trailing volatility and current membership in
-the index was unsurprisingly negative; the larger a stock's volatility,
-the less likely it is to be in the index. To be specific, the odds of
-being in the index is 0.96 less with a one unit increase in a stock's
-volatility. This makes sense, given the Barra Open Optimizer works to
+This model help add to previous understanding of what traits of a stock
+are important in its membership in the Minimum Volatility index. The
+relationship between trailing volatility and current membership in the
+index was negative; the larger a stock's volatility, the less likely it
+is to be in the index. To be specific, for a one unit increase in
+volatility, the log odds of a stock being an index constituent change by
+-0.03976. This makes sense, given the Barra Open Optimizer works to
 create a minimum variance portfolio. The relationship between beta and
 membership in the minimum volatility index was also negative; the larger
 the magnitude of a stock's beta is, the less likely it is to be in the
-index. To be specific, a one unit increase in a stock's beta makes it
-0.015 times as likely to be in the index. This makes sense given that
-beta is a measure of a stock's volatility as well. However, the
-regression coefficient for beta was much stronger than the coefficient
-for volatility, which at first glance appears puzzling, given that this
-is a minimum volatility index. However, considering the units of each
-variable can alleviate this concern; a one unit increase in volatility
-in much less than a one unit increase in beta. For example, it would be
-extremely very hard for a stock's beta to jump from 0.7 to 1.7 over a
-short period of time, and would represent a massive change in a stock,
-even though it is just one unit. This can help explain this coefficient
-discrepancy, but it is important to note that both volatility and beta
-are negatively related to index membership.
-
+index. To be specific, for a one unit increase in beta, the log odds of
+a stock being an index constituent change by -4.193. This is also
+intuitive, given that beta is another measure of a stock's riskiness.
 The relationship between price to book ratio and current membership in
-the minimum volatility index was nonexistent in this model. In fact,
-with a one unit increase in price to book ratio for a stock did not
-affect a stock's odds of being a member of the index. This is an
-interesting finding, in that it might imply a stock's value is unrelated
-to its volatility, especially in relation to the importance of
-profitability in defensive equity strategies (Novy-Marx, 2014). The
-relationship between prior index membership and current membership in
-the minimum volatility index was by far the most powerful. A stock was
-over 228 times more likely to a member of the index if it was a member
-six months ago. This is logical, considering a vast majority of the
-stocks in the index remain. There are approximately 180 stocks in the
-index, and during each rebalance only around 14 are removed (BlackRock,
-2017).
+the minimum volatility index was small in this model; for a one unit
+increase in price to book ratio, the log odds of a stock being an index
+constituent increase by 0.00005059. This is an interesting finding,
+especially in relation to the importance of profitability in defensive
+equity strategies (Novy-Marx, 2014). It is important to point out that
+the coefficient is positive, which means companies with a higher value
+are more likely to be constituents of the Minimum Volatility index. The
+relationship between prior index membership and current index membership
+in the minimum volatility index was by far the most influential. A stock
+that was a member of the index during the last rebalance has an higher
+log odds of 5.432 when compared to a stock that was not a member during
+the last rebalance. A stock was over 228 times more likely to a member
+of the index if it was a member six months. This is logical, considering
+a vast majority of the stocks in the index remain. There are
+approximately 180 stocks in the index, and during each rebalance only
+around 14 are removed (BlackRock, 2017).
+
+This model is also very important in helping determine the specific
+effect of trailing volatility, trailing beta, price to book ratio, and
+previous membership on current membership in the Minimum Volatility
+Index. For example, by using the model it was found that stocks in the
+index with an average price to book ratio, average volatility, and a
+beta value in the bottom quartile have a 98\% probability of being
+included in the next period. Similar stocks in the index with an average
+price to book ratio, average volatility, and a beta value in the top
+quartile have an 87\% probability of remaining. In the data used, the
+beta value in the bottom quartile was 0.8262 and the beta value in the
+top quartile was 1.2651. Thus, a reduction in beta by 0.4389 results in
+a current member of the index having an 11\% higher probability of
+remaining in the index. Stocks that are not current members of the index
+that have an average price to book ratio, average volatility, and a beta
+value in the bottom quartile have a 16\% probability of being added to
+the index during the next rebalance. Stocks that are not current members
+of the index that have an average price to book ratio, average
+volatility, and a beta value in the top quartile have a 3\% probability
+of being added. Thus, in this case, a reduction in beta by 0.4389
+results in a current member of the index having an 13\% higher
+probability of remaining in the index.
 
 \section{Sector-Specific Risk}\label{sector-specific-risk}
 
-Some sectors were overweight or underweight in the minimum volatility
-Index, which would imply something about sector-specific risk.
-Macro-effects, like industry specific effects, have been shown to be
-important in affecting risk and return of a portfolio (Baker et al.,
-2014). Based off of the findings in this paper, energy, consumer
-discretionary, industrials, and materials were shown to be consistently
-underweight in the minimum volatility index when compared to the parent
-index. This could mean these sectors are inherently more volatile than
-other sectors. Moreover, consumer staples, healthcare, and utilities
-were consistently overweight in the minimum volatility index when
-compared to the parent index. This could imply that these sectors are
-inherently less volatile than other sectors.
+Some sectors were overweight or underweight in the Minimum Volatility
+Index when compared to its parent index, which could have implications
+about sector-specific risk. Macro-effects, like industry specific
+effects mentioned in previous literature, have been shown to be
+significant in effecting a portfolio's risk-adjusted returns (Baker et
+al., 2014). Based off of the findings in this thesis, energy, consumer
+discretionary, industrials, and materials stocks were shown to be
+underweight in the Minimum Volatility Index since 2011 when compared to
+the parent index. This indicates that stocks in these sectors could be
+inherently more volatile than stocks in other sectors. Moreover, the
+consumer staples, healthcare, and utilities industries were consistently
+overweight in the Minimum Volatility Index since 2011 when compared to
+the parent index. This could imply that companies in these sectors are
+inherently less volatile than companies in other sectors.
 
 \section{Future Models}\label{future-models}
 
 The logistic regression model took into account all of the data from the
-months when rebalances took place. However, more specific models could
-have been made to increase predictive power. Models could have been made
-by using data by sector. As shown in the analysis, some sectors are more
-volatile and risky than others, so using stocks without regard to sector
-might lead to a less accurate model. Sector could also have been used as
-a categorical predictor variable.
+months when a rebalance occurred. However, predictive power could
+increase through the use of more specific models. Sector-specific models
+could have been created. As shown in the analysis, some sectors are more
+volatile and risky than others, so using a model that is specific to
+stocks in a particular industry could increase the accuracy of
+predicting which stocks will be in the Minimum Volatility Index after
+the next rebalance. Moreover, sector could have been used as a
+categorical predictor variable in the current regression model.
 
-Seeing how significant of a predictor variable previous index membership
-was in the regression model, it could make sense to create two separate
-models: one for stocks currently in the minimum volatility index, and
-one for stocks that are not. This could also help for investment
-applications, as there will be one model used for short-selling stocks,
-and one for deciding which stocks to purchase. Finally, creating models
-by month could be telling too. By combining the May and November
-rebalancing data, the current model does not take into account specific
+Observing the significance of previous index membership as a predictor
+variable in the regression model, it could make sense to create two
+separate models: one for stocks currently in the Minimum Volatility
+index, and one for stocks that are not. This could also help for
+tailored investment applications, as there would be one model used for
+short-selling stocks that are predicted to leave the index, and a model
+used for purchasing stocks that are predicted to enter the index.
+Creating models by month could be telling too; by combining the May and
+November data, the current model does not take into account specific
 factors that might be unique to rebalancing that occurs in either
-period.
+period. Thus, a separate model for May and a separate model for November
+could also have additional predictive power.
 
 \section{Investment Implications}\label{investment-implications}
 
-Given the accuracy and predictive power of the logistic regression
-model, there are many ways it could be applied and used an investment
-opportunity. If the model can accurately forecast index membership in
-advance of its rebalancing, investors could long stocks that are
-predicted to be added to the index, and short the stocks that are
-expected to be removed from the index. Given that approximately 20
-stocks are added and 14 stocks are removed during each rebalancing
-(BlackRock, 2017), it could make sense to purchase stock in the top 5
-companies that are currently not in the minimum volatility index but
-have a high probability of being added, and short-sell stocks that are
-currently in the minimum volatility but have a low probability of
-remaining. When the iShares MSCI Minimum Volatility ETF is rebalanced,
-stocks that were added enjoyed an average 0.63\% increase in price the
-day after the announcement, and stocks that were removed lost 0.57\% of
-value after the announcement. Though the values are small by themselves,
-on an annualized basis, an accurate model could lead to a very lucrative
-investment strategy.
+Given the accuracy and predictive abilities of the logistic regression
+model, there are several applications to the world of finance. If the
+model can accurately forecast index membership in advance of its
+rebalancing, investors could long stocks that are predicted to be added
+to the index, and short the stocks that are expected to be removed from
+the index. Given that approximately 20 stocks are added and 14 stocks
+are removed from the index during each rebalance (BlackRock, 2017), one
+strategy could be to purchase stock in the top companies that are
+currently not in the index but have the high probabilities of being
+added, and short-selling stocks that are currently in the minimum
+volatility but have the lowest probability of remaining. When the
+iShares MSCI Minimum Volatility ETF is rebalanced, stocks that were
+added enjoyed an average increase in price the day after the
+announcement of 0.63\%, and stocks that were removed lost an average of
+0.57\% of price after the announcement (Huij \& Kyosev, 2016). Though
+the values are small by themselves, on an annualized basis, an accurate
+model could lead to a very lucrative investment strategy. A computer
+algorithm could be developed to systematically trade this strategy.
 
 \backmatter
 
