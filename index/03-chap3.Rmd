@@ -280,7 +280,7 @@ plot(telecommunication1)
 
 
 ## Trailing Volatility  
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing volatility was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index.
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each stock's 252-day (annual) trailing volatility was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. The stocks comprising the Minimum Volatility Index generally had a lower volatility than those in the US Equal Weight Index. Shown below in Figure \ref{fig:vol1} are the 52-week trailing volatilities for stocks in the US Equal Weight Index ranged from 0.00492 to 87.37030, with a mean value of 1.44738.
 
 ```{r, echo = FALSE}
 library(ggplot2)
@@ -292,9 +292,12 @@ summary(usa_vol$volatility)
 us_volplot <- ggplot(usa_vol, aes(date, volatility, group = ticker)) + geom_line() + ggtitle("52-Week Trailing Volatility for Stocks in the US Equal Weight Index") + labs(x="Date", y="52-week Trailing Volatility")
 ```
 
-``` {r fig.cap = paste("The 52-week trailing volatilities for stocks in the US Equal Weight Index ranged from 0.00492 to 87.37030, with a mean value of 1.44738."), echo=FALSE}
+``` {r fig.cap = "52-week trailing volatility for stocks in the US Equal Weight Index\\label{fig:vol1}", echo=FALSE}
 plot(us_volplot)
 ```
+
+\clearpage 
+Shown below in Figure \ref{fig:vol2} are the 52-week trailing volatilities for stocks in the Minimum Volatility Index ranged from 0.03085 to 34.20974, with a mean value of 1.40784.
 
 ```{r, echo = FALSE}
 library(ggplot2)
@@ -306,12 +309,14 @@ summary(minvol_vol$volatility)
 minvol_volplot <- ggplot(minvol_vol, aes(date, volatility, group = ticker)) + geom_line() + ggtitle("52-Week Trailing Volatility for Stocks in the Minimum Volatility Index") + labs(x="Date", y="52-week Trailing Volatility")
 ```
 
-``` {r fig.cap = paste("The 52-week trailing volatilities for stocks in the Minimum Volatility Index ranged from 0.03085 to 34.20974, with a mean value of 1.40784."), echo=FALSE}
+``` {r fig.cap = "52-week trailing volatility for stocks in the Minimum Volatility Index\\label{fig:vol2}", echo=FALSE}
 plot(minvol_volplot)
 ```
 
+\clearpage 
+
 ## Trailing Beta 
-Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each tickers' 252-day (annual) trailing beta was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index.
+Data was collected from 10/31/2010 to 12/30/2016, from Wharton Research Data Services (WRDS) for the 908 historical constituents of the USA Equal Weight (EUSA) ETF, of which the Minimum Volatility Index is derived [@wrds2017]. Each stock's 252-day (annual) trailing beta was calculated, and a month end spaghetti plot was produced for stocks in the Minimum Volatility Index, and the remainder of the stock comprising the US Equal Weight Index, to get a relative sense of each group's volatility attributes. Generally, the stocks comprising the Minimum Volatility Index had a lower beta than those in the US Equal Weight Index. Shown below in Figure \ref{fig:vol3}, the 52-week trailing beta for stocks in the US Equal Weight Index ranged from -4.9037 to 6.4952, with a mean value of 1.1505.
 
 ```{r, echo = FALSE}
 library(ggplot2)
@@ -323,9 +328,12 @@ summary(usa_beta$beta)
 usa_beta_plot <- ggplot(usa_beta, aes(date, beta, group = ticker)) + geom_line() + ggtitle("52-Week Trailing Beta for Stocks in the US Equal Weight Index") + labs(x="Date", y="52-week Trailing Beta")
 ```
 
-``` {r fig.cap = paste("The 52-week trailing betas for stocks in the US Equal Weight Index ranged from -4.9037 to 6.4952, with a mean value of 1.1505"), echo=FALSE}
+``` {r fig.cap = "52-week trailing beta for stocks in the US Equal Weight Index\\label{fig:vol3}", echo=FALSE}
 plot(usa_beta_plot)
 ```
+
+\clearpage 
+Shown below in Figure \ref{fig:vol4}, the 52-week trailing beta for stocks in the Minimum Volatility Index ranged from -0.2473 to 3.2021, with a mean value of 0.7856.
 
 ```{r, echo = FALSE}
 library(ggplot2)
@@ -337,7 +345,7 @@ summary(minvol_beta$beta)
 minvol_beta_plot <- ggplot(minvol_beta, aes(date, beta, group = ticker)) + geom_line() + ggtitle("52-Week Trailing Beta for Stocks in the Minimum Volatility Index") + labs(x="Date", y="52-week Trailing Beta")
 ```
 
-``` {r fig.cap = paste("The 52-week trailing betas for stocks in the Minimum Volatility Index ranged from -0.2473 to 3.2021, with a mean value of 0.7856"), echo=FALSE}
+``` {r fig.cap = "52-week trailing beta for stocks in the Minimum Volatility Index\\label{fig:vol4}", echo=FALSE}
 plot(minvol_beta_plot)
 ```
 
