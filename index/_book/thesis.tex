@@ -1955,15 +1955,23 @@ AIC: 755.23
 
 Number of Fisher Scoring iterations: 6
 \end{verbatim}
-In terms of the log odds:
+To calculate the log odds of a stock being an index constituent:
 \begin{figure}
 $$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index $$
 \caption{Log Odds Equation}
 \end{figure}
 \hfill\break
-In terms of probability:
+To calculate the odds of a stock being an index constituent:
 \begin{figure}
-$$ p = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index} $$
+$$ odds = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index} $$
+\caption{Odds Equation}
+\end{figure}
+\hfill\break
+\hfill\break
+\hfill\break
+To calculate the probability of a stock being an index constituent:
+\begin{figure}
+$$ p = \frac {odds}{1 + odds} = \frac{e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} {1 + e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index}} $$
 \caption{Probability Equation}
 \end{figure}
 \subsection{Model Interpretation}\label{model-interpretation}
