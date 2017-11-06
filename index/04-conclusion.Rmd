@@ -61,6 +61,20 @@ summary(logit)
 # (exp(coef(logit))) / (1+(exp(coef(logit))))
 ``` 
 
+In terms of the log odds:
+\begin{figure}
+$$ logit(p) = log(odds) = 1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index $$
+\caption{Log Odds Equation}
+\end{figure}
+
+\hfill\break
+In terms of probability:
+\begin{figure}
+$$ p = e ^ {1.858 - 0.03976 \times Volatlity - 4.193 \times Beta + 0.00005059 \times \frac{price}{book} + 5.432 \times index} $$
+\caption{Probability Equation}
+\end{figure}
+
+
 ### Model Interpretation
 The coefficients can be interpreted as: 
 \hfill\break
@@ -115,15 +129,6 @@ sens1<- sensitivity(testData$index_now, predicted, threshold = optCutOff)
 spec1<- specificity(testData$index_now, predicted, threshold = optCutOff)
 ```
 \hfill\break
-__Receiver Operating Characteristics Curve__
-\hfill\break
-The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%:
-\hfill\break
-```{r fig.cap = paste("ROC Curve for Logistic Regression Model"), fig.height=5, fig.width=6.5, fig.align='center', echo=FALSE}
-plotROC(testData$index_now, predicted)
-```
-
-\hfill\break
 __Confusion Matrix__
 \hfill\break
 The confusion matrix is a table showing the total number of true positives, true negatives, false positives, and false negatives from the test data to evaluate the performance of a model. In this logistic regression model, there were a total of 359 true positives, 3155 true negatives, 58 false negatives, and 57 false positives. Shown below, the columns are actuals outcomes, while the rows are predicted outcomes: 
@@ -135,6 +140,14 @@ kable(matrix1,
       caption = "Regression Model Confusion Matrix",
       longtable = TRUE,
       booktabs = TRUE)
+```
+\hfill\break
+__Receiver Operating Characteristics Curve__
+\hfill\break
+The Receiver Operating Characteristics (ROC) Curve plots the true positive rate (sensitivity) against the false positive rate (1-specificity) for all different possible cutoffs. The area under the curve is a measure of the accuracy of the model in distinguishing between stocks in the index and stocks not in the index. A perfect model would yield a ROC curve passing through the top left corner, representing a sensitivity of 100% and a specificity of 100%, with an area under the curve of 100%. The area under the ROC curve for the logistic regression model in this study is 96.77%:
+\hfill\break
+```{r fig.cap = paste("ROC Curve for Logistic Regression Model"), fig.height=5, fig.width=6.5, fig.align='center', echo=FALSE}
+plotROC(testData$index_now, predicted)
 ```
 \hfill\break
 
