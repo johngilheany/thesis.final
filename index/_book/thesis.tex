@@ -1579,7 +1579,7 @@ value.The minimum weight is 99.54\%, while the largest weight is
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-22-1.pdf}
-\caption{\label{fig:unnamed-chunk-22}The weights of the constructed US Equal
+\caption{\label{fig:unnamed-chunk-22}Weights of the constructed US Equal
 Weight Index by month\label{fig:plot1}}
 \end{figure}
 \newline
@@ -1592,7 +1592,7 @@ that. The minimum weight is 99.58\%, while the largest weight is
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-24-1.pdf}
-\caption{\label{fig:unnamed-chunk-24}The weights of the constructed Minimum
+\caption{\label{fig:unnamed-chunk-24}Weights of the constructed Minimum
 Volatility Index by month\label{fig:plot2}}
 \end{figure}
 \subsection{Comparing ETF returns to Constructed Index
@@ -1633,8 +1633,8 @@ Time}\label{change-in-largest-holdings-over-time}
 
 The top 5 largest holdings in the US Equal Weight Index by average
 weight are Apple (AAPL), Exxon Mobil (XOM), Microsoft (MSFT), General
-Electric (GE), and Johnson \& Johnson (JNJ). Each stock's average
-weights are shown below in Table 4.1.
+Electric (GE), and Johnson \& Johnson (JNJ). Each stock's average weight
+is shown below in Table 4.1.
 \begin{longtable}[t]{rlr}
 \caption{\label{tab:unnamed-chunk-30}Top 5 Holdings in the US Equal Weight Index over Time by Average Weight}\\
 \toprule
@@ -1650,7 +1650,7 @@ Rank & Ticker & Average Weight (\%)\\
 The top 5 largest holdings in the Minimum Volatility Index by average
 weight are Verizon (VZ), AT\&T (T), Automatic Data Processing (ADP),
 Johnson \& Johnson (JNJ), and McDonald's (MCD). Each stock's average
-weights are shown below in Table 4.2.
+weight is shown below in Table 4.2.
 \begin{longtable}[t]{rlr}
 \caption{\label{tab:unnamed-chunk-32}Top 5 Holdings in the Minimum Volatility Index over Time by Average Weight}\\
 \toprule
@@ -1673,8 +1673,8 @@ mechanism.\newline
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-34-1.pdf}
-\caption{\label{fig:unnamed-chunk-34}The change in weight for the top 5
-holdings in the US Equal Weight index\label{fig:plot5}}
+\caption{\label{fig:unnamed-chunk-34}Change in weight for the top 5 holdings
+in the US Equal Weight index over time\label{fig:plot5}}
 \end{figure}
 \newline
 The 5 largest holdings of the Minimum Volatility index are VZ, T, ADP,
@@ -1685,8 +1685,8 @@ which reached around 2\% in 2014.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-36-1.pdf}
-\caption{\label{fig:unnamed-chunk-36}The change in weight for the top 5
-holdings in the Minimum Volatility index\label{fig:plot6}}
+\caption{\label{fig:unnamed-chunk-36}Change in weight for the top 5 holdings
+in the Minimum Volatility index over time\label{fig:plot6}}
 \end{figure}
 \clearpage
 
@@ -1694,94 +1694,81 @@ holdings in the Minimum Volatility index\label{fig:plot6}}
 Time}\label{change-in-sector-weights-over-time}
 
 Sector weights were calculated over time for both the US Equal Weight
-and the Minimum Volatility Index. This was done to get a sense of what
-industries may be inherently more ``low-risk'' as well as checking to
-make sure the data is resilient, and each sector weighting in the
-Minimum Volatility Index is within 5\% of the US Equal Weight Index, as
-specified by the Barra Optimizer.
+and the Minimum Volatility Index by dividing the number of holdings for
+each industry by the total number of holdings in the portfolio. This was
+done to get a sense of what industries may be inherently more
+``low-risk'' or ``high-risk.'' Moreover, this could help verify the
+accuracy of the data, as each sector weighting in the Minimum Volatility
+index should be within 5\% of each sector weighting in the US Equal
+Weight Index, as specified by the Barra Open Optimizer (MSCI, 2013).
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks. The weighting of energy stocks in the US Equal Weight
+index is consistently greater than the weighting of energy stocks in the
+Minimum Volatility index. This could imply that by nature, energy stocks
+are more volatile than stocks in other industries.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-38-1.pdf}
-\caption{\label{fig:unnamed-chunk-38}The weighting of energy in the US Equal
-Weight Index is consistently higher than the weighting in the Minimum
-Volatility Index. This might imply that energy is a more volatile
-industry when compared to others.}
+\caption{\label{fig:unnamed-chunk-38}Weight of energy stocks by index over
+time\label{fig:plot7}}
 \end{figure}
+\clearpage
+Shown below in Figure \ref{fig:plot8} are the sector weights over time
+for financial stocks. The weighting of financial stocks in the US Equal
+Weight Index is fairly consistent, until a significant drop towards the
+latter half of 2016. This timing coincides with the Federal Reserve's
+decision to hike rates for just the second time in a decade, amid
+positive economic signs (Cox, 2016). In the Minimum Volatility Index,
+the weighting of financials fluctuate quite a bit, and experience a
+similar drop in weight at that same point in time.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-39-1.pdf}
-\caption{\label{fig:unnamed-chunk-39}The weighting of financials in the US
-Equal Weight Index are pretty consistent until a significant decrease
-towards the latter half of 2016. In the Minimum Volatility Index, the
-weighting of financials fluctuate quite a bit, and experience a similar
-drop in weight at the same time as the US Equal Weight Index.}
+\caption{\label{fig:unnamed-chunk-39}Weight of financial stocks by index
+over time\label{fig:plot8}}
 \end{figure}
+\newline
+Shown below in Figure \ref{fig:plot9} are the sector weights over time
+for consumer staple stocks. The weighting of consumer staples in the US
+Equal Weight Index is consistently lower than the weighting of consumer
+staples in the Minimum Volatility Index. This could imply that consumer
+staple stocks are less volatile than stocks in other industries.
 \begin{figure}[htbp]
 \centering
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-40-1.pdf}
-\caption{\label{fig:unnamed-chunk-40}The weighting of consumer staples in
-the US Equal Weight Index is consistently lower than the weighting of
-consumer staples in the Minimum Volatility Index. This might imply that
-consumer staples is a low volatile industry.}
+\caption{\label{fig:unnamed-chunk-40}Weight of consumer staple stocks by
+index over time\label{fig:plot9}}
 \end{figure}
-\begin{figure}[htbp]
-\centering
+\clearpage
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-41-1.pdf}
-\caption{\label{fig:unnamed-chunk-41}The weight of consumer discretionary
-stocks is consistently higher in the US Equal Weight Index than in the
-Minimum Volatility Index. This might imply that consumer discretionary
-is inherently a volatile industry.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-42-1.pdf}
-\caption{\label{fig:unnamed-chunk-42}The weight of healthcare stocks is
-consistently higher over time in the Minimum Volatility Index than in
-the US Equal Weight Index. This could imply that the healthcare sector
-may not be as volatile as other sectors.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-43-1.pdf}
-\caption{\label{fig:unnamed-chunk-43}The weight of industrials is
-consistently higher over time in the US Equal Weight Index than in the
-Minimum Volatility Index. This could imply that industrial companies may
-be more volatile than companies in other sectors.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-44-1.pdf}
-\caption{\label{fig:unnamed-chunk-44}The weighting of information technology
-stocks between 2012 and 2013 were significantly greater in the Minimum
-Volatility Index than in the US Equal Weight Index. However, since 2014,
-the weights of IT in both indices have converged, implying the industry
-may have more volatile over the last few years.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-45-1.pdf}
-\caption{\label{fig:unnamed-chunk-45}The weight of materials is consistently
-higher over time in the US Equal Weight Index than in the Minimum
-Volatility Index. This could imply that materials companies may be more
-volatile than companies in other sectors.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-46-1.pdf}
-\caption{\label{fig:unnamed-chunk-46}The weight of utilities stocks is
-higher over time in the Minimum Volatility Index than in the US Equal
-Weight Index. This could imply that the utilities sector may not be as
-volatile as other sectors.}
-\end{figure}
-\begin{figure}[htbp]
-\centering
+
+Shown below in Figure \ref{fig:plot7} are the sector weights over time
+for energy stocks.
 \includegraphics{thesis_files/figure-latex/unnamed-chunk-47-1.pdf}
-\caption{\label{fig:unnamed-chunk-47}The weight of telecommunications stocks
-is higher over time in the Minimum Volatility Index than in the US Equal
-Weight Index. However, over time the weight of telecommunications has
-consistently decreased, which would imply the industry has gotten more
-volatile over the past few years.}
-\end{figure}
+
 \clearpage 
 
 \section{Trailing Volatility}\label{trailing-volatility}
@@ -2225,6 +2212,11 @@ returns in japan. \emph{The Journal of Finance}, \emph{46}(5),
 Chen, H., Noronha, G., \& Singal, V. (2004). The price response to s\&P
 500 index additions and deletions: Evidence of asymmetry and a new
 explanation. \emph{The Journal of Finance}, \emph{59}(4), 1901--1930.
+
+\hypertarget{ref-cox2016}{}
+Cox, J. (2016, December). Fed raises rates for the second time in a
+decade. Retrieved from
+\url{https://www.cnbc.com/2016/12/14/fed-raises-rates-for-the-second-time-in-a-decade.html}
 
 \hypertarget{ref-falkenstein2012}{}
 Falkenstein, E. G. (2012). \emph{The missing risk premium: Why low

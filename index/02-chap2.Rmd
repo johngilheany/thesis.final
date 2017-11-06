@@ -172,7 +172,7 @@ usa_weight1 <- aggregate(weight ~ date, data=usa, FUN=sum)
 weight_plot1<- ggplot(usa_weight1) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed US Equal Weight Index") + labs(x="Date", y="Weight (%)")
 ```
 
-``` {r fig.cap = "The weights of the constructed US Equal Weight Index by month\\label{fig:plot1}", echo=FALSE}
+``` {r fig.cap = "Weights of the constructed US Equal Weight Index by month\\label{fig:plot1}", echo=FALSE}
 plot(weight_plot1)
 ```
 
@@ -187,7 +187,7 @@ usa_weight2 <- aggregate(weight ~ date, data=minvol, FUN=sum)
 weight_plot2 <- ggplot(usa_weight2) + geom_point(aes(date, weight)) + ggtitle("Monthly Weights of Constructed Minimum Volatility Index") + labs(x="Date", y="Weight (%)")
 ```
 
-``` {r fig.cap = "The weights of the constructed Minimum Volatility Index by month\\label{fig:plot2}", echo=FALSE}
+``` {r fig.cap = "Weights of the constructed Minimum Volatility Index by month\\label{fig:plot2}", echo=FALSE}
 plot(weight_plot2)
 ```
 
@@ -203,7 +203,7 @@ scatter1 <- ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point
 # cor(returns1$eusa_return, returns1$weighted_return)
 ```
 
-``` {r fig.cap = "Correlations between the constructed US Equal Weight Index monthly returns and EUSA ETF monthly returns\\label{fig:plot3}", fig.height=4, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Correlations between constructed US Equal Weight Index monthly returns and EUSA ETF monthly returns\\label{fig:plot3}", fig.height=4, fig.width=6.5, echo=FALSE}
 plot(scatter1)
 ```
 
@@ -217,6 +217,6 @@ scatter2 <- ggplot(returns2, aes(x=weighted_return, y=eminvol_return)) + geom_po
 # cor(returns2$eminvol_return, returns2$weighted_return)
 ```
 
-``` {r fig.cap = "Correlations between the constructed Minimum Volatility Index monthly returns and USMV ETF monthly returns\\label{fig:plot4}", fig.height=4, fig.width=6.5, echo=FALSE}
+``` {r fig.cap = "Correlations between constructed Minimum Volatility Index monthly returns and USMV ETF monthly returns\\label{fig:plot4}", fig.height=4, fig.width=6.5, echo=FALSE}
 plot(scatter2)
 ```
