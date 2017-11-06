@@ -198,7 +198,7 @@ Given the weights were very close to 100% for both constructed indices on a mont
 load("~/thesis_final/data/returns1.Rda")
 library(ggplot2)
 # Constructed US Equal Weight Index returns vs. EUSA ETF returns
-scatter1 <- ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + ggtitle("Constructed US Equal Weight Index returns vs. EUSA ETF returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
+scatter1 <- ggplot(returns1, aes(x=weighted_return, y=eusa_return)) + geom_point(shape=1) + ggtitle("Constructed US Equal Weight Index Returns vs. EUSA ETF Returns") + labs(x="Weighted Index Monthly Return (%)", y="ETF Monthly Return (%)")
 # Correlation between Constructed US Equal Weight Index Returns vs. EUSA ETF Returns
 # cor(returns1$eusa_return, returns1$weighted_return)
 ```

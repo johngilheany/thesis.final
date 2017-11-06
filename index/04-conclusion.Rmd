@@ -91,7 +91,7 @@ The coefficients can be interpreted as:
 \hfill\break
 - Beta: For a one unit increase in beta, the log odds of a stock being an index constituent change by -4.193
 \hfill\break
-- Price to Book: For a one unit change in price to book ratio, the log odds of a stock being an index constituent increase by 0.00005059
+- Price to Book: For a one unit increase in price to book ratio, the log odds of a stock being an index constituent increase by 0.00005059
 \hfill\break
 - Index before: For a one unit change in previous index membership, the log odds of a stock being an index constituent increase by 5.432
 \hfill\break
