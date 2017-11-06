@@ -124,22 +124,22 @@ Logistic Regression}
 
 \Acknowledgements{
 I would like to thank my thesis co-advisors, Professor Michael Parzen
-and David Kane, for all of their mentorship and guidance throughout the
+and David Kane, for their mentorship and guidance throughout the
 process. David helped spark my interest in the field of quantitative
 finance while advising me, alongside Professor Parzen, for a statistics
 research and reading class. Much of the literature I read then served as
 the foundation for this thesis. David also supervised me directly while
-I interned at Hutchin Hill Capital during January break, meeting with me
-daily to discuss progress on my research. I am also very grateful to
-David for meeting with me throughout the semester to give suggestions
-and comments on my work. I cannot thank David enough for his time and
-guidance. Professor Parzen has also been extremely helpful throughout
-the writing process, offering countless revisions and edit suggestions.
-I am grateful for Professor Parzen's statistical perspective, and
-helping throughout the data collection and analysis portions. I would
-also like to thank Professor Mark Glickman for reviewing my logistic
-regression model and offering suggestions for improvement, and to my
-friends and family for proofreading my thesis.
+I interned at Hutchin Hill Capital during January break, talking with me
+daily about my progress. I am also very grateful to David for meeting
+with me throughout the semester to give suggestions and comments on my
+work. I cannot thank David enough for his time and guidance. Professor
+Parzen has also been extremely helpful throughout the writing process,
+offering countless revisions and edit suggestions. I am grateful for
+Professor Parzen's statistical perspective, and helping throughout the
+data collection and analysis portions. I would also like to thank
+Professor Mark Glickman for reviewing my logistic regression model and
+offering suggestions for improvement, and to my friends and family for
+proofreading my thesis.
 }
 
 \Dedication{
@@ -160,9 +160,17 @@ exchange-traded fund that tracks the index. I used information from
 Wharton Research Data Services to calculate the trailing beta, trailing
 volatility, and price to book ratio for each stock. Using this data, I
 created a logistic regression model to calculate the probability of an
-individual stock being a member of the index at the next rebalance. It
-was found that stocks with lower beta and lower volatility are more
-likely to be in the index in the next period.
+individual stock being a member of the index at the next rebalance. I
+found that stocks with lower beta and lower volatility are more likely
+to be in the index in the next period. Stocks in the index with an
+average price to book ratio, average volatility, and a beta value in the
+bottom quartile have a 98\% of being included in the next period,
+whereas similar stocks in the index with a beta value in the top
+quartile have an 87\% of remaining. Stocks that are not current members
+of the index with an average price to book ratio, average volatility,
+and a beta value in the bottom quartile have a 16\% of being included in
+the next period, whereas similar stocks with a beta value in the top
+quartile have a 3\% of being added.
 }
 
 % End of CII addition
@@ -194,22 +202,22 @@ likely to be in the index in the next period.
 \pagestyle{empty} % this removes page numbers from the frontmatter
   \begin{acknowledgements}
     I would like to thank my thesis co-advisors, Professor Michael Parzen
-    and David Kane, for all of their mentorship and guidance throughout the
+    and David Kane, for their mentorship and guidance throughout the
     process. David helped spark my interest in the field of quantitative
     finance while advising me, alongside Professor Parzen, for a statistics
     research and reading class. Much of the literature I read then served as
     the foundation for this thesis. David also supervised me directly while
-    I interned at Hutchin Hill Capital during January break, meeting with me
-    daily to discuss progress on my research. I am also very grateful to
-    David for meeting with me throughout the semester to give suggestions
-    and comments on my work. I cannot thank David enough for his time and
-    guidance. Professor Parzen has also been extremely helpful throughout
-    the writing process, offering countless revisions and edit suggestions.
-    I am grateful for Professor Parzen's statistical perspective, and
-    helping throughout the data collection and analysis portions. I would
-    also like to thank Professor Mark Glickman for reviewing my logistic
-    regression model and offering suggestions for improvement, and to my
-    friends and family for proofreading my thesis.
+    I interned at Hutchin Hill Capital during January break, talking with me
+    daily about my progress. I am also very grateful to David for meeting
+    with me throughout the semester to give suggestions and comments on my
+    work. I cannot thank David enough for his time and guidance. Professor
+    Parzen has also been extremely helpful throughout the writing process,
+    offering countless revisions and edit suggestions. I am grateful for
+    Professor Parzen's statistical perspective, and helping throughout the
+    data collection and analysis portions. I would also like to thank
+    Professor Mark Glickman for reviewing my logistic regression model and
+    offering suggestions for improvement, and to my friends and family for
+    proofreading my thesis.
   \end{acknowledgements}
 
   \hypersetup{linkcolor=black}
@@ -229,9 +237,17 @@ likely to be in the index in the next period.
     Wharton Research Data Services to calculate the trailing beta, trailing
     volatility, and price to book ratio for each stock. Using this data, I
     created a logistic regression model to calculate the probability of an
-    individual stock being a member of the index at the next rebalance. It
-    was found that stocks with lower beta and lower volatility are more
-    likely to be in the index in the next period.
+    individual stock being a member of the index at the next rebalance. I
+    found that stocks with lower beta and lower volatility are more likely
+    to be in the index in the next period. Stocks in the index with an
+    average price to book ratio, average volatility, and a beta value in the
+    bottom quartile have a 98\% of being included in the next period,
+    whereas similar stocks in the index with a beta value in the top
+    quartile have an 87\% of remaining. Stocks that are not current members
+    of the index with an average price to book ratio, average volatility,
+    and a beta value in the bottom quartile have a 16\% of being included in
+    the next period, whereas similar stocks with a beta value in the top
+    quartile have a 3\% of being added.
   \end{abstract}
 
 \mainmatter % here the regular arabic numbering starts
